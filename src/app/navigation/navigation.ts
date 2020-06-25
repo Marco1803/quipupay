@@ -24,9 +24,9 @@ export const navigation: FuseNavigation[] = [
     //     ]
     // }
     {
-        id       : 'applications',
-        title    : 'Applications',
-        translate: 'NAV.APPLICATIONS',
+        id       : '',
+        title    : '',
+        translate: '',
         type     : 'group',
         icon     : 'apps',
         children : [

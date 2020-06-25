@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
+import { CognitoService } from 'app/cognito.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector     : 'app-login',
@@ -23,7 +25,10 @@ export class LoginComponent implements OnInit
      */
     constructor(
         private _fuseConfigService: FuseConfigService,
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        public authService: CognitoService,
+        public router: Router
+
     )
     {
         // Configure the layout
@@ -33,7 +38,7 @@ export class LoginComponent implements OnInit
                     hidden: true
                 },
                 toolbar  : {
-                    hidden: true
+                    hidden: false
                 },
                 footer   : {
                     hidden: true
@@ -55,8 +60,36 @@ export class LoginComponent implements OnInit
     ngOnInit(): void
     {
         this.loginForm = this._formBuilder.group({
-            email   : ['', [Validators.required, Validators.email]],
+            email   : ['', [Validators.required]],
             password: ['', Validators.required]
         });
     }
+
+    public OnSubmit(): void {
+        /**
+         * @method AuthService.authenticateCongnito calling the cognito authentication 
+         * @param {string} username
+         * @param {string} password
+         * @return {object} With accesstoken and payload
+         */
+        this.authService
+        .authenticateCongnito({
+            Username: this.loginForm.value.email,
+            Password: this.loginForm.value.password
+        })
+        .subscribe(result => {
+            // verify the result having the accessToken and payload information
+            if (result && result.accessToken) {
+            // After information is received send it to angular setters in services and can utlised
+            this.authService.accessToken = result.accessToken.jwtToken;
+            this.authService.userLoggedIn = true;
+            this.authService.UserDetails = {
+                username: result.accessToken.payload.username
+            };
+            // Route to home screen after success
+            console.log("me logueee");
+            this.router.navigate(["apps/dashboards/analytics"]);
+            }
+        });
+  }
 }
