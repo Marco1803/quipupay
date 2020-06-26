@@ -7,6 +7,9 @@ export const locale = {
             'CALENDAR'    : 'Calendar',
             'ECOMMERCE'   : 'E-Commerce',
             'ACADEMY'     : 'Academy',
+            //
+            'ADMIN'       : 'Admin',
+            //
             'MAIL'        : {
                 'TITLE': 'Mail',
                 'BADGE': '25'

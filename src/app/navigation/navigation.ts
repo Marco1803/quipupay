@@ -50,6 +50,21 @@ export const navigation: FuseNavigation[] = [
                         url  : '/apps/dashboards/project'
                     }
                 ]
+            },
+            {
+                id       : 'Admin',
+                title    : 'Admin',
+                translate: 'NAV.ADMIN',
+                type     : 'collapsable',
+                icon     : 'dashboard',
+                children : [
+                    {
+                        id   : 'Usuarios',
+                        title: 'Lista de Usuarios',
+                        type : 'item',
+                        url  : '/apps/admin/usuarios'
+                    }
+                ]
             }
         ]
     }

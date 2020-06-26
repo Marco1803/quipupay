@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { FuseSharedModule } from '@fuse/shared.module';
+//import { UsuariosComponent } from './admin/usuarios/usuarios.component';
+
 
 
 const routes = [
@@ -13,6 +15,11 @@ const routes = [
         path        : 'dashboards/project',
         loadChildren: () => import('./dashboards/project/project.module').then(m => m.ProjectDashboardModule)
     },
+    {
+        path        : 'admin/usuarios',
+        loadChildren: () => import('./admin/usuarios/usuarios.module').then(m => m.UsuariosModule)
+    },
+
     // {
     //     path        : 'mail',
     //     loadChildren: () => import('./mail/mail.module').then(m => m.MailModule)
@@ -59,7 +66,8 @@ const routes = [
     imports     : [
         RouterModule.forChild(routes),
         FuseSharedModule
-    ]
+    ],
+    declarations: []
 })
 export class AppsModule
 {
