@@ -8,11 +8,26 @@ import "rxjs/add/operator/catch";
 
 import {   CognitoUserPool,  CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 
+export interface CognitoCallback {
+  cognitoCallback(message: string, result: any): void;
+}
+
+export interface LoggedInCallback {
+  isLoggedIn(message: string, loggedIn: boolean): void;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class CognitoService {
-
+  public static _REGION = environment.cognitoPool.region;
+  public static _IDENTITY_POOL_ID = environment.cognitoPool.identityPoolId;
+  public static _USER_POOL_ID = environment.cognitoPool.UserPoolId;
+  public static _CLIENT_ID = environment.cognitoPool.ClientId;
+  public static _POOL_DATA: any = {
+      UserPoolId: CognitoService._USER_POOL_ID,
+      ClientId: CognitoService._CLIENT_ID
+  };
   private _accessToken: string = "";
   private _userloggedIn: boolean = false;
   private _userDetails: any = {};
@@ -33,17 +48,37 @@ export class CognitoService {
     });
     // Authenticate the cognito user with information
     CogUser.authenticateUser(CogAuthData, {
+      newPasswordRequired: err => {
+        console.log(err);
+        var res = {
+          code: "NotAuthorizedException",
+          message: "FORCE_CHANGE_PASSWORD",
+          name: "NotAuthorizedException",
+          email: err.email
+        }
+        authResult.next(res);
+      },
       onSuccess: result => {
         // on success send it to subject so that it will emit the success
         authResult.next(result);
-    },
-    onFailure: err => {
+      },
+      onFailure: err => {
         // on failure send it to suvject so that will emit the error
-        authResult.error(err);
+        authResult.error(err); 
       }
     });
     // Handling the final Observable 
     return authResult.asObservable();
+  }
+
+  getUserPool() {
+    if (environment.cognitoPool.cognito_idp_endpoint) {
+        CognitoService._POOL_DATA.endpoint = environment.cognitoPool.cognito_idp_endpoint;
+    }
+    return new CognitoUserPool(CognitoService._POOL_DATA);
+  }
+  getCurrentUser() {
+      return this.getUserPool().getCurrentUser();
   }
   // Set accesstoken data
   set accessToken(value: string) {

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { FuseSharedModule } from '@fuse/shared.module';
+
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { AccesosGuard } from 'app/services/guards/accesos.guard';
 //import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 
 
@@ -13,6 +16,7 @@ const routes = [
     },
     {
         path        : 'dashboards/project',
+        canActivate : [ AccesosGuard ],
         loadChildren: () => import('./dashboards/project/project.module').then(m => m.ProjectDashboardModule)
     },
     {

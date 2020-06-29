@@ -1,0 +1,38 @@
+<div class="login-box">
+    <div class="login-box-body">
+    <div class="login-logo">
+      <a><img style="max-width: 100%;" src="assets/dist/img/logoOnco.png"></a>
+    </div>
+      <form class="form-signin" method="POST" action="#" role="form">
+        <div class="form-group">
+            <h4>Establecer Nueva contraseña</h4>
+        </div>
+        <div *ngIf="errorMessage!=null" class="alert alert-danger">
+          {{errorMessage}}
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="signupEmail">Usuario</label>
+            <input onkeyup="this.value = this.value.toUpperCase();" id="signupEmail" type="email" maxlength="50" class="form-control"
+                   [(ngModel)]="registrationUser.username" [ngModelOptions]="{standalone: true}" value="{{registrationUser.username}}" >
+        </div>
+        <div class="form-group has-feedback">
+            <label class="control-label" for="existingPassword">Contraseña temporal</label>
+            <input  type="password" ngModel minlength="8" class="form-control"  name="existingPassword" placeholder="Al menos 8 carácteres" length="40" [(ngModel)]="registrationUser.existingPassword"  appPassword2>
+        </div>
+        <div class="form-group has-feedback">
+            <label class="control-label" for="signupPassword">Nueva contraseña</label>
+            <input  type="password" ngModel minlength="8" class="form-control" name="password" placeholder="Al menos 8 carácteres" length="40" [(ngModel)]="registrationUser.password"  appPassword2>
+        </div>
+        <div *ngIf="errorPass!=null" class="alert alert-danger">
+          {{errorPass}}
+      </div>
+        <div class="form-group">
+            <button (click)="onRegister()" id="signupSubmit" type="submit" class=" form-control btn btn-primary">
+                Cambiar contraseña
+            </button>
+        </div>
+        <hr>
+        <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']"> <i class="fa fa-fw fa-lock"></i>Login</a></p>
+    </form>
+    </div>
+  </div>

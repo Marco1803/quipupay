@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit
 {
     loginForm: FormGroup;
+    changeEmail: string; // se usara en caso de necesite cambiar el password
 
     /**
      * Constructor
@@ -77,19 +78,40 @@ export class LoginComponent implements OnInit
             Username: this.loginForm.value.email,
             Password: this.loginForm.value.password
         })
-        .subscribe(result => {
+        .subscribe((result) => {
             // verify the result having the accessToken and payload information
             if (result && result.accessToken) {
             // After information is received send it to angular setters in services and can utlised
-            this.authService.accessToken = result.accessToken.jwtToken;
-            this.authService.userLoggedIn = true;
-            this.authService.UserDetails = {
-                username: result.accessToken.payload.username
-            };
+                this.authService.accessToken = result.accessToken.jwtToken;
+                this.authService.userLoggedIn = true;
+                this.authService.UserDetails = {
+                    username: result.accessToken.payload.username
+                };
             // Route to home screen after success
-            console.log("me logueee");
-            this.router.navigate(["apps/dashboards/analytics"]);
+                this.router.navigate(["apps/dashboards/analytics"]);
+            }else{
+                console.log(result);
+                this.changeEmail = result.email;
+                this.validateMessageCognito(result.message);
             }
-        });
-  }
+        }, (err) => {
+                console.log(err);
+                //this.validateMessageCognito(err.message);
+            }
+        );
+    }
+
+    validateMessageCognito(message: string){
+        switch (message) {
+            case "FORCE_CHANGE_PASSWORD":
+                this.router.navigate(["pages/auth/forgotPassword",this.changeEmail.toUpperCase()]);
+                break;
+            case "Incorrect username or password.":
+                this.router.navigate(["apps/admin/usuarios"]);
+                break;
+            default:
+                break;
+        }
+    }
+
 }
