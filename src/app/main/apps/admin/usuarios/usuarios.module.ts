@@ -8,6 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ModalEventComponent } from './modal-event/modal-event.component';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -19,23 +23,28 @@ const routes: Routes = [
   }
 ];
 
-
-
 @NgModule({
   declarations: [
-    UsuariosComponent
+    UsuariosComponent,
+    ModalEventComponent
   ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule,
+    CommonModule ,
+    MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
     MatTabsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers   : [
+  ],
+  entryComponents: [
+      ModalEventComponent
   ]
 })
 export class UsuariosModule { }

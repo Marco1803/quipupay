@@ -8,10 +8,30 @@ import "rxjs/add/operator/catch";
 
 import {   CognitoUserPool,  CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 
+export interface CognitoCallback {
+  cognitoCallback(message: string, result: any): void;
+  handleMFAStep?(challengeName: string, challengeParameters: ChallengeParameters, callback: (confirmationCode: string) => any): void;
+}
+export interface LoggedInCallback {
+  isLoggedIn(message: string, loggedIn: boolean): void;
+}
+export interface ChallengeParameters {
+  CODE_DELIVERY_DELIVERY_MEDIUM: string;
+  CODE_DELIVERY_DESTINATION: string;
+}
+export interface Callback {
+  callback(): void;
+  callbackWithParam(result: any): void;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class CognitoService {
+
+  
 
   private _accessToken: string = "";
   private _userloggedIn: boolean = false;

@@ -7,8 +7,9 @@ export const environment = {
     hmr       : false,
     cognitoPool: {
         region: 'us-west-2',
-        UserPoolId: "us-west-2_1EVHvk5Yf",
-        ClientId: "77ul65ejg4slvi335cvjicqlaj"
+        UserPoolId: "us-west-2_oUDeQcE5u",
+        ClientId: "69sb2o1ik1tsrm5ffravlpmlsh",
+        
     }    
 };
 
