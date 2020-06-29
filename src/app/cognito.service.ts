@@ -10,35 +10,17 @@ import {   CognitoUserPool,  CognitoUser, AuthenticationDetails } from 'amazon-c
 
 export interface CognitoCallback {
   cognitoCallback(message: string, result: any): void;
-<<<<<<< HEAD
 }
 
 export interface LoggedInCallback {
   isLoggedIn(message: string, loggedIn: boolean): void;
 }
-=======
-  handleMFAStep?(challengeName: string, challengeParameters: ChallengeParameters, callback: (confirmationCode: string) => any): void;
-}
-export interface LoggedInCallback {
-  isLoggedIn(message: string, loggedIn: boolean): void;
-}
-export interface ChallengeParameters {
-  CODE_DELIVERY_DELIVERY_MEDIUM: string;
-  CODE_DELIVERY_DESTINATION: string;
-}
-export interface Callback {
-  callback(): void;
-  callbackWithParam(result: any): void;
-}
->>>>>>> 8e318db563b08e12e733dd69be3b3cdb2207df2a
 
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class CognitoService {
-<<<<<<< HEAD
   public static _REGION = environment.cognitoPool.region;
   public static _IDENTITY_POOL_ID = environment.cognitoPool.identityPoolId;
   public static _USER_POOL_ID = environment.cognitoPool.UserPoolId;
@@ -47,11 +29,7 @@ export class CognitoService {
       UserPoolId: CognitoService._USER_POOL_ID,
       ClientId: CognitoService._CLIENT_ID
   };
-=======
 
-  
-
->>>>>>> 8e318db563b08e12e733dd69be3b3cdb2207df2a
   private _accessToken: string = "";
   private _userloggedIn: boolean = false;
   private _userDetails: any = {};
