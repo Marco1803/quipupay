@@ -1,0 +1,176 @@
+<form class="example-form">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="margin: auto; font-size: 18px;">
+                <div class="modal-header titulo" style=" background: #00aecb; color: #fff; text-align: center;
+                        padding: 0px;
+                    ">
+                    <h4>Crear Usuario</h4>
+                </div>
+                <form [formGroup]="usuarioForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input matInput formControlName="username" type="text" class="form-control"
+                                            name="username" placeholder="Nombre de Usuario" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input formControlName="email" type="text" class="form-control" name="email"
+                                            placeholder="Correo Electronico" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" class="form-control" name="nombres" placeholder="Nombre"
+                                            formControlName="nombres" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" class="form-control" name="apellidos" placeholder="Apellido"
+                                            formControlName="apellidos" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-id-card"></i>
+                                        </div>
+                                        <mat-form-field>
+                                            <mat-label>Documento</mat-label>
+
+                                            <mat-select formControlName="tipodocumento" aria-readonly="true">
+                                                <mat-option *ngFor="
+                                                        let item of listaDocumentos
+                                                    " [value]="item.id">
+                                                    {{ item.nombre }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" class="form-control" name="nrodocumento"
+                                            placeholder="Numero Documento" formControlName="nrodocumento" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" class="form-control" name="idcomercio"
+                                            placeholder="Id Comercio" formControlName="idcomercio" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" class="form-control" name="idrol" placeholder="Id ROl"
+                                            formControlName="idrol" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-id-card"></i>
+                                        </div>
+                                        <mat-form-field>
+                                            <mat-label>Genero</mat-label>
+
+                                            <mat-select formControlName="genero" aria-readonly="true">
+                                                <mat-option *ngFor="
+                                                        let item of listaGenero
+                                                    " [value]="item.id">
+                                                    {{ item.nombre }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                        
+
+                            <!-- <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                           <i class="fa fa-user"></i>
+                      </div>
+                      <input class="form-control" type="text" readonly style="width: 30%;" name="identificador" >
+                      <input  readonly type="text" class="form-control" style="width: 70%" name="nuevoNrodocumento" maxlength="13"  placeholder="Nombre de Usuario">
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+                            <div class="row">
+                                <div class="alert alert-danger"></div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">
+                                    Salir
+                                </button>
+                                <button type="button" class="btn btn-primary" (click)="grabarUsuario()">
+                                    Grabar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- / ADD EVENT BUTTON -->
+</form>

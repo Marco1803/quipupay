@@ -1,16 +1,31 @@
 import { Injectable } from '@angular/core';
+import { AdminService } from '../admin.service';
+import { Usuario } from '../../../models/usuario.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
-  constructor() { }
+  constructor( private _adminService: AdminService) { }
 
-  cargarUsuarios( desde: number = 0 ){
+obtenerUsuarios(){
+  return this._adminService.usuarios_listar();
+  //this.mantenimientoService.cargarUsuarios(BusquedaUsuario,identificador);
+}
 
-let url= 'http://dummy.restapiexample.com/api/v1/employees';
-return url;
+agregarUsuario(NuevoUsuario: any){
+  return this._adminService.usuarios_agregar(NuevoUsuario);
+  //this.mantenimientoService.cargarUsuarios(BusquedaUsuario,identificador);
+}
 
-  }
+editarUsuario(editarUsuario: Usuario){
+  return this._adminService.usuario_editar(editarUsuario);
+}
+
+actualizarUsuario(actualizarUsuario: Usuario){
+  return this._adminService.usuario_actualizar(actualizarUsuario);
+}
+
 }

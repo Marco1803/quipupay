@@ -8,6 +8,7 @@ export const environment = {
     cognitoPool: {
         region: 'us-west-2',
         UserPoolId: "us-west-2_oUDeQcE5u",
+<<<<<<< HEAD
         ClientId: "1g9usum5nc2ohe2f9m8h7gq4bo",
         
         identityPoolId: '',
@@ -22,6 +23,10 @@ export const environment = {
         sts_endpoint: '',
         dynamodb_endpoint: '',
         s3_endpoint: ''
+=======
+        ClientId: "69sb2o1ik1tsrm5ffravlpmlsh",
+        
+>>>>>>> 8e318db563b08e12e733dd69be3b3cdb2207df2a
     }    
 };
 
