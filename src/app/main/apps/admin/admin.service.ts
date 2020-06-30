@@ -5,6 +5,7 @@ import { ConfiguracionUrl } from '../../../configuracionUrl';
 import { HttpClient } from '@angular/common/http';
 //import { HttpClient, RequestOptions } from '@angular/common/http';
 import { Usuario } from '../../models/usuario.model';
+import { Comercio } from 'app/main/models/comercio.model';
 
 
 
@@ -40,7 +41,7 @@ export class AdminService {
   
 
   
-
+  // Usuarios
   usuarios_listar(): Observable<Usuario[]>{
     return this.httpClient.get<Usuario[]>(this.baseUrl.getUrlApi()+'usuarios', {headers:this.headers});
   }
@@ -56,5 +57,24 @@ export class AdminService {
   usuario_actualizar(actualizarUsuario: Usuario){
     return this.httpClient.put<Usuario>(this.baseUrl.getUrlApi()+'usuarios', actualizarUsuario, {headers:this.headers});
   }
+
+
+  // Comercios
+  comercios_listar(): Observable<Comercio[]>{
+    return this.httpClient.get<Comercio[]>(this.baseUrl.getUrlApi()+'comercios', {headers:this.headers});
+  }
+
+  comercios_agregar(nuevoComercio: any): Observable<Comercio>{
+    return this.httpClient.post<Comercio>(this.baseUrl.getUrlApi()+'comercios', nuevoComercio, {headers:this.headers});
+  }
+
+  comercio_editar(editarUsuario: Comercio){
+    return this.httpClient.get<Comercio>(this.baseUrl.getUrlApi()+'comercios/'+editarUsuario.id, {headers:this.headers});
+  }
+
+  comercio_actualizar(actualizarComercio: Comercio){
+    return this.httpClient.put<Comercio>(this.baseUrl.getUrlApi()+'comercios/'+actualizarComercio.id, actualizarComercio, {headers:this.headers});
+  }
+
 }
 

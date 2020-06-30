@@ -1,83 +1,70 @@
-<div id="order" class="page-layout carded fullwidth inner-scroll">
-    <!-- CENTER -->
-    <div class="center">
-        <!-- HEADER -->
-        <div class="header accent"></div>
-        <!-- / HEADER -->
+<div id="calendar" class="page-layout simple fullwidth">
 
-        <!-- CONTENT CARD -->
-        <div class="content-card">
-            <!-- CONTENT -->
-            <div class="content">
-                <mat-tab-group fxLayout="column" fxFlex>
-                    <mat-tab label="Usuarios">
-                        <div
-                            class="order-details tab-content p-24"
-                            fusePerfectScrollbar
-                        >
-                            <div class="section pb-48">
-                                <div
-                                    class="pb-16"
-                                    fxLayout="row"
-                                    fxLayoutAlign="start center"
-                                >
-                                    <mat-icon class="m-0 mr-16 secondary-text"
-                                        >account_circle</mat-icon
-                                    >
-                                    <div class="h2 secondary-text">
-                                        Lista de Usuarios
-                                    </div>
-                                </div>
-                                
-                                <div class="customer mb-32">
-                                    <table class="simple">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre de Usuario</th>
-                                                <th>Nombre</th>
-                                                <th>Apellido</th>
-                                                <th>Correo Electronico</th>
-                                                <th>Tipo de Usuario</th>
+    <div class="header p-16 p-sm-24 top-bg accent">
+        <div class="header-content" fxLayout="column" fxLayoutAlign="space-between">
+            <div class="header-top" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
 
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tbodyListaUsuario">
-                                            <tr
-                                                style="font-size: 13px;"
-                                                *ngFor="
-                                                    let usu of listaUsuarios;
-                                                    index as i
-                                                ">
-                                                <td>{{ usu.username }}</td>
-                                                <td>{{ usu.nombres }}</td>
-                                                <td>{{ usu.apellidos }}</td>
-                                                <td>{{ usu.email }}</td>
-                                                <td>{{ usu.idrol }}</td>
-                                                
-                                                <td><a style="cursor:pointer" data-toggle="modal" data-target=".edita-bd-example-modal-lg" (click)="addEvent(usu)"><img src="../../../../../assets/icons/acciones/edit.png"></a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div> 
-                        
-                        <!-- ADD EVENT BUTTON -->
-                        <button
-                            mat-fab
-                            class="add-event-button mat-accent"
-                            (click)="addEvent(null)"
-                            aria-label="Add event">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        <!-- / ADD EVENT BUTTON -->
-                    </mat-tab>
-                </mat-tab-group>
+                <div class="logo mb-16 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                </div>
+
+                <div class="toolbar" fxLayout="row" fxLayoutAlign="start center">
+                </div>
+
             </div>
-            <!-- / CONTENT -->
+            <div class="header-bottom" fxLayout="row" fxLayoutAlign="center center">
+            </div>
         </div>
-        <!-- / CONTENT CARD -->
+
+        <button mat-fab class="add-event-button mat-accent" (click)="addEvent(null)" aria-label="Agregar Usuario">
+            <mat-icon>add</mat-icon>
+        </button>
     </div>
-    <!-- / CENTER -->
+
+    <div class="content">
+        <div class="order-details tab-content p-24" fusePerfectScrollbar>
+            <div class="section pb-48">
+                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="h2 secondary-text">
+                        Lista de Usuarios
+                        <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
+                    </div>
+                </div>
+
+                <div class="customer mb-32">
+                    <table class="simple">
+                        <thead>
+                            <tr>
+                                <th>Nombre de Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Correo Electronico</th>
+                                <th>Tipo de Usuario</th>
+
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyListaUsuario">
+                            <tr style="font-size: 13px;" *ngFor="
+                                            let usu of listaUsuarios;
+                                            index as i
+                                        ">
+                                <td>{{ usu.username }}</td>
+                                <td>{{ usu.nombres }}</td>
+                                <td>{{ usu.apellidos }}</td>
+                                <td>{{ usu.email }}</td>
+                                <td>{{ usu.idrol }}</td>
+
+                                <td><a style="cursor:pointer" data-toggle="modal"
+                                        data-target=".edita-bd-example-modal-lg" (click)="addEvent(usu)"><img
+                                            src="../../../../../assets/icons/acciones/edit.png"></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>

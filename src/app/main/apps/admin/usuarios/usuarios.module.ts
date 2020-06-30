@@ -12,6 +12,9 @@ import { ModalEventComponent } from './modal-event/modal-event.component';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FuseSharedModule } from '@fuse/shared.module';
 
 const routes: Routes = [
   {
@@ -39,10 +42,12 @@ const routes: Routes = [
     MatSelectModule,
     MatTabsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatToolbarModule,
+    FuseSharedModule
   ],
-  providers   : [
-  ],
+  providers : [],
   entryComponents: [
       ModalEventComponent
   ]
