@@ -4,6 +4,7 @@ export class ConfiguracionUrl{
   getUrlApi(){//URL API BACK(CON TOKEN)
     return "https://bawbuq4538.execute-api.us-west-2.amazonaws.com/Stage/v1/";
   }
+
   getUrlBase(){//URL FRONT (ANGULAR)
     //return "http://testingaunaafiliaciones.s3-website-us-west-2.amazonaws.com/";
     return "http://localhost:4200/";

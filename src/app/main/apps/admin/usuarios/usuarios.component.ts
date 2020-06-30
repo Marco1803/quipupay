@@ -38,15 +38,14 @@ export class UsuariosComponent implements OnInit {
   addEvent(usuario: Usuario): void {
     if(usuario === null) usuario = new Usuario();
     this.dialogRef = this._matDialog.open(ModalEventComponent, {
-      width: '75%',
+      panelClass: 'event-form-dialog',
       data: usuario
     });
 
     this.dialogRef.afterClosed().subscribe(
       (result: Usuario) => {
-          console.log(result);
+        this.obtenerUsuarios();
       });
   }
-
  
 }

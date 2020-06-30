@@ -63,6 +63,12 @@ export const navigation: FuseNavigation[] = [
                         title: 'Lista de Usuarios',
                         type : 'item',
                         url  : '/apps/admin/usuarios'
+                    },
+                    {
+                        id   : 'Comercios',
+                        title: 'Lista de Comercios',
+                        type : 'item',
+                        url  : '/apps/admin/comercios'
                     }
                 ]
             }
