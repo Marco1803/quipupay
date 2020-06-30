@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit
 {
     loginForm: FormGroup;
-    changeEmail: string; // se usara en caso de necesite cambiar el password
+    username: string; // se usara en caso de necesite cambiar el password
 
     /**
      * Constructor
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit
                     hidden: true
                 },
                 toolbar  : {
-                    hidden: false
+                    hidden: true
                 },
                 footer   : {
                     hidden: true
@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit
                 this.router.navigate(["apps/dashboards/analytics"]);
             }else{
                 console.log(result);
-                this.changeEmail = result.email;
+                this.username = this.loginForm.value.email;
                 this.validateMessageCognito(result.message);
             }
         }, (err) => {
@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit
     validateMessageCognito(message: string){
         switch (message) {
             case "FORCE_CHANGE_PASSWORD":
-                this.router.navigate(["pages/auth/forgotPassword",this.changeEmail.toUpperCase()]);
+                this.router.navigate(["pages/auth/forgotPassword",this.username.toUpperCase()]);
                 break;
             case "Incorrect username or password.":
                 this.router.navigate(["apps/admin/usuarios"]);

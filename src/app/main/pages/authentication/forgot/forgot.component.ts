@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CognitoService } from 'app/cognito.service';
 import { UserLoginService } from '../../services/login-user.services';
+import { FuseConfigService } from '@fuse/services/config.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fuseAnimations } from '@fuse/animations';
 
 export class NewPasswordUser {
   username: string;
@@ -12,36 +15,61 @@ export class NewPasswordUser {
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
-  styleUrls: ['./forgot.component.scss']
+  styleUrls: ['./forgot.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  animations   : fuseAnimations
 })
 export class ForgotComponent implements OnInit {
   registrationUser: NewPasswordUser;
   router: Router;
   errorMessage: string;
   errorPass: string;
+  forgotForm: FormGroup;
   public authService: CognitoService;
   private sub: any;
   constructor(
     //public userRegistration: UserRegistrationService,
     public userService: UserLoginService,
     public route:ActivatedRoute,
+    private _fuseConfigService: FuseConfigService,
+    private _formBuilder: FormBuilder,
     router: Router) {
       this.router = router;
+      this._fuseConfigService.config = {
+        layout: {
+            navbar   : {
+                hidden: true
+            },
+            toolbar  : {
+                hidden: true
+            },
+            footer   : {
+                hidden: true
+            },
+            sidepanel: {
+                hidden: true
+            }
+        }
+      };
        //this.onInit();
     }
 
   ngOnInit(): void {
     this.registrationUser = new NewPasswordUser();
     this.sub = this.route.params.subscribe(params => {
-      this.registrationUser.username = params['email'];
+      this.registrationUser.username = params['username'];
     });
-    console.log(this.registrationUser);
+    this.forgotForm = this._formBuilder.group({
+      email   : [this.registrationUser.username],
+      password: ['', Validators.required],
+      password_new: ['', [Validators.required]]
+    });
     this.userService.isAuthenticated(this);
     this.errorPass = null;
   }
 
   onRegister(){
-    let miPalabra = this.registrationUser.password;
+    let miPalabra = this.forgotForm.value.password_new;
     let Cepecial = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?";//caracteres especiales
     let especial = 0;
     let may=0;//contador de mayusculas
@@ -76,15 +104,16 @@ export class ForgotComponent implements OnInit {
     }
     this.errorPass = null;
     this.errorMessage = null;
-    this.registrationUser.username = "marcosoft";
+    this.registrationUser.username = this.forgotForm.value.email;
+    this.registrationUser.password = this.forgotForm.value.password_new;
+    this.registrationUser.existingPassword = this.forgotForm.value.password;
+    console.log(this.registrationUser);
     this.userService.newPassword(this.registrationUser, this);
   }
 
   isLoggedIn(message: string, isLoggedIn: boolean) {
-    console.log(message);
-    console.log(isLoggedIn);
-    // if (isLoggedIn)
-    //   this.router.navigate(['/logout']);
+    if (isLoggedIn)
+      this.router.navigate(["apps/admin/usuarios"]);
   }
 
   cognitoCallback(message: string, result: any) {//la funcion nueva contraseña retornara un mensaje si el proceso fue exitoso o erroneo///////
@@ -93,7 +122,7 @@ export class ForgotComponent implements OnInit {
       if (message != null) { //error
         this.validarMensajes(message['message']);
       } else { //success
-          //this.router.navigate(['/logout']);
+        this.router.navigate(['pages/auth/logout']);
       }
   }
 

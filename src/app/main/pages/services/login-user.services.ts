@@ -89,4 +89,9 @@ export class UserLoginService {
         });
     }
 
+    logout() {
+        this.cognitoUtil.getCurrentUser().signOut();
+        localStorage.clear();
+    }
+
 }

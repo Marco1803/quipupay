@@ -11,7 +11,7 @@ import { ForgotComponent } from './forgot.component';
 
 const routes = [
     {
-        path     : 'auth/forgotPassword/:email',
+        path     : 'auth/forgotPassword/:username',
         component: ForgotComponent
     }
 ];

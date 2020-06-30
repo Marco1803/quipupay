@@ -1,38 +1,83 @@
-<div class="login-box">
-    <div class="login-box-body">
-    <div class="login-logo">
-      <a><img style="max-width: 100%;" src="assets/dist/img/logoOnco.png"></a>
+<div id="forgot" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
+    <div id="forgot-intro" fxFlex fxHide fxShow.gt-xs>
+        <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="assets/images/logos/fuse.svg">
+        </div>
+        <div class="title" [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+            Bienvenido a Payout
+        </div>
+        <div class="title" [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+            Welcome to the FUSE!
+        </div>
+
+        <div class="description" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat,
+            vel convallis elit fermentum pellentesque. Sed mollis velit facilisis facilisis viverra.
+        </div>
     </div>
-      <form class="form-signin" method="POST" action="#" role="form">
-        <div class="form-group">
-            <h4>Establecer Nueva contraseña</h4>
+
+    <div id="forgot-form-wrapper" fusePerfectScrollbar
+         [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="forgot-form">
+
+            <div class="logo" fxHide.gt-xs>
+                <img src="assets/images/logos/fuse.svg">
+            </div>
+
+            <div class="title"><h4>Establecer Nueva contraseña</h4></div>
+
+            <form name="forgotForm" [formGroup]="forgotForm" novalidate>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="email" readonly>
+                    <mat-icon matSuffix class="secondary-text">mail</mat-icon>
+                    <mat-error *ngIf="forgotForm.get('email').hasError('required')">
+                        Email is required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="!forgotForm.get('email').hasError('required') &&
+                        forgotForm.get('email').hasError('email')">
+                        Please enter a valid username
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Anterior Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        Anterior Password es requerido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Nuevo Passowrd</mat-label>
+                    <input matInput type="password" formControlName="password_new">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        Nuevo Password es requerido
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                     fxLayoutAlign="space-between center">
+                    <mat-checkbox class="remember-me" aria-label="Remember Me">
+                        Remember Me
+                    </mat-checkbox>
+
+                    <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
+                        [disabled]="forgotForm.invalid" (click)="onRegister()">
+                    Enviar
+                </button>
+
+            </form>
         </div>
-        <div *ngIf="errorMessage!=null" class="alert alert-danger">
-          {{errorMessage}}
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="signupEmail">Usuario</label>
-            <input onkeyup="this.value = this.value.toUpperCase();" id="signupEmail" type="email" maxlength="50" class="form-control"
-                   [(ngModel)]="registrationUser.username" [ngModelOptions]="{standalone: true}" value="{{registrationUser.username}}" >
-        </div>
-        <div class="form-group has-feedback">
-            <label class="control-label" for="existingPassword">Contraseña temporal</label>
-            <input  type="password" ngModel minlength="8" class="form-control"  name="existingPassword" placeholder="Al menos 8 carácteres" length="40" [(ngModel)]="registrationUser.existingPassword"  appPassword2>
-        </div>
-        <div class="form-group has-feedback">
-            <label class="control-label" for="signupPassword">Nueva contraseña</label>
-            <input  type="password" ngModel minlength="8" class="form-control" name="password" placeholder="Al menos 8 carácteres" length="40" [(ngModel)]="registrationUser.password"  appPassword2>
-        </div>
-        <div *ngIf="errorPass!=null" class="alert alert-danger">
-          {{errorPass}}
-      </div>
-        <div class="form-group">
-            <button (click)="onRegister()" id="signupSubmit" type="submit" class=" form-control btn btn-primary">
-                Cambiar contraseña
-            </button>
-        </div>
-        <hr>
-        <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']"> <i class="fa fa-fw fa-lock"></i>Login</a></p>
-    </form>
     </div>
-  </div>
+</div>
