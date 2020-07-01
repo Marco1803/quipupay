@@ -5,6 +5,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { CognitoService } from 'app/cognito.service';
 import { Router } from '@angular/router';
+import { NavigationService } from '../../../../navigation/navigation.service';
 
 @Component({
     selector     : 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit
 {
     loginForm: FormGroup;
     username: string; // se usara en caso de necesite cambiar el password
+    listMenu: any;
 
     /**
      * Constructor
@@ -28,7 +30,8 @@ export class LoginComponent implements OnInit
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         public authService: CognitoService,
-        public router: Router
+        public router: Router,
+        public navigationService: NavigationService
 
     )
     {
@@ -88,9 +91,11 @@ export class LoginComponent implements OnInit
                     username: result.accessToken.payload.username
                 };
             // Route to home screen after success
+                
+                // this.getMenu();
                 this.router.navigate(["apps/dashboards/analytics"]);
             }else{
-                console.log(result);
+                //console.log(result);
                 this.username = this.loginForm.value.email;
                 this.validateMessageCognito(result.message);
             }
@@ -113,5 +118,7 @@ export class LoginComponent implements OnInit
                 break;
         }
     }
+
+
 
 }

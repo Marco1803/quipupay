@@ -9,6 +9,9 @@ export const locale = {
             'ACADEMY'     : 'Academy',
             //
             'ADMIN'       : 'Admin',
+            'NOMINA'      : 'Nomina',
+            'PAGO'        : 'Pago',
+            'REPORTE'     : 'Reporte',
             //
             'MAIL'        : {
                 'TITLE': 'Mail',

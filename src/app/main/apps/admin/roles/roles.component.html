@@ -1,0 +1,70 @@
+<div id="calendar" class="page-layout simple fullwidth">
+
+    <div class="header p-16 p-sm-24 top-bg accent">
+        <div class="header-content" fxLayout="column" fxLayoutAlign="space-between">
+            <div class="header-top" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+
+                <div class="logo mb-16 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                </div>
+
+                <div class="toolbar" fxLayout="row" fxLayoutAlign="start center">
+                </div>
+
+            </div>
+            <div class="header-bottom" fxLayout="row" fxLayoutAlign="center center">
+            </div>
+        </div>
+
+        <button mat-fab class="add-event-button mat-accent" (click)="addEventRol(null)" aria-label="Agregar Rol">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <div class="content">
+        <div class="order-details tab-content p-24" fusePerfectScrollbar>
+            <div class="section pb-48">
+                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="h2 secondary-text">
+                        Lista de Roles
+                        <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
+                    </div>
+                </div>
+
+                <div class="customer mb-32">
+                    <table class="simple">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Nombre Vista</th>
+                                <th>Fecha Creacion</th>
+                                <th>Permisos</th>
+                                <th>Estado</th>
+
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyListaUsuario">
+                            <tr style="font-size: 13px;" *ngFor="
+                                            let rol of listaRoles;
+                                            index as i
+                                        ">
+                                <td>{{ rol.nombre }}</td>
+                                <td>{{ rol.nombre_vista }}</td>
+                                <td>{{ rol.fechacreacion }}</td>
+                                <td>{{ rol.is_admin }}</td>
+                                <td>{{ rol.estado }}</td>
+
+                                <td><a style="cursor:pointer" data-toggle="modal"
+                                        data-target=".edita-bd-example-modal-lg" (click)="addEventRol(rol)"><img
+                                            src="../../../../../assets/icons/acciones/edit.png"></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

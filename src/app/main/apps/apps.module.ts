@@ -5,6 +5,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AccesosGuard } from 'app/services/guards/accesos.guard';
+//import { RolesComponent } from './admin/roles/roles.component';
 //import { ComerciosComponent } from './admin/comercios/comercios.component';
 //import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 
@@ -27,6 +28,10 @@ const routes = [
     {
         path        : 'admin/comercios',
         loadChildren: () => import('./admin/comercios/comercios.module').then(m => m.ComerciosModule)
+    },
+    {
+        path        : 'admin/roles',
+        loadChildren: () => import('./admin/roles/roles.module').then(m => m.RolesModule)
     },
 
     // {

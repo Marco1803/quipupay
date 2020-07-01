@@ -11,9 +11,10 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 
-import { navigation } from 'app/navigation/navigation';
+//import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
+import { NavigationService } from './navigation/navigation.service';
 
 @Component({
     selector   : 'app',
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+    listMenu: any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -48,17 +50,37 @@ export class AppComponent implements OnInit, OnDestroy
         private _fuseSplashScreenService: FuseSplashScreenService,
         private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private _translateService: TranslateService,
-        private _platform: Platform
+        private _platform: Platform,
+        private _navigate: NavigationService
     )
     {
         // Get default navigation
-        this.navigation = navigation;
+        //this.navigation = navigation;
+        console.log("data localstorage");
+        console.log(this.navigation);
 
-        // Register the navigation to the service
-        this._fuseNavigationService.register('main', this.navigation);
+        
+        
+        // this._navigate.navigation_listar()
+        // .subscribe(
+        //     (data) => {
+        //         this.listMenu = data;
+        //         console.log("suscribe");
+        //         console.log(this.listMenu)
+        //         var menu = [];
+        //         menu.push(this.listMenu);
+        //         console.log("menu :");
+        //         console.log(menu);
+        //         this._fuseNavigationService.register('main',data);
+        //       //console.log(this.navigation)
+        //     });
+        // console.log("outside suscribe");
+        // console.log(this.listMenu);
+        // this._fuseNavigationService.register('main',this.listMenu);
+        
 
         // Set the main navigation as our current navigation
-        this._fuseNavigationService.setCurrentNavigation('main');
+        // this._fuseNavigationService.setCurrentNavigation('main');
 
         // Add languages
         this._translateService.addLangs(['en', 'tr']);
@@ -124,6 +146,9 @@ export class AppComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        console.log('paso 1');
+         this.obtenerMenu();
+         console.log('paso 2');
         // Subscribe to config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -178,5 +203,17 @@ export class AppComponent implements OnInit, OnDestroy
     toggleSidebarOpen(key): void
     {
         this._fuseSidebarService.getSidebar(key).toggleOpen();
+    }
+
+    async obtenerMenu(){
+        await  this._navigate.navigation_listar().then((response:any) =>{
+            console.log(response);
+            this.listMenu = response;
+            this._fuseNavigationService.register('main',this.listMenu);
+            this._fuseNavigationService.setCurrentNavigation('main');
+             }).catch((error:any) =>{
+               console.log("error");
+             });
+                    
     }
 }
