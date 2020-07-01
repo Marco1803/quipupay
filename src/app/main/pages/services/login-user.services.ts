@@ -10,6 +10,8 @@ import {   CognitoUserPool,  CognitoUser, AuthenticationDetails } from 'amazon-c
 import { CognitoCallback, CognitoService,LoggedInCallback } from 'app/cognito.service';
 import { NewPasswordUser } from '../authentication/forgot/forgot.component';
 
+import * as AWS from "aws-sdk/global";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -88,6 +90,33 @@ export class UserLoginService {
             }
         });
     }
+
+    renovarToken():string{
+        let tokenUsuario;
+        var data = {
+            UserPoolId : this.cognitoUtil.getUserPool().getUserPoolId(), // Your user pool id here
+            ClientId : this.cognitoUtil.getUserPool().getClientId() // Your client id here
+        };
+        var userPool = new CognitoUserPool(data);
+        var cognitoUser = userPool.getCurrentUser();
+        if (cognitoUser != null) {
+            cognitoUser.getSession(function(err, session) {
+                if (err) {
+                    console.log(err)
+                    return;
+                }
+                // AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                //     IdentityPoolId : '',// your identity pool id here
+                //     Logins : {
+                //         '' : session.getIdToken().getJwtToken(),
+                //     } 
+                // });
+
+                tokenUsuario = session.getIdToken().getJwtToken();
+            });       
+        }
+        return tokenUsuario;
+     }
 
     logout() {
         this.cognitoUtil.getCurrentUser().signOut();
