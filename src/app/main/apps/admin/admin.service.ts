@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 //import { HttpClient, RequestOptions } from '@angular/common/http';
 import { Usuario } from '../../models/usuario.model';
 import { Comercio } from 'app/main/models/comercio.model';
+import { Rol } from '../../models/rol.model';
 
 
 
@@ -74,6 +75,23 @@ export class AdminService {
 
   comercio_actualizar(actualizarComercio: Comercio){
     return this.httpClient.put<Comercio>(this.baseUrl.getUrlApi()+'comercios/'+actualizarComercio.id, actualizarComercio, {headers:this.headers});
+  }
+
+  // Roles
+  roles_listar(): Observable<Rol[]>{
+    return this.httpClient.get<Rol[]>(this.baseUrl.getUrlApi()+'roles', {headers:this.headers});
+  }
+         
+  roles_agregar(nuevoRol: any): Observable<Rol>{
+    return this.httpClient.post<Rol>(this.baseUrl.getUrlApi()+'roles', nuevoRol, {headers:this.headers});
+  }
+      
+  roles_editar(editarRol: Rol){
+    return this.httpClient.get<Rol>(this.baseUrl.getUrlApi()+'roles/'+editarRol.id, {headers:this.headers});
+  }
+      
+  roles_actualizar(actualizarRol: Rol){
+    return this.httpClient.put<Rol>(this.baseUrl.getUrlApi()+'roles/'+actualizarRol.id, actualizarRol, {headers:this.headers});
   }
 
 }

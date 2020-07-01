@@ -1,77 +1,58 @@
 import { FuseNavigation } from '@fuse/types';
+console.log('hola');
 
-export const navigation: FuseNavigation[] = [
+export const navigation = [];
+
+    
     // {
-    //     id       : 'applications',
-    //     title    : 'Applications',
-    //     translate: 'NAV.APPLICATIONS',
+    //     id       : '',
+    //     title    : '',
+    //     translate: '',
     //     type     : 'group',
+    //     icon     : 'apps',
     //     children : [
     //         {
-    //             id       : 'sample',
-    //             title    : 'Sample',
-    //             translate: 'NAV.SAMPLE.TITLE',
-    //             type     : 'item',
-    //             icon     : 'email',
-    //             url      : '/sample',
-    //             badge    : {
-    //                 title    : '25',
-    //                 translate: 'NAV.SAMPLE.BADGE',
-    //                 bg       : '#F44336',
-    //                 fg       : '#FFFFFF'
-    //             }
+    //             id       : 'dashboards',
+    //             title    : 'Dashboards',
+    //             translate: 'NAV.DASHBOARDS',
+    //             type     : 'collapsable',
+    //             icon     : 'dashboard',
+    //             children : [
+    //                 {
+    //                     id   : 'analytics',
+    //                     title: 'Analytics',
+    //                     type : 'item',
+    //                     url  : '/apps/dashboards/analytics'
+    //                 },
+    //                 {
+    //                     id   : 'project',
+    //                     title: 'Project',
+    //                     type : 'item',
+    //                     url  : '/apps/dashboards/project'
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             id       : 'Admin',
+    //             title    : 'Admin',
+    //             translate: 'NAV.ADMIN',
+    //             type     : 'collapsable',
+    //             icon     : 'dashboard',
+    //             children : [
+    //                 {
+    //                     id   : 'Usuarios',
+    //                     title: 'Lista de Usuarios',
+    //                     type : 'item',
+    //                     url  : '/apps/admin/usuarios'
+    //                 },
+    //                 {
+    //                     id   : 'Comercios',
+    //                     title: 'Lista de Comercios',
+    //                     type : 'item',
+    //                     url  : '/apps/admin/comercios'
+    //                 }
+    //             ]
     //         }
     //     ]
     // }
-    {
-        id       : '',
-        title    : '',
-        translate: '',
-        type     : 'group',
-        icon     : 'apps',
-        children : [
-            {
-                id       : 'dashboards',
-                title    : 'Dashboards',
-                translate: 'NAV.DASHBOARDS',
-                type     : 'collapsable',
-                icon     : 'dashboard',
-                children : [
-                    {
-                        id   : 'analytics',
-                        title: 'Analytics',
-                        type : 'item',
-                        url  : '/apps/dashboards/analytics'
-                    },
-                    {
-                        id   : 'project',
-                        title: 'Project',
-                        type : 'item',
-                        url  : '/apps/dashboards/project'
-                    }
-                ]
-            },
-            {
-                id       : 'Admin',
-                title    : 'Admin',
-                translate: 'NAV.ADMIN',
-                type     : 'collapsable',
-                icon     : 'dashboard',
-                children : [
-                    {
-                        id   : 'Usuarios',
-                        title: 'Lista de Usuarios',
-                        type : 'item',
-                        url  : '/apps/admin/usuarios'
-                    },
-                    {
-                        id   : 'Comercios',
-                        title: 'Lista de Comercios',
-                        type : 'item',
-                        url  : '/apps/admin/comercios'
-                    }
-                ]
-            }
-        ]
-    }
-];
+//];
