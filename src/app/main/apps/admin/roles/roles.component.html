@@ -37,7 +37,7 @@
                                 <th>Nombre</th>
                                 <th>Nombre Vista</th>
                                 <th>Fecha Creacion</th>
-                                <th>Permisos</th>
+                                <th>Administrador</th>
                                 <th>Estado</th>
 
                                 <th>Acciones</th>
@@ -51,13 +51,17 @@
                                 <td>{{ rol.nombre }}</td>
                                 <td>{{ rol.nombre_vista }}</td>
                                 <td>{{ rol.fechacreacion }}</td>
-                                <td>{{ rol.is_admin }}</td>
+                                <td>{{ validarNombre(rol)}}</td>
                                 <td>{{ rol.estado }}</td>
 
                                 <td><a style="cursor:pointer" data-toggle="modal"
                                         data-target=".edita-bd-example-modal-lg" (click)="addEventRol(rol)"><img
-                                            src="../../../../../assets/icons/acciones/edit.png"></a>
+                                            src="assets/icons/acciones/edit.png"></a>
+                                            <a style="cursor:pointer" data-toggle="modal"
+                                        data-target=".edita-bd-example-modal-lg" (click)="addEventShowMenu(rol)"><img
+                                            src="assets/icons/acciones/smart-key.png"></a>
                                 </td>
+                                
                             </tr>
                         </tbody>
                     </table>

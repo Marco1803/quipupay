@@ -99,22 +99,25 @@ export class UserLoginService {
         };
         var userPool = new CognitoUserPool(data);
         var cognitoUser = userPool.getCurrentUser();
+        console.log('renovar token 1');
         if (cognitoUser != null) {
             cognitoUser.getSession(function(err, session) {
+                console.log('renovar token 2');
                 if (err) {
                     console.log(err)
                     return;
                 }
-                // AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                //     IdentityPoolId : '',// your identity pool id here
-                //     Logins : {
-                //         '' : session.getIdToken().getJwtToken(),
-                //     } 
-                // });
-
+                AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                    IdentityPoolId : 'us-west-2:7a03f2fe-4099-4ef0-b8df-0a1d1a980a8d',// your identity pool id here
+                    Logins : {
+                        'cognito-idp.us-west-2.amazonaws.com/us-west-2_oUDeQcE5u' : session.getIdToken().getJwtToken(),
+                    } 
+                });
+                
                 tokenUsuario = session.getIdToken().getJwtToken();
             });       
         }
+        console.log(tokenUsuario);
         return tokenUsuario;
      }
 

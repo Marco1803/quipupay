@@ -11,7 +11,7 @@ export class Usuario {
     tipodocumento?: string;
     nrodocumento?: string;
     idrol?: string;
-    idComercio?: string;
+    idcomercio?: string;
     genero?: string;
 
     constructor(
@@ -26,7 +26,7 @@ export class Usuario {
         public _tipodocumento?: string,
         public _nrodocumento?: string,
         public _idrol?: string,
-        public _idComercio?: string,
+        public _idcomercio?: string,
         public _genero?: string
 
     ) { 
@@ -41,7 +41,7 @@ export class Usuario {
         this.tipodocumento=_tipodocumento;
         this.nrodocumento=_nrodocumento;
         this.idrol=_idrol;
-        this.idComercio=_idComercio;
+        this.idcomercio=_idcomercio;
         this.genero=_genero;
     }
 

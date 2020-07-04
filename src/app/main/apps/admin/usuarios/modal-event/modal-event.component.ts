@@ -5,6 +5,8 @@ import { UsuariosService } from '../usuarios.service';
 import { Usuario } from 'app/main/models/usuario.model';
 import { TipoDocumento } from '../../../../models/tipoDocumento.model';
 import { TipoGenero } from '../../../../models/tipoGenero.model';
+import { Comercio } from '../../../../models/comercio.model';
+import { Rol } from '../../../../models/rol.model';
 
 
 
@@ -14,7 +16,7 @@ import { TipoGenero } from '../../../../models/tipoGenero.model';
   styleUrls: ['./modal-event.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ModalEventComponent {
+export class ModalEventComponent implements OnInit {
 
   action: string;
   dialogTitle: string;
@@ -29,6 +31,10 @@ export class ModalEventComponent {
     new TipoGenero('M', "Masculino"),
     new TipoGenero('F', "Femenino")
   ];
+  
+
+  cboComercio: Comercio[] = [];
+  cboRoles: Rol[] = [];
 
 
   constructor(
@@ -62,6 +68,11 @@ export class ModalEventComponent {
     });
   }
 
+  ngOnInit(): void {
+this.obtenerRoles();
+this.obtenerComercio();
+  }
+
   grabarUsuario() {
     // this._usuarioService.editarUsuario(this.usuarioForm.value).subscribe(
     //   (response : Usuario) => {
@@ -83,6 +94,7 @@ export class ModalEventComponent {
 
     this._usuarioService.agregarUsuario(this.usuarioForm.value).subscribe(
       (response: Usuario) => {
+        
         this.matDialogRef.close(response);
       },
     );
@@ -94,6 +106,24 @@ export class ModalEventComponent {
         this.usuarioForm.setValue(response);
       }
     )
+  }
+
+  obtenerComercio(){
+    this._usuarioService.obtenerCboComercio()
+    .subscribe(
+      (data) => {
+        this.cboComercio = data;
+        console.log(this.cboComercio)
+      });
+  }
+
+  obtenerRoles(){
+    this._usuarioService.obtenerCboRoles()
+    .subscribe(
+      (data) => {
+        this.cboRoles = data;
+        console.log(this.cboRoles)
+      });
   }
 
 }

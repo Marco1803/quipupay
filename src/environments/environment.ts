@@ -23,7 +23,8 @@ export const environment = {
         dynamodb_endpoint: '',
         s3_endpoint: ''
 
-    }    
+    }  , 
+    url       : "http://localhost:4200/"
 };
 
 /*

@@ -18,7 +18,7 @@ export class ModalEventComComponent implements OnInit {
   comercioForm: FormGroup;
 
   constructor(
-    public matDialogRef: MatDialogRef<ModalEventComponent>,
+    public matDialogRef: MatDialogRef<ModalEventComComponent>,
     @Inject(MAT_DIALOG_DATA) public _data: Comercio,
     private formBuilder: FormBuilder,
     public _comercioService: ComerciosService

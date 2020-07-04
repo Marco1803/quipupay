@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { Rol } from '../../../models/rol.model';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { NavigationService } from 'app/navigation/navigation.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RolesService {
+export class RolesService{
 
-  constructor( private _adminService: AdminService ) { }
+  
+  constructor( 
+    private _adminService: AdminService ,
+    private _navigate: NavigationService
+    ) {
+     }
 
   obtenerRoles(){
     return this._adminService.roles_listar();
@@ -26,6 +34,5 @@ export class RolesService {
   actualizarRoles(actualizarRol: Rol){
     return this._adminService.roles_actualizar(actualizarRol);
   }
-
 
 }

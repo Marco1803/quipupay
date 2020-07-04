@@ -1,27 +1,30 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RolesComponent } from './roles.component';
+import { Routes, RouterModule } from '@angular/router';
+import { NominasComponent } from './nominas.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ModalEventRolComponent } from './modal-event-rol/modal-event-rol.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FuseSharedModule } from '../../../../../@fuse/shared.module';
-import { ModalEventRolMenuComponent } from './modal-event-rol-menu/modal-event-rol-menu.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSortModule } from '@angular/material/sort';
+import { MatRippleModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 const routes: Routes = [
   {
       path     : '**',
-      component: RolesComponent,
+      component: NominasComponent,
       resolve  : {
       }
   }
@@ -29,9 +32,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RolesComponent,
-    ModalEventRolComponent,
-    ModalEventRolMenuComponent
+    NominasComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -46,15 +47,18 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatTableModule,
     MatToolbarModule,
     FuseSharedModule,
-    MatCheckboxModule
+    MatChipsModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatRippleModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers : [],
   entryComponents: [
-    ModalEventRolComponent,
-    ModalEventRolMenuComponent
   ]
 })
-export class RolesModule { }
+export class NominasModule { }

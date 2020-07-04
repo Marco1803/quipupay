@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Rol } from '../../../../models/rol.model';
 import { RolesService } from '../roles.service';
+import { AdminOptionModel } from '../../../../models/adminOptionModel.model';
 
 @Component({
   selector: 'app-modal-event-rol',
@@ -15,6 +16,13 @@ export class ModalEventRolComponent implements OnInit {
   action: string;
   dialogTitle: string;
   rolForm: FormGroup;
+
+  adminOption: AdminOptionModel[] = [
+    new AdminOptionModel('1', "Si"),
+    new AdminOptionModel('0', "No")
+  ];
+
+  
 
   constructor(
     public matDialogRef: MatDialogRef<ModalEventRolComponent>,

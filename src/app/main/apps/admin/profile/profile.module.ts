@@ -1,37 +1,35 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RolesComponent } from './roles.component';
+import { ProfileComponent } from './profile.component';
+import { Routes, RouterModule } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ModalEventRolComponent } from './modal-event-rol/modal-event-rol.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FuseSharedModule } from '../../../../../@fuse/shared.module';
-import { ModalEventRolMenuComponent } from './modal-event-rol-menu/modal-event-rol-menu.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const routes: Routes = [
   {
       path     : '**',
-      component: RolesComponent,
+      component: ProfileComponent,
       resolve  : {
       }
   }
 ];
 
+
+
 @NgModule({
   declarations: [
-    RolesComponent,
-    ModalEventRolComponent,
-    ModalEventRolMenuComponent
+    ProfileComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -39,6 +37,7 @@ const routes: Routes = [
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatDividerModule,
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
@@ -46,15 +45,11 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatTableModule,
     MatToolbarModule,
-    FuseSharedModule,
-    MatCheckboxModule
+    MatStepperModule,
+    FuseSharedModule
   ],
   providers : [],
-  entryComponents: [
-    ModalEventRolComponent,
-    ModalEventRolMenuComponent
-  ]
+  entryComponents: []
 })
-export class RolesModule { }
+export class ProfileModule { }

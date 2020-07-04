@@ -24,19 +24,22 @@
                 </mat-form-field>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Fecha de Creacion</mat-label>
                     <input matInput formControlName="fechacreacion" type="text" />
                     <mat-icon matSuffix class="disabled-text">user</mat-icon>
                 </mat-form-field>
-            </div>
+            </div> -->
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
-                    <mat-label>Permiso</mat-label>
-                    <input matInput formControlName="is_admin" type="text" />
-                    <mat-icon matSuffix class="disabled-text">user</mat-icon>
+                    <mat-label>Administrador</mat-label>
+                    <mat-select formControlName="is_admin" aria-readonly="true">
+                        <mat-option *ngFor="let option of adminOption" [value]="option.id">
+                            {{ option.nombre }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
 
