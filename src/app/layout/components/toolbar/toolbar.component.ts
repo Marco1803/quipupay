@@ -166,4 +166,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     logoutUser(){
         this.router.navigate(["pages/auth/logout"])
     }
+    btnProfile(){
+        
+        this.router.navigate(["apps/admin/profile"])
+    }
 }

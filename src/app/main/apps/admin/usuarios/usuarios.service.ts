@@ -17,7 +17,6 @@ obtenerUsuarios(){
 
 agregarUsuario(NuevoUsuario: any){
   return this._adminService.usuarios_agregar(NuevoUsuario);
-  //this.mantenimientoService.cargarUsuarios(BusquedaUsuario,identificador);
 }
 
 editarUsuario(editarUsuario: Usuario){
@@ -26,6 +25,18 @@ editarUsuario(editarUsuario: Usuario){
 
 actualizarUsuario(actualizarUsuario: Usuario){
   return this._adminService.usuario_actualizar(actualizarUsuario);
+}
+
+// Obtener Combo Comercio
+
+obtenerCboComercio(){
+  return this._adminService.cboComercios_listar();
+}
+
+// Obtener Combo Rol
+
+obtenerCboRoles(){
+  return this._adminService.cboRoles_listar();
 }
 
 }

@@ -2,11 +2,12 @@ import { Injectable, Pipe } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable} from 'rxjs';
 import { ConfiguracionUrl } from '../../../configuracionUrl';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { HttpClient, RequestOptions } from '@angular/common/http';
 import { Usuario } from '../../models/usuario.model';
 import { Comercio } from 'app/main/models/comercio.model';
 import { Rol } from '../../models/rol.model';
+import { UserLoginService } from '../../pages/services/login-user.services';
 
 
 
@@ -25,15 +26,16 @@ export class AdminService {
   option      :any;
   perfil      :any;
   datagen     :any;
-  idtoken     :'';
-  idDevice    :'';
-  tokenAcess  :'';
+  idtoken     :string;
+  idDevice    :string;
+  tokenAcess  :string;
 
-   constructor(private httpClient: HttpClient) { 
+   constructor(private httpClient: HttpClient, getParametroCognito : UserLoginService) { 
      this.baseUrl = new ConfiguracionUrl();
-     this.headers = new Headers({
-      'Content-type':'application/json;charset=utf8'
-      // 'Authorization': this.idtoken,
+     this.idtoken = getParametroCognito.renovarToken();
+     this.headers = new HttpHeaders({
+      'Content-type':'application/json;charset=utf8',
+      'Authorization': this.idtoken
       // 'DeviceKey' : this.idDevice,
       // 'AccessToken' : this.tokenAcess
     });
@@ -44,6 +46,8 @@ export class AdminService {
   
   // Usuarios
   usuarios_listar(): Observable<Usuario[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
     return this.httpClient.get<Usuario[]>(this.baseUrl.getUrlApi()+'usuarios', {headers:this.headers});
   }
 
@@ -62,6 +66,8 @@ export class AdminService {
 
   // Comercios
   comercios_listar(): Observable<Comercio[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
     return this.httpClient.get<Comercio[]>(this.baseUrl.getUrlApi()+'comercios', {headers:this.headers});
   }
 
@@ -79,6 +85,8 @@ export class AdminService {
 
   // Roles
   roles_listar(): Observable<Rol[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
     return this.httpClient.get<Rol[]>(this.baseUrl.getUrlApi()+'roles', {headers:this.headers});
   }
          
@@ -93,6 +101,19 @@ export class AdminService {
   roles_actualizar(actualizarRol: Rol){
     return this.httpClient.put<Rol>(this.baseUrl.getUrlApi()+'roles/'+actualizarRol.id, actualizarRol, {headers:this.headers});
   }
+
+  //Obtener Combo Comercio
+
+  cboComercios_listar(): Observable<Comercio[]>{
+    return this.httpClient.get<Comercio[]>(this.baseUrl.getUrlApi()+'comercios', {headers:this.headers});
+  }
+
+  //Obtener Combo Roles
+   
+  cboRoles_listar(): Observable<Rol[]>{
+    return this.httpClient.get<Rol[]>(this.baseUrl.getUrlApi()+'roles', {headers:this.headers});
+  }
+
 
 }
 

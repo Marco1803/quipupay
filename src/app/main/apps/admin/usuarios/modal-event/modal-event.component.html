@@ -62,16 +62,22 @@
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Comercio</mat-label>
-                    <input matInput formControlName="idcomercio" type="text" />
-                    <mat-icon matSuffix class="disabled-text">user</mat-icon>
+                    <mat-select formControlName="idcomercio">
+                        <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
+                            {{ cboCom.nombre }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Rol</mat-label>
-                    <input matInput formControlName="idrol" type="text" />
-                    <mat-icon matSuffix class="disabled-text">user</mat-icon>
+                    <mat-select formControlName="idrol">
+                        <mat-option *ngFor="let cboRol of cboRoles" [value]="cboRol.id">
+                            {{ cboRol.nombre }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
 

@@ -6,6 +6,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { CognitoService } from 'app/cognito.service';
 import { Router } from '@angular/router';
 import { NavigationService } from '../../../../navigation/navigation.service';
+import { ConfiguracionUrl } from '../../../../configuracionUrl';
 
 @Component({
     selector     : 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit
     loginForm: FormGroup;
     username: string; // se usara en caso de necesite cambiar el password
     listMenu: any;
+    baseUrl: ConfiguracionUrl;
 
     /**
      * Constructor
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit
         public authService: CognitoService,
         public router: Router,
         public navigationService: NavigationService
+
 
     )
     {
@@ -63,6 +66,7 @@ export class LoginComponent implements OnInit
      */
     ngOnInit(): void
     {
+        this.baseUrl = new ConfiguracionUrl();
         this.loginForm = this._formBuilder.group({
             email   : ['', [Validators.required]],
             password: ['', Validators.required]
@@ -93,7 +97,8 @@ export class LoginComponent implements OnInit
             // Route to home screen after success
                 
                 // this.getMenu();
-                this.router.navigate(["apps/dashboards/analytics"]);
+                //this.router.navigate(["apps/dashboards/analytics"]);
+                location.href=this.baseUrl.getUrlBase()+"apps/dashboards/analytics";
             }else{
                 //console.log(result);
                 this.username = this.loginForm.value.email;

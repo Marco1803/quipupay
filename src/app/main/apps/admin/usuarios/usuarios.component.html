@@ -38,7 +38,7 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Correo Electronico</th>
-                                <th>Tipo de Usuario</th>
+                                <th>Rol</th>
 
                                 <th>Acciones</th>
                             </tr>
@@ -52,7 +52,7 @@
                                 <td>{{ usu.nombres }}</td>
                                 <td>{{ usu.apellidos }}</td>
                                 <td>{{ usu.email }}</td>
-                                <td>{{ usu.idrol }}</td>
+                                <td>{{ usu.nombrerol }}</td>
 
                                 <td><a style="cursor:pointer" data-toggle="modal"
                                         data-target=".edita-bd-example-modal-lg" (click)="addEvent(usu)"><img

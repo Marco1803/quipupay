@@ -1,4 +1,5 @@
 //import { UserLoginService } from './service/user-login.service';
+import { environment } from '../environments/environment.prod';
 
 export class ConfiguracionUrl{
   getUrlApi(){//URL API BACK(CON TOKEN)
@@ -10,7 +11,7 @@ export class ConfiguracionUrl{
   }
 
   getUrlBase(){//URL FRONT (ANGULAR)
-    //return "http://testingaunaafiliaciones.s3-website-us-west-2.amazonaws.com/";
+    //return "http://payoutsv1.s3-website-us-west-2.amazonaws.com/";
     return "http://localhost:4200/";
   }
   getUrlAccion(){//URL API BACK VISA (ACCION/SIN TOKEN)
