@@ -12,8 +12,8 @@
 
         <form name="eventForm" [formGroup]="usuarioForm" class="event-form w-100-p" fxLayout="column" fxFlex>
 
-            <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
-                <mat-form-field appearance="outline" class="pr-sm-8" fxFlex="50">
+            <!-- <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+                <mat-form-field appearance="outline" class="pr-sm-8" fxFlex="0">
                     <mat-label>Nombre de Usuario</mat-label>
                     <input matInput formControlName="username" />
                 </mat-form-field>
@@ -21,6 +21,22 @@
                 <mat-form-field appearance="outline" class="pl-sm-8" fxFlex="50">
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" />
+                </mat-form-field>
+            </div> -->
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Nombre de Usuario</mat-label>
+                    <input matInput formControlName="username" />
+                    <mat-icon matSuffix class="disabled-text">user</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" />
+                    <mat-icon matSuffix class="disabled-text">user</mat-icon>
                 </mat-form-field>
             </div>
 
