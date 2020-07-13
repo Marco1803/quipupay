@@ -5,7 +5,6 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AccesosGuard } from 'app/services/guards/accesos.guard';
-import { NominasComponent } from './nomina/nominas/nominas.component';
 //import { ProfileComponent } from './admin/profile/profile.component';
 //import { RolesComponent } from './admin/roles/roles.component';
 //import { ComerciosComponent } from './admin/comercios/comercios.component';
@@ -43,7 +42,6 @@ const routes = [
         path        : 'nomina/nominas',
         loadChildren: () => import('./nomina/nominas/nominas.module').then(m => m.NominasModule)
     }
-
     // {
     //     path        : 'mail',
     //     loadChildren: () => import('./mail/mail.module').then(m => m.MailModule)
@@ -90,8 +88,7 @@ const routes = [
     imports     : [
         RouterModule.forChild(routes),
         FuseSharedModule
-    ],
-    declarations: []
+    ]
 })
 export class AppsModule
 {
