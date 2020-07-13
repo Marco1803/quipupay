@@ -1,71 +1,61 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ConfiguracionUrl } from '../../../configuracionUrl';
+import { UserLoginService } from '../../pages/services/login-user.services';
+import { NominaModel } from '../../models/nominaModel.model';
+import { Usuario } from 'app/main/models/usuario.model';
+import { Comercio } from '../../models/comercio.model';
+import { NominaOriginalModel } from 'app/main/models/nominaOriginalModel.model';
+import { NominaErrorModel } from 'app/main/models/nominaErrorModel.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NominaService implements Resolve<any>{
+export class NominaService {
 
-  orders: any[];
-  onOrdersChanged: BehaviorSubject<any>;
-
-      /**
-     * Constructor
-     *
-     * @param {HttpClient} _httpClient
-     */
+  baseUrl: ConfiguracionUrl;
+  urlApi: string;
+  tipoUsuario: string;
+  headers: any;
+  option: any;
+  perfil: any;
+  datagen: any;
+  idtoken: string;
+  idDevice: string;
+  tokenAcess: string;
 
   constructor(
-    private _httpClient: HttpClient
-  ) { 
-    this.onOrdersChanged = new BehaviorSubject({});
+    private httpClient: HttpClient, getParametroCognito: UserLoginService) {
+    this.baseUrl = new ConfiguracionUrl();
+    this.idtoken = getParametroCognito.renovarToken();
+    this.headers = new HttpHeaders({
+      'Content-type': 'application/json;charset=utf8',
+      'Authorization': this.idtoken
+      // 'DeviceKey' : this.idDevice,
+      // 'AccessToken' : this.tokenAcess
+    });
   }
 
-  /**
-     * Resolver
-     *
-     * @param {ActivatedRouteSnapshot} route
-     * @param {RouterStateSnapshot} state
-     * @returns {Observable<any> | Promise<any> | any}
-     */
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
-  {
-      return new Promise((resolve, reject) => {
-
-          Promise.all([
-              this.getNominas()
-          ]).then(
-              () => {
-                  resolve();
-              },
-              reject
-          );
-      });
+  nominas_listar(): Observable<NominaModel[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
+    return this.httpClient.get<NominaModel[]>(this.baseUrl.getUrlApiNomina()+'nominacarga', {headers:this.headers});
   }
 
-     /**
-     * Get orders
-     *
-     * @returns {Promise<any>}
-     */
-    
+  nominas_listar_original(nominaId,tipo): Observable<NominaOriginalModel[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
+    return this.httpClient.get<NominaOriginalModel[]>(this.baseUrl.getUrlApiNomina()+'nomina/'+nominaId+'/'+tipo,{headers:this.headers});
+  }
 
-  getNominas(): Promise<any>
-    {
-        return new Promise((resolve, reject) => {
-            this._httpClient.get('api/e-commerce-orders')
-                .subscribe((response: any) => {
-                    console.log(response);
-                    this.orders = response;
-                    this.onOrdersChanged.next(this.orders);
-                    resolve(response);
-                }, reject);
-                
-        });
-    }
+  nominas_listar_error(nominaId,tipo): Observable<NominaErrorModel[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
+    return this.httpClient.get<NominaErrorModel[]>(this.baseUrl.getUrlApiNomina()+'nomina/'+nominaId+'/'+tipo,{headers:this.headers});
+  }
+
 
 
 }

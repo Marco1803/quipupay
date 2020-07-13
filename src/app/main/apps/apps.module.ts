@@ -5,7 +5,10 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AccesosGuard } from 'app/services/guards/accesos.guard';
-import { NominasComponent } from './nomina/nominas/nominas.component';
+//import { ErrorNominaComponent } from './nomina/error-nomina/error-nomina.component';
+//import { AprobarNominaComponent } from './nomina/aprobar-nomina/aprobar-nomina.component';
+//import { NominasComponent } from './nomina/nominas/nominas.component';
+//import { DetalleNominaComponent } from './admin/nomina/detalle-nomina/detalle-nomina.component';
 //import { ProfileComponent } from './admin/profile/profile.component';
 //import { RolesComponent } from './admin/roles/roles.component';
 //import { ComerciosComponent } from './admin/comercios/comercios.component';
@@ -42,7 +45,23 @@ const routes = [
     {
         path        : 'nomina/nominas',
         loadChildren: () => import('./nomina/nominas/nominas.module').then(m => m.NominasModule)
+    },
+    {
+        path        : 'nomina/detalle-nomina/:id/:tipo',
+        loadChildren: () => import('./nomina/detalle-nomina/detalle-nomina.module').then(m => m.DetalleNominaModule)
+    },
+    {
+        path        : 'nomina/aprobar-nomina',
+        loadChildren: () => import('./nomina/aprobar-nomina/aprobar-nomina.module').then(m => m.AprobarNominaModule)
+    },
+    {
+        path        : 'nomina/error-nomina/:id/:tipo',
+        loadChildren: () => import('./nomina/error-nomina/error-nomina.module').then(m => m.ErrorNominaModule)
     }
+  /*   {
+        path        : 'nomina/detalle-nomina/:id',
+        loadChildren: () => import('./nomina/detalle-nomina/detalle-nomina.module').then(m => m.DetalleNominaModule)
+    } */
 
     // {
     //     path        : 'mail',

@@ -1,0 +1,94 @@
+<div id="orders" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16">
+                    shopping_basket
+                </mat-icon>
+                <span class="logo-text h1">Nominas</span>
+            </div>
+            <!-- / APP TITLE -->
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <div class="content">
+                <div class="order-details tab-content p-24" fusePerfectScrollbar>
+                    <div class="section pb-48">
+                        <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                            <div class="h2 secondary-text">
+                                Lista de Comercios
+                                <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
+                            </div>
+                        </div>
+
+                        <div class="customer mb-32">
+                            <table class="simple">
+                                <thead>
+                                    <tr>
+                                        <th>ID Nomina</th>
+                                        <th>Archivo</th>
+                                        <th>Subido Por</th>
+                                        <th>Detalle</th>
+                                        <th>Total $</th>
+                                        <th>Total #</th>
+                                        <th>Fecha Carga</th>
+                                        <th>Ultima Actualizacion</th>
+                                        <th>Compañia</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyListaUsuario">
+                                    <tr style="font-size: 13px;" *ngFor="
+                                    let nomina of listaNominas;
+                                    index as i
+                                ">
+                                        <td>{{nomina.nombre}}</td>
+                                        <td>{{nomina.descripcion}}</td>
+                                        <td>{{nomina.usuario_carga}}</td>
+                                        <td>{{nomina.monto_origin}}</td>
+                                        <td>{{nomina.num_origin}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                        <td>
+                                            <a style="cursor:pointer" data-toggle="modal" data-target=".edita-bd-example-modal-lg"
+                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
+                                                    src="../../../../../assets/icons/acciones/original.png"></a>
+                                            <a style="cursor:pointer" data-toggle="modal" data-target=".edita-bd-example-modal-lg"
+                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
+                                                    src="../../../../../assets/icons/acciones/validado.png"></a>
+                                            <a style="cursor:pointer" data-toggle="modal" data-target=".edita-bd-example-modal-lg"
+                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
+                                                    src="../../../../../assets/icons/acciones/error.png"></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>
