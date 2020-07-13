@@ -5,13 +5,6 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AccesosGuard } from 'app/services/guards/accesos.guard';
-//import { ProfileComponent } from './admin/profile/profile.component';
-//import { RolesComponent } from './admin/roles/roles.component';
-//import { ComerciosComponent } from './admin/comercios/comercios.component';
-//import { UsuariosComponent } from './admin/usuarios/usuarios.component';
-
-
-
 const routes = [
     {
         path        : 'dashboards/analytics',
@@ -41,6 +34,10 @@ const routes = [
     {
         path        : 'nomina/nominas',
         loadChildren: () => import('./nomina/nominas/nominas.module').then(m => m.NominasModule)
+    },
+    {
+        path        : 'nomina/carga',
+        loadChildren: () => import('./nomina/carganomina/carganomina.module').then(m => m.CargaNominaModule)
     }
     // {
     //     path        : 'mail',
