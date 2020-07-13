@@ -1,0 +1,20 @@
+
+<div>
+    <p>carganomina works!</p>
+
+    <div>
+
+        <input type="file" (change)="onFileChange($event)" multiple="false" />
+
+        <table>
+            <tbody>
+                <tr *ngFor="let row of datos">
+                        <td *ngFor="let cell of row">
+                                {{cell}}
+                        </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

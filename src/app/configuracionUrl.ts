@@ -6,6 +6,10 @@ export class ConfiguracionUrl{
     return "https://bawbuq4538.execute-api.us-west-2.amazonaws.com/Stage/v1/";
   }
 
+  getUrlApiTemp(){//URL API BACK(CON TOKEN)
+    return "https://bawbuq4538.execute-api.us-west-2.amazonaws.com/Stage/";
+  }
+
   getUrlApiNav(){//URL API BACK(CON TOKEN)
     return "https://bawbuq4538.execute-api.us-west-2.amazonaws.com/Stage/modulo/obtenerMenu2/1";
   }
