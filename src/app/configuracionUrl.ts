@@ -3,7 +3,7 @@ import { environment } from '../environments/environment.prod';
 
 export class ConfiguracionUrl{
   getUrlApi(){//URL API BACK(CON TOKEN)
-    return "https://bawbuq4538.execute-api.us-west-2.amazonaws.com/Stage/v1/";
+    return "https://v5yco0dws5.execute-api.us-west-2.amazonaws.com/Stage/v1/";
   }
 
   getUrlApiTemp(){//URL API BACK(CON TOKEN)
@@ -11,7 +11,11 @@ export class ConfiguracionUrl{
   }
 
   getUrlApiNav(){//URL API BACK(CON TOKEN)
-    return "https://bawbuq4538.execute-api.us-west-2.amazonaws.com/Stage/modulo/obtenerMenu2/1";
+    return "https://v5yco0dws5.execute-api.us-west-2.amazonaws.com/Stage/modulo/obtenerMenu2/1";
+  }
+
+  getUrlApiNomina(){//URL API BACK(CON TOKEN)
+    return "https://v5yco0dws5.execute-api.us-west-2.amazonaws.com/Stage/v1/";
   }
 
   getUrlBase(){//URL FRONT (ANGULAR)

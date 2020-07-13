@@ -2,94 +2,61 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ConfiguracionUrl } from 'app/configuracionUrl';
-import { UserLoginService } from 'app/main/pages/services/login-user.services';
 import { subida_header } from './carganomina/carganomina.component';
+import { ConfiguracionUrl } from '../../../configuracionUrl';
+import { UserLoginService } from '../../pages/services/login-user.services';
+import { NominaModel } from '../../models/nominaModel.model';
+import { Usuario } from 'app/main/models/usuario.model';
+import { Comercio } from '../../models/comercio.model';
+import { NominaOriginalModel } from 'app/main/models/nominaOriginalModel.model';
+import { NominaErrorModel } from 'app/main/models/nominaErrorModel.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NominaService implements Resolve<any>{
 
-  orders: any[];
-  onOrdersChanged: BehaviorSubject<any>;
-  baseUrl     :ConfiguracionUrl;
-  urlApi      :string;
-  tipoUsuario :string;
-  headers     :any;
-  option      :any;
-  perfil      :any;
-  datagen     :any;
-  idtoken     :string;
-  idDevice    :string;
-  tokenAcess  :string;
-      /**
-     * Constructor
-     *
-     * @param {HttpClient} httpClient
-     */
+export class NominaService {
+
+  baseUrl: ConfiguracionUrl;
+  urlApi: string;
+  tipoUsuario: string;
+  headers: any;
+  option: any;
+  perfil: any;
+  datagen: any;
+  idtoken: string;
+  idDevice: string;
+  tokenAcess: string;
 
   constructor(
-    private httpClient: HttpClient,
-    getParametroCognito : UserLoginService
-  ) { 
-    this.onOrdersChanged = new BehaviorSubject({});
+    private httpClient: HttpClient, getParametroCognito: UserLoginService) {
     this.baseUrl = new ConfiguracionUrl();
-     this.idtoken = getParametroCognito.renovarToken();
-     this.headers = new HttpHeaders({
-    //   'Access-Control-Allow-Methods':'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-    //   'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
-    //   'Access-Control-Allow-Origin': '*',
-      'Content-type':'application/json;charset=utf8',
+    this.idtoken = getParametroCognito.renovarToken();
+    this.headers = new HttpHeaders({
+      'Content-type': 'application/json;charset=utf8',
       'Authorization': this.idtoken
       // 'DeviceKey' : this.idDevice,
       // 'AccessToken' : this.tokenAcess
     });
   }
 
-  /**
-     * Resolver
-     *
-     * @param {ActivatedRouteSnapshot} route
-     * @param {RouterStateSnapshot} state
-     * @returns {Observable<any> | Promise<any> | any}
-     */
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
-  {
-      return new Promise((resolve, reject) => {
-
-          Promise.all([
-              this.getNominas()
-          ]).then(
-              () => {
-                  resolve();
-              },
-              reject
-          );
-      });
+  nominas_listar(): Observable<NominaModel[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
+    return this.httpClient.get<NominaModel[]>(this.baseUrl.getUrlApiNomina()+'nominacarga', {headers:this.headers});
   }
 
-     /**
-     * Get orders
-     *
-     * @returns {Promise<any>}
-     */
-    
+  nominas_listar_original(nominaId,tipo): Observable<NominaOriginalModel[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
+    return this.httpClient.get<NominaOriginalModel[]>(this.baseUrl.getUrlApiNomina()+'nomina/'+nominaId+'/'+tipo,{headers:this.headers});
+  }
 
-    getNominas(): Promise<any>
-    {
-        return new Promise((resolve, reject) => {
-            this.httpClient.get('api/e-commerce-orders')
-                .subscribe((response: any) => {
-                    console.log(response);
-                    this.orders = response;
-                    this.onOrdersChanged.next(this.orders);
-                    resolve(response);
-                }, reject);
-                
-        });
-    }
+  nominas_listar_error(nominaId,tipo): Observable<NominaErrorModel[]>{
+    console.log('id token ')
+    console.log(this.idtoken)
+    return this.httpClient.get<NominaErrorModel[]>(this.baseUrl.getUrlApiNomina()+'nomina/'+nominaId+'/'+tipo,{headers:this.headers});
+  }
 
     carganomina_cargar(nominacarga: any): Observable<subida_header>{
         return this.httpClient.post<subida_header>(this.baseUrl.getUrlApi()+'nomina', nominacarga, {headers:this.headers});

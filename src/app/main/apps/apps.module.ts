@@ -38,6 +38,18 @@ const routes = [
     {
         path        : 'nomina/carga',
         loadChildren: () => import('./nomina/carganomina/carganomina.module').then(m => m.CargaNominaModule)
+    },
+    {
+        path        : 'nomina/detalle-nomina/:id/:tipo',
+        loadChildren: () => import('./nomina/detalle-nomina/detalle-nomina.module').then(m => m.DetalleNominaModule)
+    },
+    {
+        path        : 'nomina/aprobar-nomina',
+        loadChildren: () => import('./nomina/aprobar-nomina/aprobar-nomina.module').then(m => m.AprobarNominaModule)
+    },
+    {
+        path        : 'nomina/error-nomina/:id/:tipo',
+        loadChildren: () => import('./nomina/error-nomina/error-nomina.module').then(m => m.ErrorNominaModule)
     }
     // {
     //     path        : 'mail',

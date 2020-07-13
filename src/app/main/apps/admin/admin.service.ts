@@ -10,11 +10,6 @@ import { Rol } from '../../models/rol.model';
 import { UserLoginService } from '../../pages/services/login-user.services';
 
 
-
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
