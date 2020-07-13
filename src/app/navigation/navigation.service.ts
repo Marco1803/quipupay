@@ -38,9 +38,6 @@ export class NavigationService {
   }
 
   navigation_listar(){
-    console.log('id token ')
-    console.log(this.headers)
-    console.log(this.idtoken)
     return this.httpClient.get<Navigation[]>(this.baseUrl.getUrlApiNav(), {headers:this.headers}).toPromise();
   }
 
