@@ -75,7 +75,9 @@
                 </mat-form-field>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            
+
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Comercio</mat-label>
                     <mat-select formControlName="idcomercio">
@@ -84,12 +86,34 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div> -->
+            <!-- aria-readonly="true" -->
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Grupo</mat-label>
+                    <mat-select formControlName="comerciogrupoid" >
+                        <mat-option *ngFor="let group of cboGrupos" [value]="group.comerciogrupoid">
+                            {{ group.nombre }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
+
+
+
+            <mat-form-field>
+                <mat-select (selectionChange)="change($event)" multiple placeholder="Elegir Comercios"
+                    formControlName="comercios">
+                    <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.comercioid">
+                       {{cboCom.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Rol</mat-label>
-                    <mat-select formControlName="idrol">
+                    <mat-select formControlName="rolid">
                         <mat-option *ngFor="let cboRol of cboRoles" [value]="cboRol.id">
                             {{ cboRol.nombre }}
                         </mat-option>

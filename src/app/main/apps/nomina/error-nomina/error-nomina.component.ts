@@ -35,31 +35,27 @@ export interface PeriodicElement {
   rutTitular: string;
   nombre: string;
   monto: string;
-  motivo: string;
-  cartolas: string;
   canal: string;
   correoElectronico: string;
-  estadoTransferencia: string;
+  motivo: string;
 }
   //tabla 2
   const ELEMENT_DATA: PeriodicElement[] = [
-    {nomina: '1', 
-    nroTransaccion: 'Hydrogen', 
-    ordenCompra: '1.0079', 
-    notaCredito: 'HydrogenHydrogenHydrogenHydrogenHydrogenHydrogen',
-    cuentaDestino: 'H',
+    {nomina: '', 
+    nroTransaccion: '', 
+    ordenCompra: '', 
+    notaCredito: '',
+    cuentaDestino: '',
 
-    tipoCuenta: 'HydrogenHydrogenHydrogenHydrogenHydrogen',
-    Banco: 'H',
-    rutTitular: 'H',
-    nombre: 'HydrogenHydrogenHydrogenH',
-    monto: 'H',
+    tipoCuenta: '',
+    Banco: '',
+    rutTitular: '',
+    nombre: '',
+    monto: '',
   
-    motivo: 'H',
-    cartolas: 'HydrogenHydrogen',
-    canal: 'H',
-    correoElectronico: 'H',
-    estadoTransferencia: 'HydrogenHydrogenH' 
+    canal: '',
+    correoElectronico: '',
+    motivo: ''
   }
   ];
 
@@ -82,7 +78,7 @@ export class ErrorNominaComponent implements OnInit {
   cabeceraFuente = ELEMENT_DATA1;
 
   //tabla 2
-  displayedColumns: string[] = ['nomina', 'nroTransaccion', 'ordenCompra', 'notaCredito', 'cuentaDestino', 'tipoCuenta', 'Banco', 'rutTitular', 'nombre', 'monto', 'motivo', 'cartolas', 'canal', 'correoElectronico', 'estadoTransferencia'];
+  displayedColumns: string[] = ['nroTransaccion', 'ordenCompra', 'notaCredito', 'cuentaDestino', 'tipoCuenta', 'Banco', 'rutTitular', 'nombre', 'monto', 'canal', 'correoElectronico', 'motivo'];
   dataSource = ELEMENT_DATA;
 
    constructor(

@@ -1,26 +1,24 @@
 <div id="orders" class="page-layout carded fullwidth inner-scroll">
+   
+   
+    <!-- HEADER -->
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
 
-    <!-- TOP BACKGROUND -->
-    <div class="top-bg accent"></div>
-    <!-- / TOP BACKGROUND -->
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                [@animate]="{value:'*',params:{x:'50px'}}">&nbsp;Aprobar Nomina
+            </span>
+
+           
+        </div>
+    </div>
+    <!-- / HEADER -->
 
     <!-- CENTER -->
     <div class="center">
 
-        <!-- HEADER -->
-        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-            fxLayoutAlign.gt-xs="space-between center">
 
-            <!-- APP TITLE -->
-            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon s-32 mr-16">
-                    shopping_basket
-                </mat-icon>
-                <span class="logo-text h1">Nominas</span>
-            </div>
-            <!-- / APP TITLE -->
-        </div>
-        <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
         <div class="content-card">
@@ -30,8 +28,7 @@
                     <div class="section pb-48">
                         <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
                             <div class="h2 secondary-text">
-                                Lista de Comercios
-                                <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
+                                Lista de nominas por aprobar
                             </div>
                         </div>
 
@@ -39,16 +36,17 @@
                             <table class="simple">
                                 <thead>
                                     <tr>
-                                        <th>ID Nomina</th>
+                                        <!-- <th>ID Nomina</th> -->
+                                        <th>ID</th>
                                         <th>Archivo</th>
                                         <th>Subido Por</th>
-                                        <th>Detalle</th>
-                                        <th>Total $</th>
-                                        <th>Total #</th>
-                                        <th>Fecha Carga</th>
-                                        <th>Ultima Actualizacion</th>
-                                        <th>Compañia</th>
-                                        <th>Acciones</th>
+                                        <th>Estado</th>
+                                        <th class="centerText">S/. Total</th>
+                                        <th class="centerText">Total #</th>
+                                        <th class="centerText">Fecha Carga</th>
+                                        <th class="centerText">Ultima Actualizacion</th>
+                                        <th class="centerText">Compañia</th>
+                                        <th class="centerText">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodyListaUsuario">
@@ -56,26 +54,25 @@
                                     let nomina of listaNominas;
                                     index as i
                                 ">
+                                        <td>{{nomina.id}}</td>
                                         <td>{{nomina.nombre}}</td>
-                                        <td>{{nomina.descripcion}}</td>
                                         <td>{{nomina.usuario_carga}}</td>
-                                        <td>{{nomina.monto_origin}}</td>
-                                        <td>{{nomina.num_origin}}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{nomina.estado_next}}</td>
+                                        <td class="centerText">{{nomina.monto_valida}}</td>
+                                        <td class="centerText">{{nomina.num_valida}}</td>
+                                        <td class="centerText">{{nomina.fecha_creacion | date: 'dd/MM/yyyy'}}</td>
+                                        <td class="centerText">{{nomina.fecha_modificacion | date: 'dd/MM/yyyy'}}</td>
+                                        <td class="centerText">{{nomina.comercio}}</td>
 
-                                        <td>
-                                            <a style="cursor:pointer" data-toggle="modal" data-target=".edita-bd-example-modal-lg"
+
+                                        <td class="centerText">
+                                            <button mat-button color="primary"
+                                                (click)="aprobarNomina(nomina.id)">Aprobar</button>
+                                            <!-- <a style="cursor:pointer" data-toggle="modal" data-target=".edita-bd-example-modal-lg"
                                                 [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
-                                                    src="../../../../../assets/icons/acciones/original.png"></a>
-                                            <a style="cursor:pointer" data-toggle="modal" data-target=".edita-bd-example-modal-lg"
-                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
-                                                    src="../../../../../assets/icons/acciones/validado.png"></a>
-                                            <a style="cursor:pointer" data-toggle="modal" data-target=".edita-bd-example-modal-lg"
-                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
-                                                    src="../../../../../assets/icons/acciones/error.png"></a>
+                                                    src="../../../../../assets/icons/acciones/error.png"></a> -->
+                                            <button mat-button color="warn"
+                                                (click)="descartarNomina(nomina.id)">Descartar</button>
                                         </td>
                                     </tr>
                                 </tbody>

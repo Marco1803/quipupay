@@ -18,27 +18,61 @@
                     <input matInput formControlName="nombre" />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="pl-sm-8" fxFlex="50">
+                <!-- <mat-form-field appearance="outline" class="pl-sm-8" fxFlex="50">
                     <mat-label>Departamento</mat-label>
                     <input matInput formControlName="iddepartamento" />
+                </mat-form-field> -->
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Departamento</mat-label>
+                    <mat-select formControlName="iddepartamento" aria-readonly="true">
+                        <mat-option *ngFor="let dep of cboDpto" [value]="dep.departamentoid">
+                            {{ dep.descripcion }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Provincia</mat-label>
-                    <input matInput formControlName="idprovincia" type="text" />
-                    <mat-icon matSuffix class="disabled-text">user</mat-icon>
+                    <mat-select formControlName="idprovincia" aria-readonly="true">
+                        <mat-option *ngFor="let pro of cboProvincia" [value]="pro.provinciaid">
+                            {{ pro.descripcion }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Distrito</mat-label>
+                    <mat-select formControlName="iddistrito" aria-readonly="true">
+                        <mat-option *ngFor="let dist of cboDistrito" [value]="dist.distritoid">
+                            {{ dist.descripcion }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Provincia</mat-label>
+                    <input matInput formControlName="idprovincia" type="text" />
+                    <mat-icon matSuffix class="disabled-text">user</mat-icon>
+                </mat-form-field>
+            </div> -->
+
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Distrito</mat-label>
                     <input matInput formControlName="iddistrito" type="text" />
                     <mat-icon matSuffix class="disabled-text">user</mat-icon>
                 </mat-form-field>
-            </div>
+            </div> -->
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
@@ -47,6 +81,15 @@
                     <mat-icon matSuffix class="disabled-text">user</mat-icon>
                 </mat-form-field>
             </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Nro RUC</mat-label>
+                    <input matInput formControlName="ruc" type="text" />
+                    <mat-icon matSuffix class="disabled-text">user</mat-icon>
+                </mat-form-field>
+            </div>
+
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="100">
@@ -72,8 +115,18 @@
                 </mat-form-field>
             </div>
 
-
-          
+         
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Grupo</mat-label>
+                    <mat-select formControlName="comerciogrupoid">
+                        <mat-option *ngFor="let comGrup of comercioGrupo" [value]="comGrup.comerciogrupoid">
+                            {{comGrup.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
         </form>
     </div>
 

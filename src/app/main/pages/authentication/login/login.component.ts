@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit
                 
                 // this.getMenu();
                 //this.router.navigate(["apps/dashboards/analytics"]);
-                location.href=this.baseUrl.getUrlBase()+"apps/dashboards/analytics";
+                location.href=this.baseUrl.getUrlBase()+"apps/dashboards/project";
             }else{
                 //console.log(result);
                 this.username = this.loginForm.value.email;

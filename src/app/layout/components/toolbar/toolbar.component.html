@@ -17,19 +17,40 @@
                 </div>
             </div>
 
-            <div class="px-8 px-md-16">
+            <!-- <div class="px-8 px-md-16">
                 <fuse-shortcuts [navigation]="navigation"></fuse-shortcuts>
-            </div>
+            </div> -->
 
         </div>
 
         <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
 
+            <form [formGroup]="busquedaForm" >
+                <button mat-button [matMenuTriggerFor]="userMenu2" class="user-button">
+                    <div fxLayout="row" fxLayoutAlign="center center" >
+                        <!-- <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg"> -->
+                        <span class="username mr-12" fxHide fxShow.gt-sm> {{nombreComercio}} </span>
+                        <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+                    </div>
+                </button>
+    
+                <mat-menu #userMenu2="matMenu" [overlapTrigger]="false"  >
+                    <button mat-menu-item *ngFor="let cboCom of cboComercio" [value]="cboCom.comercioid" (click)="cambioComercio(cboCom.nombre,cboCom.comercioid)">
+    
+                        <span> {{ cboCom.nombre }}</span>
+    
+                    </button>
+    
+    
+                </mat-menu>
+            </form>
+
+
             <button mat-button [matMenuTriggerFor]="userMenu"
                     class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>Charlie Adams</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{nombreUsuario}} ({{rolUsuario}})</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
@@ -55,31 +76,33 @@
 
             <div class="toolbar-separator"></div>
 
-            <fuse-search-bar (input)="search($event)"></fuse-search-bar>
+            <!-- <fuse-search-bar (input)="search($event)"></fuse-search-bar> -->
 
             <div class="toolbar-separator"></div>
-
+            <!-- [matMenuTriggerFor]="languageMenu" {{selectedLanguage.id}}-->
             <button mat-button fxHide fxShow.gt-xs
                     class="language-button"
-                    [matMenuTriggerFor]="languageMenu">
+                 
+                    >
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <img class="flag mr-8" [src]="'assets/icons/flags/'+selectedLanguage.flag+'.png'">
-                    <span class="iso text-uppercase">{{selectedLanguage.id}}</span>
+                    <img class="flag mr-8" [src]="'assets/icons/flags/pe.png'">
+                    <span class="iso text-uppercase">PE</span>
                 </div>
             </button>
 
-            <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
+            <!-- <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
 
                 <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
-                    <span fxLayout="row" fxLayoutAlign="start center">
-                        <img class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
+                    <span fxLayout="row" fxLayoutAlign="start center"> -->
+                        <!-- <img class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'"> -->
+                        <!-- <img class="flag mr-16" [src]="'assets/icons/flags/pe.png'">
                         <span class="iso">{{lang.title}}</span>
                     </span>
-                </button>
+                </button> -->
 
-            </mat-menu>
+            <!-- </mat-menu> -->
 
-            <div class="toolbar-separator" fxHide fxShow.gt-xs></div>
+            <!-- <div class="toolbar-separator" fxHide fxShow.gt-xs></div>
 
             <button mat-icon-button
                     class="quick-panel-toggle-button"
@@ -93,7 +116,7 @@
             <button mat-icon-button class="navbar-toggle-button"
                     *ngIf="!hiddenNavbar && rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
                 <mat-icon class="secondary-text">menu</mat-icon>
-            </button>
+            </button> -->
 
         </div>
 

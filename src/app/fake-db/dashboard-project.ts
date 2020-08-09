@@ -79,6 +79,60 @@ export class ProjectDashboardDb
             'detail': 'You can show some detailed information about this widget in here.'
         },
         'widget5'      : {
+            'ranges'    : {
+                'TW': 'This Week'
+            },
+            'mainChart' : {
+                'TW': [
+                    {
+                        'name'  : '# Cargadas',
+                        'series': [
+                            {
+                                'name' : 'Cantidad',
+                                'value': 42
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : ' ',
+                        'series': [
+                            {
+                                'name' : ' ',
+                                'value': 0
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : '# Enviadas a banco',
+                        'series': [
+                            {
+                                'name' : 'Cantidad',
+                                'value': 28
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : '',
+                        'series': [
+                            {
+                                'name' : '',
+                                'value': 0
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : '# Exito Banco',
+                        'series': [
+                            {
+                                'name' : 'Cantidad',
+                                'value': 43
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        'widget55'      : {
             'title'     : 'Github Issues',
             'ranges'    : {
                 'TW': 'This Week',
@@ -93,10 +147,6 @@ export class ProjectDashboardDb
                             {
                                 'name' : 'issues',
                                 'value': 37
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 9
                             }
                         ]
                     },
@@ -106,10 +156,6 @@ export class ProjectDashboardDb
                             {
                                 'name' : 'issues',
                                 'value': 32
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 12
                             }
                         ]
                     },
@@ -119,62 +165,6 @@ export class ProjectDashboardDb
                             {
                                 'name' : 'issues',
                                 'value': 39
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 9
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Thu',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 27
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 12
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Fri',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 18
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 7
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Sat',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 24
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 8
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Sun',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 20
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 16
                             }
                         ]
                     }
@@ -186,10 +176,6 @@ export class ProjectDashboardDb
                             {
                                 'name' : 'issues',
                                 'value': 37
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 12
                             }
                         ]
                     },
@@ -199,10 +185,6 @@ export class ProjectDashboardDb
                             {
                                 'name' : 'issues',
                                 'value': 24
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 8
                             }
                         ]
                     },
@@ -212,155 +194,35 @@ export class ProjectDashboardDb
                             {
                                 'name' : 'issues',
                                 'value': 51
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 7
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Thu',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 31
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 13
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Fri',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 29
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 7
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Sat',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 17
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 6
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Sun',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 31
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 10
                             }
                         ]
                     }
                 ],
                 'TW': [
                     {
-                        'name'  : 'Mon',
+                        'name'  : 'Enviado al banco',
                         'series': [
                             {
                                 'name' : 'issues',
                                 'value': 42
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 11
                             }
                         ]
-                    },
+                    }, 
                     {
-                        'name'  : 'Tue',
+                        'name'  : '  ',
+                        'series': [
+                            {
+                                'name' : '  ',
+                                'value': 0
+                            }
+                        ]
+                    }, 
+                    {
+                        'name'  : 'Exito banco',
                         'series': [
                             {
                                 'name' : 'issues',
                                 'value': 28
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 10
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Wed',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 43
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 8
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Thu',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 34
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 11
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Fri',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 20
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 8
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Sat',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 25
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 10
-                            }
-                        ]
-                    },
-                    {
-                        'name'  : 'Sun',
-                        'series': [
-                            {
-                                'name' : 'issues',
-                                'value': 22
-                            },
-                            {
-                                'name' : 'closed issues',
-                                'value': 17
                             }
                         ]
                     }

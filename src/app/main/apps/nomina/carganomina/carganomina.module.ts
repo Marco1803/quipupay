@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { CarganominaComponent } from './carganomina.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const routes: Routes = [
   {
@@ -44,7 +45,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatInputModule,
     MatToolbarModule,
-    FuseSharedModule
+    FuseSharedModule,
+    MatProgressBarModule
   ],
   providers : [],
 

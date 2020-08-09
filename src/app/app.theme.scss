@@ -235,3 +235,39 @@ body.theme-pink-dark {
 
     @include fuse-color-classes($palettes);
 }
+
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define a RED light theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$indigo-light-theme-primary-palette: mat-palette($fuse-navy, 600, 400, 700);
+$indigo-light-theme-accent-palette: mat-palette($mat-indigo, 600, 400, 700);
+$indigo-light-theme-warn-palette: mat-palette($mat-indigo);
+
+// Create the Material theme object
+$indigo-light-theme: mat-light-theme($indigo-light-theme-primary-palette, $indigo-light-theme-accent-palette, $indigo-light-theme-warn-palette);
+
+// Add ".theme-yellow-light" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-indigo-light {
+
+    // Generate the Angular Material theme
+    @include angular-material-theme($indigo-light-theme);
+
+    // Apply the theme to the Fuse Core
+    @include fuse-core-theme($indigo-light-theme);
+
+    // Apply the theme to the user components
+    @include components-theme($indigo-light-theme);
+
+    // Generate Fuse color classes for primary, accent and warn colors
+    $palettes: (
+        primary: $indigo-light-theme-primary-palette,
+        accent: $indigo-light-theme-accent-palette,
+        warn: $indigo-light-theme-warn-palette
+    );
+
+    @include fuse-color-classes($palettes);
+}

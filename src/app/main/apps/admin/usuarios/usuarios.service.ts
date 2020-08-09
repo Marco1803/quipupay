@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { Usuario } from '../../../models/usuario.model';
+import { UsuarioListarModel } from '../../../models/usuarioListarModel.model';
+import { UsuarioCrearModel } from 'app/main/models/usuarioCrearModel.model';
 
 
 @Injectable({
@@ -15,15 +16,15 @@ obtenerUsuarios(){
   //this.mantenimientoService.cargarUsuarios(BusquedaUsuario,identificador);
 }
 
-agregarUsuario(NuevoUsuario: any){
-  return this._adminService.usuarios_agregar(NuevoUsuario);
+agregarUsuario(cabecera: UsuarioCrearModel){
+  return this._adminService.usuarios_agregar(cabecera);
 }
 
-editarUsuario(editarUsuario: Usuario){
+editarUsuario(editarUsuario: UsuarioCrearModel){
   return this._adminService.usuario_editar(editarUsuario);
 }
 
-actualizarUsuario(actualizarUsuario: Usuario){
+actualizarUsuario(actualizarUsuario: UsuarioCrearModel){
   return this._adminService.usuario_actualizar(actualizarUsuario);
 }
 

@@ -1,0 +1,308 @@
+<div id="orders" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- HEADER -->
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                [@animate]="{value:'*',params:{x:'50px'}}">&nbsp;Respuesta Manual del Banco
+            </span>
+
+
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+
+    <!-- CENTER -->
+    <div class="center">
+
+
+        <!-- <div style="width: 90%; margin: -50px 100px 15px 100px;" >
+
+            <form [formGroup]="busquedaForm">
+            <mat-grid-list cols="1" rowHeight="100px" >
+                
+                <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                    <mat-card >
+                        <mat-card-header class="myclass">
+                            <mat-form-field fxFlex="30" align="start ">
+                                <mat-label>Comercio</mat-label>
+                                <mat-select formControlName="comercio">
+                                    <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
+                                        {{ cboCom.nombre }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field align="end">
+                                <br />
+                                <input matInput formControlName="fechaIni" [matDatepicker]="picker1"
+                                    placeholder="Fecha Inicio">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field align="end">
+                                <br />
+                                <input matInput formControlName="fechaFin" [matDatepicker]="picker2"
+                                    placeholder="Fecha Fin">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                            <button (click)="grabarUsuario()" mat-button color="primary" class="save-button"
+                            aria-label="SAVE" align="end">
+                            Buscar
+                            </button>
+                        </mat-card-header>
+                    </mat-card>
+                </mat-grid-tile>
+
+
+            </mat-grid-list>
+        </form>
+
+
+        </div> -->
+
+
+        <!-- <mat-card>
+            <mat-card-content>
+
+                <form [formGroup]="busquedaForm">
+                    <div fxLayout="row" align="start">
+                        <mat-form-field appearance="outline" fxFlex="15" align="start ">
+                            <mat-label>Comercio</mat-label>
+                            <mat-select formControlName="comercio">
+                                <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
+                                    {{ cboCom.nombre }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <div fxLayout="row" align="end">
+                        <mat-form-field align="end">
+                            <br />
+                            <input matInput formControlName="fechaIni" [matDatepicker]="picker1"
+                                placeholder="Fecha Inicio">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <mat-form-field align="end">
+                            <br />
+                            <input matInput formControlName="fechaFin" [matDatepicker]="picker2"
+                                placeholder="Fecha Fin">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <button (click)="grabarUsuario()" mat-button color="primary" class="save-button"
+                            aria-label="SAVE" align="end">
+                            Buscar
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card> -->
+
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- busqueda inicio -->
+            <!-- <div class="container">
+
+                <form [formGroup]="busquedaForm" class="container p-24 mr-24" fxLayout="row" fxLayout.xs="column"
+                    fxLayoutWarp fxLayoutGap="0.5%" fxLayoutAlign="start">
+
+                    <div fxFlex="20%">
+                        <div fxLayout="row" fxLayoutAlign="start " fxFlex="1 0 auto">
+                            <mat-form-field appearance="outline" fxFlex="70">
+                                <mat-label>Comercio</mat-label>
+                                <mat-select formControlName="comercio">
+                                    <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
+                                        {{ cboCom.nombre }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxFlex="20%">
+                        <mat-form-field>
+                            <br />
+                            <input matInput formControlName="fechaIni" [matDatepicker]="picker1"
+                                placeholder="Fecha Inicio">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="20%">
+                        <mat-form-field>
+                            <br />
+                            <input matInput formControlName="fechaFin" [matDatepicker]="picker2"
+                                placeholder="Fecha Fin">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+
+                    <div fxFlex="20%">
+                        <br />
+                        <button (click)="grabarUsuario()" mat-button color="primary" class="save-button"
+                            aria-label="SAVE">
+                            Buscar
+                        </button>
+                    </div>
+
+
+                </form>
+
+            </div> -->
+            <!-- busqueda Fin -->
+
+            <div class="content">
+
+                <div class="order-details tab-content p-24" fusePerfectScrollbar>
+                    <div class="section pb-48">
+                        <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                            <div class="h2 secondary-text">
+                                Lista de nominas por responder
+                                <!-- <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon> -->
+                            </div>
+                        </div>
+
+                        <div class="customer mb-32">
+                            <table class="simple">
+                                <thead>
+                                    <tr>
+                                        <th>ID </th>
+                                        <th>Comercio</th>
+                                        <th>Estado</th>
+                                        <th class="centerText">Banco</th>
+                                        <th class="centerText">S/. Total</th>
+                                        <th class="centerText">Total #</th>
+                                        <th class="centerText">Fecha Carga</th>
+                                        <th class="centerText">Ultima Actualizacion</th>
+
+                                        <th class="centerText">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyListaUsuario">
+                                    <tr style="font-size: 13px;" *ngFor="
+                                    let nomina of listaNominas;
+                                    index as i
+                                ">
+                                        <td>{{nomina.nomina_id}}</td>
+                                        <td>{{nomina.comercio}}</td>
+                                        <td>{{nomina.estado}}</td>
+                                        <td class="centerText">
+                                            <img *ngIf="nomina.banco=='BCP'" src="assets/images/logos/bcp.png">
+                                            <img *ngIf="nomina.banco=='BBVA'" src="assets/images/logos/bbva.jpg">
+                                            <img *ngIf="nomina.banco=='IBK'" src="assets/images/logos/interbank.png">
+                                        </td>
+                                        <td class="centerText">{{nomina.monto_tot}}</td>
+                                        <td class="centerText">{{nomina.cant_tot}}</td>
+                                        <td class="centerText">{{nomina.fecha_creacion | date: 'dd/MM/yyyy'}}</td>
+                                        <td class="centerText">{{nomina.fecha_modificacion | date: 'dd/MM/yyyy'}}</td>
+
+                                        <td class="centerText">
+                                            <!-- <button mat-button color="primary" >Aprobar</button> -->
+                                            <!-- <button mat-button color="warn" (click)="dynamicDownloadJson()">Descartar</button> -->
+                                            <!-- <button mat-button color="warn" >Rechazar</button> -->
+                                            <button mat-icon-button
+                                                aria-label="Example icon button with a vertical three dot icon"
+                                                [matMenuTriggerFor]="menu">
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #menu="matMenu">
+                                                <!-- <button mat-menu-item [routerLink]="['/apps/nomina/banco-respuesta-manual-detalle/', nomina.id]">Ver Detalles</button> -->
+                                                <button mat-menu-item
+                                                    [routerLink]="['/apps/nomina/banco-respuesta-manual-detalle', nomina.id]">Ver
+                                                    Detalles</button>
+                                            </mat-menu>
+                                        </td>
+                                        <!-- <td></td> -->
+                                        <!-- <td></td> -->
+
+                                        <!-- <td>
+                                            <a style="cursor:pointer" data-toggle="modal"
+                                                data-target=".edita-bd-example-modal-lg"
+                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
+                                                    src="../../../../../assets/icons/acciones/original.png"></a>
+                                            <a style="cursor:pointer" data-toggle="modal"
+                                                data-target=".edita-bd-example-modal-lg"
+                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
+                                                    src="../../../../../assets/icons/acciones/validado.png"></a>
+                                            <a style="cursor:pointer" data-toggle="modal"
+                                                data-target=".edita-bd-example-modal-lg"
+                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
+                                                    src="../../../../../assets/icons/acciones/error.png"></a>
+                                        </td> -->
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- / CONTENT CARD -->
+        <!-- inicia paginado -->
+        <!-- <div class="row">
+            <div class="col-sm-4" style="margin-top: 12px;color: rgb(145, 142, 142)">
+                <label>Registros por P&aacute;gina</label>
+                <div class="form-group">
+                    <select name="xpag" [(ngModel)]="xpag" (change)="selectpag()">
+                        <option value=10>10</option>
+                        <option value=20>20</option>
+                        <option value=50>50</option>
+                        <option value=100>100</option>
+                    </select>
+                </div>
+            </div> -->
+        <!-- :::::::::::::::::::::::: PAGINADO :::::::::::::::::::::::::::::::::::::::: -->
+        <!-- <div class="col-sm-8">
+                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                        <li [ngClass]="{disabled:pager.currentPage === 1}">
+                            <a style="cursor: pointer" (click)="buscarReporte(1)">Primero</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === 1}">
+                            <a style="cursor: pointer" (click)="buscarReporte(pager.currentPage - 1)">Anterior</a>
+                        </li>
+                        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                            <a style="cursor: pointer" (click)="buscarReporte(page)">{{page}}</a>
+                        </li>
+                        <li *ngIf="pager.currentPage != pager.totalPages">
+                            <a style="cursor: pointer" (click)="buscarReporte(pager.currentPage + 1)">Siguiente</a>
+                        </li>
+                        <li *ngIf="pager.currentPage == pager.totalPages">
+                            <a style="cursor: pointer" (click)="buscarReporte(pager.currentPage)">Siguiente</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                            <a style="cursor: pointer" (click)="buscarReporte(pager.totalPages)">Último</a>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+        <!-- :::::::::::::::: PAGINADO FINNNNN :::::::::::::::::::::::::::::::::::::::: -->
+        <!-- </div> -->
+        <!-- Finaliza paginado -->
+
+
+    </div>
+    <!-- / CENTER -->
+
+
+</div>

@@ -17,14 +17,14 @@ export class CargaNomina {
         public _comercio?: string,
         public _detail?: string
 
-    ) { 
-        this.nombre=_nombre;
-        this.descripcion=_descripcion;
-        this.usuario_carga=_usuario_carga;
-        this.monto_origin=_monto_origin;
-        this.num_origin=_num_origin;
-        this.comercio=_comercio;
-        this.detail=_detail
+    ) {
+        this.nombre = _nombre;
+        this.descripcion = _descripcion;
+        this.usuario_carga = _usuario_carga;
+        this.monto_origin = _monto_origin;
+        this.num_origin = _num_origin;
+        this.comercio = _comercio;
+        this.detail = _detail
     }
 
 }

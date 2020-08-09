@@ -2,18 +2,18 @@
 
     <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
 
-        <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
+        <!-- <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
             <img src="assets/images/logos/fuse.svg">
-        </div>
+        </div> -->
 
         <div class="title" [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
             Welcome Payout!
         </div>
 
-        <div class="description" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+        <!-- <div class="description" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat,
             vel convallis elit fermentum pellentesque. Sed mollis velit facilisis facilisis viverra.
-        </div>
+        </div> -->
 
     </div>
 
@@ -22,11 +22,11 @@
 
         <div id="login-form">
 
-            <div class="logo" fxHide.gt-xs>
-                <img src="assets/images/logos/fuse.svg">
-            </div>
+       <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="assets/images/logos/MonnetLoginCab.png">
+        </div> 
 
-            <div class="title">LOGIN TO YOUR ACCOUNT</div>
+            <div class=""><h3>Login your account</h3></div>
 
             <form name="loginForm" [formGroup]="loginForm" novalidate>
 
@@ -59,15 +59,17 @@
                         Remember Me
                     </mat-checkbox>
 
-                    <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'">
-                        Forgot Password?
-                    </a>
+
                 </div>
 
                 <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
                         [disabled]="loginForm.invalid" (click)="OnSubmit()">
                     LOGIN
                 </button>
+
+                <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'"  >
+                    Forgot Password?
+                </a>
 
             </form>
 

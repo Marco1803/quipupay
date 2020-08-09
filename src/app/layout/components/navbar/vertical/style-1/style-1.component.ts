@@ -2,11 +2,13 @@ import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@ang
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { GetParametrosCognito } from 'app/services/getParametrosCognito.service';
 
 @Component({
     selector     : 'navbar-vertical-style-1',
@@ -18,6 +20,9 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+    helper: JwtHelperService;
+    username: string = "";
+    email: string = "";
 
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -35,9 +40,19 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _router: Router
+        private _router: Router,
+        public authService: GetParametrosCognito
     )
     {
+        //Datos Token
+        this.helper = new JwtHelperService(); 
+        let token = this.authService.getIdToken();
+        const decodedToken = this.helper.decodeToken(token);
+        let user = `${ decodedToken["custom:Nombres"]} ${ decodedToken["custom:Apellidos"]} `;
+        let email = `${ decodedToken["email"]}`;
+        this.username = user;
+        this.email  = email;
+
         // Set the private defaults
         this._unsubscribeAll = new Subject();
     }

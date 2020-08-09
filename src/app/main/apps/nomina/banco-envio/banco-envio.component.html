@@ -1,0 +1,92 @@
+<div id="orders" class="page-layout carded fullwidth inner-scroll">
+
+<!-- HEADER -->
+<div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+
+        <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+            [@animate]="{value:'*',params:{x:'50px'}}">&nbsp;Envios al Banco
+        </span>
+
+
+    </div>
+</div>
+<!-- / HEADER -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+    
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <div class="content">
+                <div class="order-details tab-content p-24" fusePerfectScrollbar>
+                    <div class="section pb-48">
+                        <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                            <div class="h2 secondary-text">
+                                Lista de nominas por enviar
+                                <!-- <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon> -->
+                            </div>
+                        </div>
+
+                        <div class="customer mb-32">
+                            <table class="simple">
+                                <thead>
+                                    <tr>
+                                        <th>ID </th>
+                                        <th>Comercio</th>
+                                        <th class="centerText">Estado</th>
+                                        <th class="centerText">Banco</th>
+                                        <th class="centerText">S/. Total</th>
+                                        <th class="centerText">Total #</th>
+                                        <th class="centerText">Fecha Carga</th>
+                                        <th class="centerText">Ultima Actualizacion</th>
+                                        
+                                        <th class="centerText">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyListaUsuario">
+                                    <tr style="font-size: 13px;" *ngFor="
+                                    let nomina of listaNominas;
+                                    index as i">
+                                        <td>{{nomina.nomina_id}}</td>
+                                        <td>{{nomina.comercio}}</td>
+                                        <td>{{nomina.estado}}</td>
+                                        <td class="centerText">
+                                            <img *ngIf="nomina.banco=='BCP'" src="assets/images/logos/bcp.png">
+                                            <img *ngIf="nomina.banco=='BBVA'" src="assets/images/logos/bbva.jpg">
+                                            <img *ngIf="nomina.banco=='IBK'" src="assets/images/logos/interbank.png">
+                                        </td>
+                                        <td class="centerText">{{nomina.monto_tot}}</td>
+                                        <td class="centerText">{{nomina.cant_tot}}</td>
+                                        <td class="centerText">{{nomina.fecha_creacion | date: 'dd/MM/yyyy'}}</td>
+                                        <td class="centerText">{{nomina.fecha_modificacion | date: 'dd/MM/yyyy'}}</td>
+                                        
+                                        <td class="centerText">
+                                            <button mat-button color="primary" (click)="dynamicDownloadTxt(nomina.id,nomina.banco)">Descargar</button>
+                                            <!-- <button mat-button color="warn" (click)="dynamicDownloadJson()">Descartar</button> -->
+                                            
+                                            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                            <mat-menu #menu="matMenu">
+                                                <button mat-button  (click)="enviar_nomina(nomina.id)">Enviar</button>
+                                                <button mat-menu-item [routerLink]="['/apps/nomina/banco-nomina-detalle/', nomina.id]">Ver Detalles</button>
+                                            </mat-menu>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>

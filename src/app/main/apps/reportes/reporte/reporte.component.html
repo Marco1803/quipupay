@@ -1,0 +1,276 @@
+<div id="order" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- HEADER -->
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                >&nbsp;Reporte
+            </span>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+         <!-- empezamos a mover -->
+         <div style="width: 90%; margin: -143px -5px 25px 200px; border-radius: 8px;">
+            <form [formGroup]="busquedaForm">
+                <mat-grid-list cols="1" rowHeight="100px">
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-card>
+
+                            <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
+                                <mat-label>Id Nomina</mat-label>
+                                <input matInput formControlName="nominaid" type="text" />
+                            </mat-form-field>
+
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+
+                            <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
+                                <mat-label>Estado</mat-label>
+                                <mat-select formControlName="codestado_banco">
+                                    <mat-option *ngFor="let cmbEstado of CmbEstadoReporteModel" [value]="cmbEstado.id">
+                                        {{ cmbEstado.nombre }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+
+                            <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
+                                <input matInput formControlName="finicio" [matDatepicker]="picker1"
+                                    placeholder="Fecha Inicio">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+
+                            <mat-form-field align="end" fxFlex="40" style="font-size: 14px;">
+                                <input matInput formControlName="ffinal" [matDatepicker]="picker2"
+                                    placeholder="Fecha Fin">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+
+                            <button (click)="buscarReporte()" class="buttonBuscar button2" fxFlex="20">
+                                Buscar
+                            </button>
+
+                        </mat-card>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </form>
+        </div>
+
+        
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+            <!-- CONTENT -->
+            <div class="content">
+                <div class="order-details tab-content p-24 " >
+                    <div class="section pb-48">
+                        <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="m-0 mr-16 secondary-text">access_time</mat-icon>
+                            <div class="h2 secondary-text">Listado de Transacciones</div>
+                        </div>
+
+                        <div class="example-container">
+                            <mat-table [dataSource]="dataSource" matSort FusePerfectScrollbarPosition>
+
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="operacion_id">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID Operacion</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.operacion_id}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="comercioid">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Comercio ID</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.comercioid}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="comercio">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Comercio</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="status text-truncate h6 p-4">
+                                            {{e.comercio}}
+                                        </p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="nomina_nombre">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nomina Nombre</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.nomina_nombre}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="nominaid">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID Nomina</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.nominaid}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="trans_oc">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Transaccion OC</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.trans_oc}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="trans_nc">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Transaccion NC</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.trans_nc}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="account_number">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Account Number</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.account_number}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="account_type">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Account Type</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.account_type}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="banco">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Banco</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.banco}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="rut">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>RUT</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.rut}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="nombre">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.nombre}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="correo">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.correo}}</p>
+                                    </mat-cell>
+                                </ng-container>
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="celular">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Celular</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.celular}}</p>
+                                    </mat-cell>
+                                </ng-container>
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="monto">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Monto</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.monto}}</p>
+                                    </mat-cell>
+                                </ng-container>
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="moneda">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Moneda</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.moneda}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="usuario_carga">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Carga</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.usuario_carga}}</p>
+                                    </mat-cell>
+                                </ng-container>
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="fecha_carga">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Carga</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.fecha_carga}}</p>
+                                    </mat-cell>
+                                </ng-container>
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="fecha_modificacion">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Modificacion</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.fecha_modificacion}}</p>
+                                    </mat-cell>
+                                </ng-container>
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="estado_banco">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Estado Banco</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.estado_banco}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="observacion_banco">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Observacion Banco</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.observacion_banco}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            
+                                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                                </mat-row>
+                            </mat-table>
+            
+            
+                            <mat-paginator [length]="totalPag" [pageSize]="10" [pageSizeOptions]="[5, 10]" showFirstLastButtons>
+                            </mat-paginator>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- / CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

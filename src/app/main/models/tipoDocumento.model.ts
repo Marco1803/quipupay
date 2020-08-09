@@ -1,11 +1,11 @@
 export class TipoDocumento {
-    id?:number;
-    nombre:string;
+    id?: string;
+    nombre: string;
 
     constructor(
-        public _id?: number,
+        public _id?: string,
         public _nombre?: string
-    ) { 
+    ) {
         this.id = _id;
         this.nombre = _nombre;
     }

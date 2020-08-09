@@ -1,26 +1,90 @@
 <div id="orders" class="page-layout carded fullwidth inner-scroll">
 
-    <!-- TOP BACKGROUND -->
-    <div class="top-bg accent"></div>
-    <!-- / TOP BACKGROUND -->
+   
+    <!-- HEADER -->
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                [@animate]="{value:'*',params:{x:'50px'}}">&nbsp;Nominas
+            </span>
+
+        </div>
+    </div>
+    <!-- / HEADER -->
 
     <!-- CENTER -->
     <div class="center">
 
-        <!-- HEADER -->
-        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-            fxLayoutAlign.gt-xs="space-between center">
 
-            <!-- APP TITLE -->
-            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon s-32 mr-16">
-                    shopping_basket
-                </mat-icon>
-                <span class="logo-text h1">Nominas</span>
-            </div>
-            <!-- / APP TITLE -->
-        </div>
-        <!-- / HEADER -->
+
+                <!-- empezamos a mover -->
+                <div style="width: 90%; margin: -143px -5px 25px 200px; border-radius: 8px;">
+
+                    <form [formGroup]="busquedaForm">
+                        <mat-grid-list cols="1" rowHeight="100px" >
+        
+                            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                                <mat-card layout-xs="column">
+        
+        
+                                    <!-- <mat-form-field fxFlex="30" align="start ">
+                                            <mat-label>Comercio</mat-label>
+                                            <mat-select formControlName="cboCom">
+                                                <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
+                                                    {{ cboCom.nombre }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field> -->
+        
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+        
+                                    <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
+                                        <input matInput formControlName="fechaIni" [matDatepicker]="picker1"
+                                            placeholder="Fecha Inicio">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+        
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+        
+                                    <mat-form-field align="end" fxFlex="40" style="font-size: 14px;">
+                                        <input matInput formControlName="fechaFin" [matDatepicker]="picker2"
+                                            placeholder="Fecha Fin">
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+        
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+        
+                                    <!-- <button  (click)="ObtenerBusquedaNomina()" mat-raised-button  class="save-button"
+                                            aria-label="SAVE" align="end"  [color]="color"  (mouseover)="color = 'warn'"
+                                            (mouseout)="color = 'accent'">
+                                            Buscar
+                                            </button> -->
+        
+                                    <button (click)="ObtenerBusquedaNomina()" class="buttonBuscar button2" fxFlex="20" >
+                                        Buscar
+                                    </button>
+        
+        
+        
+                                </mat-card>
+                            </mat-grid-tile>
+        
+        
+                        </mat-grid-list>
+                    </form>
+        
+        
+                </div>
 
         <!-- CONTENT CARD -->
         <div class="content-card">
@@ -40,15 +104,16 @@
                                 <thead>
                                     <tr>
                                         <!-- <th>ID Nomina</th> -->
-                                        <th>Archivo</th>
-                                        <th>Subido Por</th>
-                                        <th>Detalle</th>
-                                        <th>Total $</th>
-                                        <th>Total #</th>
-                                        <th>Fecha Carga</th>
-                                        <th>Ultima Actualizacion</th>
-                                        <th>Compañia</th>
-                                        <th>Acciones</th>
+                                        <th >ID</th>
+                                        <th >Archivo</th>
+                                        <th >Subido Por</th>
+                                        <th >Estado</th>
+                                        <th class="centerText">S/. Total</th>
+                                        <th class="centerText">Total #</th>
+                                        <th class="centerText">Fecha Carga </th>
+                                        <th class="centerText">Ultima Actualizacion</th>
+                                        <th class="centerText">Compañia</th>
+                                        <th class="centerText">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodyListaUsuario">
@@ -56,14 +121,15 @@
                                     let nomina of listaNominas;
                                     index as i
                                 ">
+                                        <td>{{nomina.id}}</td>
                                         <td>{{nomina.nombre}}</td>
                                         <td>{{nomina.usuario_carga}}</td>
-                                        <td>{{nomina.descripcion}}</td>
-                                        <td>{{nomina.monto_valida}}</td>
-                                        <td>{{nomina.num_valida}}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{nomina.comercio}}</td>
+                                        <td>{{nomina.estado}}</td>
+                                        <td class="centerText">{{nomina.monto_valida}}</td>
+                                        <td class="centerText">{{nomina.num_valida}}</td>
+                                        <td class="centerText">{{nomina.fecha_creacion | date: 'dd/MM/yyyy'}}</td>
+                                        <td class="centerText">{{nomina.fecha_modificacion | date: 'dd/MM/yyyy'}}</td>
+                                        <td class="centerText">{{nomina.comercio}}</td>
                                         <!-- <td></td> -->
                                         <!-- <td></td> -->
 
@@ -82,7 +148,7 @@
                                                     src="../../../../../assets/icons/acciones/error.png"></a>
                                         </td> -->
                                         <td>
-                                            <button mat-button [matMenuTriggerFor]="menu">Archivo</button>
+                                            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
                                             <mat-menu #menu="matMenu">
                                                 <button mat-menu-item [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id,'ORI']">Original</button>
                                                 <button mat-menu-item [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id, 'VAL']">Validado</button>

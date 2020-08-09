@@ -1,70 +1,146 @@
-<div id="calendar" class="page-layout simple fullwidth">
+<div id="orders" class="page-layout carded fullwidth inner-scroll">
+    <!-- HEADER -->
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
 
-    <div class="header p-16 p-sm-24 top-bg accent">
-        <div class="header-content" fxLayout="column" fxLayoutAlign="space-between">
-            <div class="header-top" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
 
-                <div class="logo mb-16 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
-                </div>
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                [@animate]="{value:'*',params:{x:'50px'}}">&nbsp;Usuarios
+            </span>
 
-                <div class="toolbar" fxLayout="row" fxLayoutAlign="start center">
-                </div>
-
-            </div>
-            <div class="header-bottom" fxLayout="row" fxLayoutAlign="center center">
-            </div>
+           
         </div>
-
-        <button mat-fab class="add-event-button mat-accent" (click)="addEvent(null)" aria-label="Agregar Usuario">
-            <mat-icon>add</mat-icon>
-        </button>
     </div>
+    <!-- / HEADER -->
 
-    <div class="content">
-        <div class="order-details tab-content p-24" fusePerfectScrollbar>
-            <div class="section pb-48">
-                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
-                    <div class="h2 secondary-text">
-                        Lista de Usuarios
-                        <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
+    <!-- CENTER -->
+    <div class="center">
+
+
+
+                <!-- empezamos a mover -->
+                <div style="width: 90%; margin: -143px -5px 25px 200px; border-radius: 8px;">
+
+                    <form [formGroup]="busquedaForm">
+                    <mat-grid-list cols="1" rowHeight="100px" >
+                        
+                        <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                            <mat-card >
+                                
+<!--                                    
+                                <mat-form-field fxFlex="30" align="start ">
+                                    <mat-label>Comercio</mat-label>
+                                    <mat-select formControlName="cboCom">
+                                        <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
+                                            {{ cboCom.nombre }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field> -->
+                                   
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    
+                                    <mat-form-field align="start " fxFlex="40" style="font-size: 14px;">
+                                        <input matInput formControlName="fechaIni" [matDatepicker]="picker1"
+                                            placeholder="Fecha Inicio">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                   
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    
+                                    <mat-form-field align="end" fxFlex="40" style="font-size: 14px;">
+                                        <input matInput formControlName="fechaFin" [matDatepicker]="picker2"
+                                            placeholder="Fecha Fin">
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                    
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    
+                                    <button (click)="ObtenerBusquedaNomina()" class="buttonBuscar button2" fxFlex="20" >
+                                    Buscar
+                                    </button>
+                                    
+                              
+                                
+                            </mat-card>
+                        </mat-grid-tile>
+        
+        
+                    </mat-grid-list>
+                </form>
+        
+        
+                </div> 
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <div class="content">
+                <div class="order-details tab-content p-24" fusePerfectScrollbar>
+                    <div class="section pb-48">
+                        <div class="Row">
+                            <div align="left" class="Column">
+                                <div class="h2 secondary-text">
+                                    Lista de Usuarios
+                                    <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
+                                </div>
+                            </div>
+                            <div align="right" class="Column">
+                                <button mat-fab class="add-event-button mat-accent" (click)="addEventUsu(null)" aria-label="Agregar Comercio">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div> 
+                        </div>
+            
+                        <div class="customer mb-32">
+                            <table class="simple">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre de Usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Correo Electronico</th>
+                                        <th>Rol</th>
+                                        <th>Estado</th>
+            
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyListaUsuario">
+                                    <tr style="font-size: 13px;" *ngFor="
+                                                    let usu of listaUsuarios;
+                                                    index as i
+                                                ">
+                                        <td>{{ usu.username}}</td>
+                                        <td>{{ usu.nombres }}</td>
+                                        <td>{{ usu.apellidos }}</td>
+                                        <td>{{ usu.email }}</td>
+                                        <td>{{ usu.rolname }}</td>
+                                        <td>{{ usu.estado }}</td>
+            
+                                        <td><a style="cursor:pointer" data-toggle="modal"
+                                                data-target=".edita-bd-example-modal-lg" (click)="addEventUsu(usu)"><img
+                                                    src="../../../../../assets/icons/acciones/edit.png"></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
-                <div class="customer mb-32">
-                    <table class="simple">
-                        <thead>
-                            <tr>
-                                <th>Nombre de Usuario</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Correo Electronico</th>
-                                <th>Rol</th>
-
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbodyListaUsuario">
-                            <tr style="font-size: 13px;" *ngFor="
-                                            let usu of listaUsuarios;
-                                            index as i
-                                        ">
-                                <td>{{ usu.username }}</td>
-                                <td>{{ usu.nombres }}</td>
-                                <td>{{ usu.apellidos }}</td>
-                                <td>{{ usu.email }}</td>
-                                <td>{{ usu.nombrerol }}</td>
-
-                                <td><a style="cursor:pointer" data-toggle="modal"
-                                        data-target=".edita-bd-example-modal-lg" (click)="addEvent(usu)"><img
-                                            src="../../../../../assets/icons/acciones/edit.png"></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            
             </div>
+
         </div>
+        <!-- / CONTENT CARD -->
 
     </div>
-
+    <!-- / CENTER -->
 </div>

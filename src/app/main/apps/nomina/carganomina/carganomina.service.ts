@@ -15,4 +15,13 @@ export class CarganominaService {
         return this._nominaService.carganomina_cargar(nominacarga);
     }
 
+    carganomina_cargar1(nominacarga : subida_header){
+      return this._nominaService.carganomina_cargar1(nominacarga);
+  }
+
+    carganomina_cargar_Final(UUID : any){
+      return this._nominaService.carganomina_cargar_Final(UUID);
+  }
+
+
 }

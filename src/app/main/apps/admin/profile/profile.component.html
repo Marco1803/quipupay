@@ -1,14 +1,15 @@
 <div id="forms" class="page-layout simple fullwidth" fxLayout="column">
 
     <!-- HEADER -->
-    <div class="header accent p-24 h-160" fxLayout="row" fxLayoutAlign="start center">
-        <div fxLayout="column" fxLayoutAlign="center start">
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="secondary-text s-18">home</mat-icon>
-                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-                <span class="secondary-text">Perfil de Usuario</span>
-            </div>
-            <div class="h1 mt-16">Datos de Usuario</div>
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                [@animate]="{value:'*',params:{x:'50px'}}">&nbsp;Profile
+            </span>
+
+           
         </div>
     </div>
     <!-- / HEADER -->
@@ -56,32 +57,32 @@
 
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                     <mat-form-field appearance="outline" fxFlex="100" class="pl-4">
-                    <mat-label>Nueva Contraseña</mat-label>
-                    <input matInput type="password" formControlName="nuevaPassword">
-                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
-                </mat-form-field>
-            </div>
+                        <mat-label>Nueva Contraseña</mat-label>
+                        <input matInput type="password" formControlName="nuevaPassword">
+                        <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    </mat-form-field>
+                </div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
-                <mat-form-field appearance="outline" fxFlex="100" class="pl-4">
-                    <mat-label>Confirmar nueva Contraseña</mat-label>
-                    <input matInput type="password" formControlName="confirmaNuevaPassword">
-                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
-                </mat-form-field>
-            </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <mat-form-field appearance="outline" fxFlex="100" class="pl-4">
+                        <mat-label>Confirmar nueva Contraseña</mat-label>
+                        <input matInput type="password" formControlName="confirmaNuevaPassword">
+                        <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    </mat-form-field>
+                </div>
 
                 <button mat-raised-button class="submit-button" color="accent" aria-label="RESET MY PASSWORD">
                     Cambiar Contraseña
                 </button>
             </form>
 
+        </div>
+
+
+
+
+
     </div>
-
-
-
-
-
-</div>
-<!-- / CONTENT -->
+    <!-- / CONTENT -->
 
 </div>
