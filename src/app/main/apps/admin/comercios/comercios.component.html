@@ -14,111 +14,82 @@
     </div>
     <!-- / HEADER -->
 
-    <!-- CENTER -->
-    <div class="center">
+     <!-- empezamos a mover -->
+     <div style="width: 90%; margin: -143px -5px 25px 200px; border-radius: 8px;">
+
+        <form [formGroup]="busquedaForm">
+            <mat-grid-list cols="1" rowHeight="100px" >
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-card layout-xs="column">
 
 
-        <!-- empezamos a mover -->
-        <div style="width: 90%; margin: -143px -5px 25px 200px; border-radius: 8px;">
+                        <!-- <mat-form-field fxFlex="30" align="start ">
+                                <mat-label>Comercio</mat-label>
+                                <mat-select formControlName="cboCom">
+                                    <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
+                                        {{ cboCom.nombre }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field> -->
 
-            <form [formGroup]="busquedaForm">
-                <mat-grid-list cols="1" rowHeight="100px" >
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
 
-                    <mat-grid-tile [colspan]="1" [rowspan]="1">
-                        <mat-card layout-xs="column">
+                        <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
+                            <input matInput formControlName="fechaIni" [matDatepicker]="picker1"
+                                placeholder="Fecha Inicio">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
 
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
 
-                            <!-- <mat-form-field fxFlex="30" align="start ">
-                                    <mat-label>Comercio</mat-label>
-                                    <mat-select formControlName="cboCom">
-                                        <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
-                                            {{ cboCom.nombre }}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field> -->
+                        <mat-form-field align="end" fxFlex="40" style="font-size: 14px;">
+                            <input matInput formControlName="fechaFin" [matDatepicker]="picker2"
+                                placeholder="Fecha Fin">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
 
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
 
-                            <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
-                                <input matInput formControlName="fechaIni" [matDatepicker]="picker1"
-                                    placeholder="Fecha Inicio">
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1></mat-datepicker>
-                            </mat-form-field>
-
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-
-                            <mat-form-field align="end" fxFlex="40" style="font-size: 14px;">
-                                <input matInput formControlName="fechaFin" [matDatepicker]="picker2"
-                                    placeholder="Fecha Fin">
-                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                <mat-datepicker #picker2></mat-datepicker>
-                            </mat-form-field>
-
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-
-                            <!-- <button  (click)="ObtenerBusquedaNomina()" mat-raised-button  class="save-button"
-                                    aria-label="SAVE" align="end"  [color]="color"  (mouseover)="color = 'warn'"
-                                    (mouseout)="color = 'accent'">
-                                    Buscar
-                                    </button> -->
-
-                            <button (click)="ObtenerBusquedaNomina()" class="buttonBuscar button2" fxFlex="20" >
+                        <!-- <button  (click)="ObtenerBusquedaNomina()" mat-raised-button  class="save-button"
+                                aria-label="SAVE" align="end"  [color]="color"  (mouseover)="color = 'warn'"
+                                (mouseout)="color = 'accent'">
                                 Buscar
-                            </button>
+                                </button> -->
+
+                        <button (click)="ObtenerBusquedaNomina()" class="buttonBuscar button2" fxFlex="20" >
+                            Buscar
+                        </button>
 
 
 
-                        </mat-card>
-                    </mat-grid-tile>
+                    </mat-card>
+                </mat-grid-tile>
 
 
-                </mat-grid-list>
-            </form>
+            </mat-grid-list>
+        </form>
 
 
-        </div>
+    </div>
 
-        <!-- inicio prueba -->
-        <!-- <mat-grid-list cols="3" rowHeight="50px" rowwidth="50px">
-            <mat-grid-tile
-                
-                [colspan]="1"
-                [rowspan]="1"
-                [style.background]="'wheat'">
-            texto 1
-            </mat-grid-tile>
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar>
 
-            <mat-grid-tile
-                
-            [colspan]="1"
-            [rowspan]="1"
-            [style.background]="'red'">
-            texto 1
-            </mat-grid-tile>
-
-            <mat-grid-tile
-                
-            [colspan]="1"
-            [rowspan]="1"
-            [style.background]="'lightgreen'">
-            texto 1
-            </mat-grid-tile>
-
-
-
-          </mat-grid-list> -->
-        <!-- fin prueba -->
-
+        <mat-card>
+       
 
         <!-- CONTENT CARD -->
-        <div class="content-card">
+        <div class="content-card" >
+            
 
             <div class="content">
                 <div class="order-details tab-content p-24" fusePerfectScrollbar>
@@ -169,6 +140,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                           
                         </div>
                     </div>
                 </div>
@@ -177,7 +149,7 @@
 
         </div>
         <!-- / CONTENT CARD -->
-
+    </mat-card>
     </div>
     <!-- / CENTER -->
 </div>

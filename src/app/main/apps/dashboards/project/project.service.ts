@@ -47,7 +47,7 @@ export class ProjectDashboardService implements Resolve<any>
     obtenerProjectData(jsonsend): Observable<dashboardCabModel[]> {
         console.log('id token ')
         console.log(this.idtoken)
-        return this._httpClient.get<dashboardCabModel[]>(this.baseUrl.getUrlApiUsuarios() + 'dashboard?finicio='+jsonsend.fechaIni+'&ffinal='+jsonsend.fechaFin, { headers: this.headers });
+        return this._httpClient.get<dashboardCabModel[]>(this.baseUrl.getUrlApiUsuarios() + 'dashboard?finicio='+jsonsend.fechaIni+'&ffinal='+jsonsend.fechaFin+'&comercioId='+jsonsend.comercioId, { headers: this.headers });
       }
                                                                                                  //?finicio=2020-08-07&ffinal=2020-08-07
     /**

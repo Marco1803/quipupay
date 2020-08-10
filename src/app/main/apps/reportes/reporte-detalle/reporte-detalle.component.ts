@@ -102,8 +102,8 @@ export class ReporteDetalleComponent implements  OnInit, OnDestroy {
       (data: any) => {
         this.orders = data;
         //this.dataSource = data;
-        console.log('datos')
-        console.log(this.orders)
+        //console.log('datos')
+        //console.log(this.orders)
         this.dataSource = new MatTableDataSource(this.orders);
 
       });

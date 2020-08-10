@@ -52,6 +52,7 @@ export const MY_FORMATS = {
 })
 
 export class ComerciosComponent implements OnInit {
+  
 
   //variables
   listaComercio: ComercioListarModel[] = [];
@@ -143,12 +144,12 @@ export class ComerciosComponent implements OnInit {
   }
 
   ObtenerBusquedaNomina() {
-    let jsonsend={
+    let jsonsend = {
       fechaIni: moment(this.busquedaForm.get('fechaIni').value).format("DD/MM/YYYY"),
       fechaFin: moment(this.busquedaForm.get('fechaFin').value).format("DD/MM/YYYY")
       //cboCom : this.busquedaForm.get('cboCom').value
     }
-       console.log(jsonsend);
+    console.log(jsonsend);
   }
 
 }
