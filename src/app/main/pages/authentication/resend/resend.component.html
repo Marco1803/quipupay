@@ -1,6 +1,6 @@
-<div id="login" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
+<div id="resend" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
 
-    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+    <div id="resend-intro" fxFlex fxHide fxShow.gt-xs>
 
         <!-- <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
             <img src="assets/images/logos/fuse.svg">
@@ -17,10 +17,10 @@
 
     </div>
 
-    <div id="login-form-wrapper" fusePerfectScrollbar
+    <div id="resend-form-wrapper" fusePerfectScrollbar
          [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
 
-        <div id="login-form">
+        <div id="resend-form">
 
        <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
             <img src="assets/images/logos/MonnetLoginCab.png">
@@ -33,7 +33,7 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Username</mat-label>
                     <input matInput formControlName="email">
-                    <mat-icon matSuffix class="secondary-text">mail</mat-icon>
+                    <mat-icon matSuffix class="secondary-text">usuario</mat-icon>
                     <mat-error *ngIf="loginForm.get('email').hasError('required')">
                         Email is required
                     </mat-error>
@@ -44,32 +44,10 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput type="password" formControlName="password">
-                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
-                    <mat-error>
-                        Password is required
-                    </mat-error>
-                </mat-form-field>
-
-                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
-                     fxLayoutAlign="space-between center">
-                    <mat-checkbox class="remember-me" aria-label="Remember Me">
-                        Remember Me
-                    </mat-checkbox>
-
-
-                </div>
-
                 <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
                         [disabled]="loginForm.invalid" (click)="OnSubmit()">
-                    LOGIN
+                    Enviar
                 </button>
-
-                <a class="forgot-password" [routerLink]="'/pages/auth/resend'"  >
-                    Forgot Password?
-                </a>
 
             </form>
 

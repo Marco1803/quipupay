@@ -81,6 +81,8 @@ $typography: mat-typography-config(
 @import "src/app/layout/components/chat-panel/chat-panel.theme";
 @import "src/app/layout/components/toolbar/toolbar.theme";
 @import "src/app/main/pages/authentication/login/login.theme";
+@import "src/app/main/pages/authentication/resend/resend.theme";
+@import "src/app/main/pages/authentication/resendconfirmation/resendconfirmation.theme";
 @import "src/app/main/apps/dashboards/project/project.theme";
 @import "src/app/main/pages/authentication/forgot/forgot.theme";
 
@@ -92,6 +94,8 @@ $typography: mat-typography-config(
     @include chat-panel-theme($theme);
     @include toolbar-theme($theme);
     @include login-theme($theme);
+    @include resend-theme($theme);
+    @include resendconfirmation-theme($theme);
     @include forgot-theme($theme);
     @include dashboards-project-theme($theme);
 }
