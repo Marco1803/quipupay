@@ -11,8 +11,8 @@ export class UsuariosService {
 
   constructor( private _adminService: AdminService) { }
 
-obtenerUsuarios(){
-  return this._adminService.usuarios_listar();
+obtenerUsuarios(jsonsend){
+  return this._adminService.usuarios_listar(jsonsend);
   //this.mantenimientoService.cargarUsuarios(BusquedaUsuario,identificador);
 }
 

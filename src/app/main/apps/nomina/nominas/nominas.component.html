@@ -1,6 +1,5 @@
-<div id="orders" class="page-layout carded fullwidth inner-scroll">
+<div id="order" class="page-layout carded fullwidth inner-scroll">
 
-   
     <!-- HEADER -->
     <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
 
@@ -17,156 +16,204 @@
     <!-- CENTER -->
     <div class="center">
 
+<!-- empezamos a mover -->
+<div style="width: 90%; margin: -143px -5px 25px 200px; border-radius: 8px;">
+
+    <form [formGroup]="busquedaForm">
+        <mat-grid-list cols="1" rowHeight="100px">
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-card layout-xs="column">
 
 
-                <!-- empezamos a mover -->
-                <div style="width: 90%; margin: -143px -5px 25px 200px; border-radius: 8px;">
+                    <!-- <mat-form-field fxFlex="30" align="start ">
+                                    <mat-label>Comercio</mat-label>
+                                    <mat-select formControlName="cboCom">
+                                        <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
+                                            {{ cboCom.nombre }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field> -->
 
-                    <form [formGroup]="busquedaForm">
-                        <mat-grid-list cols="1" rowHeight="100px" >
-        
-                            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                                <mat-card layout-xs="column">
-        
-        
-                                    <!-- <mat-form-field fxFlex="30" align="start ">
-                                            <mat-label>Comercio</mat-label>
-                                            <mat-select formControlName="cboCom">
-                                                <mat-option *ngFor="let cboCom of cboComercio" [value]="cboCom.id">
-                                                    {{ cboCom.nombre }}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field> -->
-        
-                                    <p>&nbsp;</p>
-                                    <p>&nbsp;</p>
-                                    <p>&nbsp;</p>
-        
-                                    <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
-                                        <input matInput formControlName="fechaIni" [matDatepicker]="picker1"
-                                            placeholder="Fecha Inicio">
-                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker1></mat-datepicker>
-                                    </mat-form-field>
-        
-                                    <p>&nbsp;</p>
-                                    <p>&nbsp;</p>
-                                    <p>&nbsp;</p>
-        
-                                    <mat-form-field align="end" fxFlex="40" style="font-size: 14px;">
-                                        <input matInput formControlName="fechaFin" [matDatepicker]="picker2"
-                                            placeholder="Fecha Fin">
-                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker2></mat-datepicker>
-                                    </mat-form-field>
-        
-                                    <p>&nbsp;</p>
-                                    <p>&nbsp;</p>
-                                    <p>&nbsp;</p>
-        
-                                    <!-- <button  (click)="ObtenerBusquedaNomina()" mat-raised-button  class="save-button"
-                                            aria-label="SAVE" align="end"  [color]="color"  (mouseover)="color = 'warn'"
-                                            (mouseout)="color = 'accent'">
-                                            Buscar
-                                            </button> -->
-        
-                                    <button (click)="ObtenerBusquedaNomina()" class="buttonBuscar button2" fxFlex="20" >
-                                        Buscar
-                                    </button>
-        
-        
-        
-                                </mat-card>
-                            </mat-grid-tile>
-        
-        
-                        </mat-grid-list>
-                    </form>
-        
-        
-                </div>
+                    <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
+                        <mat-label>Id Nomina</mat-label>
+                        <input matInput formControlName="nominaId" type="text" />
+                    </mat-form-field>
 
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+
+                    <mat-form-field align="start" fxFlex="40" style="font-size: 14px;">
+                        <input matInput formControlName="finicio" [matDatepicker]="picker1"
+                            placeholder="Fecha Inicio">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+
+                    <mat-form-field align="end" fxFlex="40" style="font-size: 14px;">
+                        <input matInput formControlName="ffinal" [matDatepicker]="picker2"
+                            placeholder="Fecha Fin">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+
+                    <!-- <button  (click)="ObtenerBusquedaNomina()" mat-raised-button  class="save-button"
+                                    aria-label="SAVE" align="end"  [color]="color"  (mouseover)="color = 'warn'"
+                                    (mouseout)="color = 'accent'">
+                                    Buscar
+                                    </button> -->
+
+                    <button (click)="ObtenerBusquedaNomina()" class="buttonBuscar button2" fxFlex="20">
+                        Buscar
+                    </button>
+
+
+
+                </mat-card>
+            </mat-grid-tile>
+
+
+        </mat-grid-list>
+    </form>
+
+
+</div>
+
+        
         <!-- CONTENT CARD -->
         <div class="content-card">
-
+            <!-- CONTENT -->
             <div class="content">
-                <div class="order-details tab-content p-24" fusePerfectScrollbar>
+                <div class="order-details tab-content p-24 " >
                     <div class="section pb-48">
                         <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
-                            <div class="h2 secondary-text">
-                                Lista de Nominas
-                                <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
-                            </div>
+                            <mat-icon class="m-0 mr-16 secondary-text">access_time</mat-icon>
+                            <div class="h2 secondary-text">Listado de Nominas</div>
                         </div>
 
-                        <div class="customer mb-32">
-                            <table class="simple">
-                                <thead>
-                                    <tr>
-                                        <!-- <th>ID Nomina</th> -->
-                                        <th >ID</th>
-                                        <th >Archivo</th>
-                                        <th >Subido Por</th>
-                                        <th >Estado</th>
-                                        <th class="centerText">S/. Total</th>
-                                        <th class="centerText">Total #</th>
-                                        <th class="centerText">Fecha Carga </th>
-                                        <th class="centerText">Ultima Actualizacion</th>
-                                        <th class="centerText">Compañia</th>
-                                        <th class="centerText">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbodyListaUsuario">
-                                    <tr style="font-size: 13px;" *ngFor="
-                                    let nomina of listaNominas;
-                                    index as i
-                                ">
-                                        <td>{{nomina.id}}</td>
-                                        <td>{{nomina.nombre}}</td>
-                                        <td>{{nomina.usuario_carga}}</td>
-                                        <td>{{nomina.estado}}</td>
-                                        <td class="centerText">{{nomina.monto_valida}}</td>
-                                        <td class="centerText">{{nomina.num_valida}}</td>
-                                        <td class="centerText">{{nomina.fecha_creacion | date: 'dd/MM/yyyy'}}</td>
-                                        <td class="centerText">{{nomina.fecha_modificacion | date: 'dd/MM/yyyy'}}</td>
-                                        <td class="centerText">{{nomina.comercio}}</td>
-                                        <!-- <td></td> -->
-                                        <!-- <td></td> -->
+                        <div class="example-container">
+                            <mat-table [dataSource]="dataSource"  FusePerfectScrollbarPosition>
 
-                                        <!-- <td>
-                                            <a style="cursor:pointer" data-toggle="modal"
-                                                data-target=".edita-bd-example-modal-lg"
-                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
-                                                    src="../../../../../assets/icons/acciones/original.png"></a>
-                                            <a style="cursor:pointer" data-toggle="modal"
-                                                data-target=".edita-bd-example-modal-lg"
-                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
-                                                    src="../../../../../assets/icons/acciones/validado.png"></a>
-                                            <a style="cursor:pointer" data-toggle="modal"
-                                                data-target=".edita-bd-example-modal-lg"
-                                                [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id]"><img
-                                                    src="../../../../../assets/icons/acciones/error.png"></a>
-                                        </td> -->
-                                        <td>
-                                            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-                                            <mat-menu #menu="matMenu">
-                                                <button mat-menu-item [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id,'ORI']">Original</button>
-                                                <button mat-menu-item [routerLink]="['/apps/nomina/detalle-nomina/', nomina.id, 'VAL']">Validado</button>
-                                                <button mat-menu-item [routerLink]="['/apps/nomina/error-nomina/', nomina.id,'ERR']">Error</button>
-                                            </mat-menu>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="id">
+                                    <mat-header-cell *matHeaderCellDef >ID</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.id}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="archivo">
+                                    <mat-header-cell *matHeaderCellDef >Archivo</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.nombre}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="Subido_por">
+                                    <mat-header-cell *matHeaderCellDef >Subido Por</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="status text-truncate h6 p-4">
+                                            {{e.usuario_carga}}
+                                        </p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="estado">
+                                    <mat-header-cell *matHeaderCellDef >Estado</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.estado}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="total_soles">
+                                    <mat-header-cell *matHeaderCellDef >S/. Total</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.monto_valida}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="total_num">
+                                    <mat-header-cell *matHeaderCellDef >Total #</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.num_valida}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="fecha_carga">
+                                    <mat-header-cell *matHeaderCellDef >Fecha Carga</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.fecha_creacion}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="ultima_actualziacion">
+                                    <mat-header-cell *matHeaderCellDef >Ultima Actualizacion</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.fecha_modificacion}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="compania">
+                                    <mat-header-cell *matHeaderCellDef >Compañia</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <p class="text-truncate">{{e.comercio}}</p>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="acciones">
+                                    <mat-header-cell *matHeaderCellDef >Acciones</mat-header-cell>
+                                    <mat-cell *matCellDef="let e">
+                                        <button mat-button [matMenuTriggerFor]="menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item
+                                                [routerLink]="['/apps/nomina/detalle-nomina/', e.id,'ORI']">Original</button>
+                                            <button mat-menu-item
+                                                [routerLink]="['/apps/nomina/detalle-nomina/', e.id, 'VAL']">Validado</button>
+                                            <button mat-menu-item
+                                                [routerLink]="['/apps/nomina/error-nomina/', e.id,'ERR']">Error</button>
+                                        </mat-menu>
+                                    </mat-cell>
+                                </ng-container>
+            
+                                
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            
+                                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                                </mat-row>
+                            </mat-table>
+            
+            
+                            <mat-paginator [length]="totalPag" [pageSize]="10" [pageSizeOptions]="[5, 10]" showFirstLastButtons>
+                            </mat-paginator>
                         </div>
+
                     </div>
+
                 </div>
-
             </div>
-
+            <!-- / CONTENT -->
         </div>
         <!-- / CONTENT CARD -->
-
     </div>
     <!-- / CENTER -->
 </div>

@@ -48,10 +48,11 @@ export class AdminService {
 
 
   //::::::::::::::::::::::::::::::: USUARIOS ::::::::::::::::::::::::::::::://
-  usuarios_listar(): Observable<UsuarioListarModel[]> {
+  usuarios_listar(jsonsend): Observable<UsuarioListarModel[]> {
     console.log('id token ')
     console.log(this.idtoken)
-    return this.httpClient.get<UsuarioListarModel[]>(this.baseUrl.getUrlApiUsuarios() + 'usuarios', { headers: this.headers });
+    return this.httpClient.get<UsuarioListarModel[]>(this.baseUrl.getUrlApiUsuarios() + 'usuarios?username='+jsonsend['username'], { headers: this.headers });
+    
   }
 
   usuarios_agregar(cabecera: UsuarioCrearModel): Observable<UsuarioCrearModel> {
@@ -152,7 +153,7 @@ export class AdminService {
 
   //Obtener Combo Roles
   cboRoles_listar(): Observable<Rol[]> {
-    return this.httpClient.get<Rol[]>(this.baseUrl.getUrlApi() + 'roles', { headers: this.headers });
+    return this.httpClient.get<Rol[]>(this.baseUrl.getUrlApi() + 'roles_activos', { headers: this.headers });
   }
 
     //Obtener Combo Grupos

@@ -107,7 +107,7 @@ export class ForgotComponent implements OnInit {
     this.registrationUser.username = this.forgotForm.value.email;
     this.registrationUser.password = this.forgotForm.value.password_new;
     this.registrationUser.existingPassword = this.forgotForm.value.password;
-    console.log(this.registrationUser);
+    //console.log(this.registrationUser);
     this.userService.newPassword(this.registrationUser, this);
   }
 
@@ -117,8 +117,8 @@ export class ForgotComponent implements OnInit {
   }
 
   cognitoCallback(message: string, result: any) {//la funcion nueva contraseña retornara un mensaje si el proceso fue exitoso o erroneo///////
-      console.log(message);
-      console.log(result);
+      //console.log(message);
+      //console.log(result);
       if (message != null) { //error
         this.validarMensajes(message['message']);
       } else { //success

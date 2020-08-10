@@ -94,8 +94,8 @@ export class ReporteDetalleService  {
     // }
 
     comercios_listar(): Observable<Rol[]> {
-      console.log('id token ')
-      console.log(this.idtoken)
+      //console.log('id token ')
+      //console.log('')
       return this._httpClient.get<Rol[]>(this.baseUrl.getUrlApi() + 'roles', { headers: this.headers });
     }
 

@@ -49,6 +49,11 @@ export class ProjectDashboardComponent implements OnInit {
     //formulario busqueda
     busquedaForm: FormGroup;
 
+    comercioId = '';
+    cantTotal = 0;
+    montoTotal = 0;
+    moneda = '';
+
     projects: any[];
     projectsData: dashboardCabModel[] =[];
     selectedProject: any;
@@ -263,7 +268,8 @@ export class ProjectDashboardComponent implements OnInit {
     initBuscador() {
         this.busquedaForm = this.formBuilder.group({
             fechaIni: new FormControl(moment(new Date(), 'DD MM').format('YYYY-MM-DD')),
-            fechaFin: new FormControl(moment(new Date(), 'DD MM').format('YYYY-MM-DD'))
+            fechaFin: new FormControl(moment(new Date(), 'DD MM').format('YYYY-MM-DD')),
+            comercioId:new FormControl('')
         });
     }
 
@@ -295,24 +301,90 @@ export class ProjectDashboardComponent implements OnInit {
 
     //Acciones
     grabarUsuario() {
-        let jsonsend = {
-            fechaIni: moment(this.busquedaForm.get('fechaIni').value).format("YYYY-MM-DD"),
-            fechaFin: moment(this.busquedaForm.get('fechaFin').value).format("YYYY-MM-DD")
-        }
-        console.log(jsonsend);
 
-        this._projectDashboardService.obtenerProjectData(jsonsend)
-        .subscribe(
-          (data) => {
+          Swal.fire({
+      title: 'Espere por favor  ...',
+      onBeforeOpen: () => {
+        Swal.showLoading()
+      }
+    });
+
+    //timeout
+
+    let dataCargada = '';
+    let datacargada2 = [];
+
+
+        if (dataCargada == '' || dataCargada == null) {
+          //alert('no hay nada' );
+          setTimeout(() => {
+            let comercioId = localStorage.getItem('comercioId');
+            console.log(comercioId);
+            this.comercioId =  comercioId;
+
+                if(this.comercioId == '' ){
+                  console.log('no hay data');
+                  dataCargada = '';
+                  this.grabarUsuario();
+                }else{
+
+                    console.log('este es el comercio', this.comercioId)
+                    let jsonsend = {
+                        fechaIni: moment(this.busquedaForm.get('fechaIni').value).format("YYYY-MM-DD"),
+                        fechaFin: moment(this.busquedaForm.get('fechaFin').value).format("YYYY-MM-DD"),
+                        comercioId : this.comercioId
+                    }
+                    console.log(jsonsend);
+            
+                    this._projectDashboardService.obtenerProjectData(jsonsend)
+                    .subscribe(
+                      (data) => {
+
+                        console.log('comercio');
+                        console.log(data['cantTotal']);
+                        this.projectsData = data;
+                        this.montoTotal = data['montoTotal'];
+                        this.cantTotal = data['cantTotal'];
+                        this.moneda = data['moneda'];
+                        Swal.close();
+              
+                      });
+                }
+          }, 1000);
+        }
+    //timeout
+
+
+
+
+
+
+
+
+
+        // let jsonsend = {
+        //     fechaIni: moment(this.busquedaForm.get('fechaIni').value).format("YYYY-MM-DD"),
+        //     fechaFin: moment(this.busquedaForm.get('fechaFin').value).format("YYYY-MM-DD")
+        // }
+        // console.log(jsonsend);
+
+        // this._projectDashboardService.obtenerProjectData(jsonsend)
+        // .subscribe(
+        //   (data) => {
               
   
-            console.log('comercio');
-            console.log(data);
-            this.projectsData = data;
-            Swal.close();
+        //     console.log('comercio');
+        //     console.log(data);
+        //     this.projectsData = data;
+        //     Swal.close();
   
-          });
+        //   });
     }
+    
+    convertir(number){
+        let nuevoValor = parseFloat(number).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+        return nuevoValor;
+      }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods

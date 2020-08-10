@@ -131,7 +131,9 @@ export class CarganominaComponent implements OnInit {
       
       // this.data = (XLSX.utils.sheet_to_json(ws, { header: 1 }));
       let datos = XLSX.utils.sheet_to_json(wb.Sheets[nombrehoja[0]]);
-      console.log('impresion ' + datos[0][11]);
+      //console.log('impresion ', datos[0]);
+      //console.log(this.header);
+//debugger;
       this.header.nombre = nombreExcelReal;
       this.header.descripcion = "";
       this.header.usuario_carga = this.userNameData;
@@ -183,6 +185,7 @@ export class CarganominaComponent implements OnInit {
     this.show='true';
     this.showBtn = 'false';
     if (this.header != null) {
+    
       this._cargarnominaService.carganomina_cargar1(this.header).subscribe(
         result => {
 
@@ -254,7 +257,7 @@ export class CarganominaComponent implements OnInit {
                 }
                 
             });
-          }, 5000);
+          }, 2000);
         }else{
           alert('alerta');
         }
