@@ -5,10 +5,8 @@ import { Navigation } from 'app/main/models/navigation.model';
 import { NavigationService } from '../../../../../navigation/navigation.service';
 import {BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
-import { RolesService } from '../roles.service';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { catchError, finalize } from 'rxjs/operators';
-import { ThemePalette } from '@angular/material/core';
 
 export interface Task {
   completed: boolean;

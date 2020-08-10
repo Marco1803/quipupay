@@ -6,9 +6,18 @@ export class ConfiguracionUrl{
     return "https://v5yco0dws5.execute-api.us-west-2.amazonaws.com/Stage/v1/";
   }
 
-  getUrlApiTemp(){//URL API BACK(CON TOKEN)
-    return "https://bawbuq4538.execute-api.us-west-2.amazonaws.com/Stage/";
+  getUrlApiUsuarios(){//URL API BACK(CON TOKEN)
+    return "https://v5yco0dws5.execute-api.us-west-2.amazonaws.com/Stage/v1/";
   }
+
+  getUrlApiCarga(){//URL API BACK(CON TOKEN)
+    return "https://x8qehyw099.execute-api.us-west-2.amazonaws.com/prod";
+  }
+
+  getUrlApiTemp(){//URL API BACK(CON TOKEN)
+    return "https://v5yco0dws5.execute-api.us-west-2.amazonaws.com/Stage/v1/";
+  }
+
 
   getUrlApiNav(){//URL API BACK(CON TOKEN)
     return "https://v5yco0dws5.execute-api.us-west-2.amazonaws.com/Stage/modulo/obtenerMenu2/1";
@@ -16,7 +25,7 @@ export class ConfiguracionUrl{
 
   getUrlApiNomina(){//URL API BACK(CON TOKEN)
     return "https://v5yco0dws5.execute-api.us-west-2.amazonaws.com/Stage/v1/";
-  }
+  }     
 
   getUrlBase(){//URL FRONT (ANGULAR)
     return "http://payoutsv1.s3-website-us-west-2.amazonaws.com/";

@@ -17,6 +17,10 @@ import { FuseSharedModule } from '../../../../../@fuse/shared.module';
 import { ModalEventRolMenuComponent } from './modal-event-rol-menu/modal-event-rol-menu.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MaterialModule } from 'app/layout/materialComponent/material.module';
+import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routes: Routes = [
   {
@@ -49,7 +53,13 @@ const routes: Routes = [
     MatTableModule,
     MatToolbarModule,
     FuseSharedModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+
+    MaterialModule,
+    NgxChartsModule,
+    FuseSidebarModule,
+    FuseWidgetModule,
+    FlexLayoutModule
   ],
   providers : [],
   entryComponents: [

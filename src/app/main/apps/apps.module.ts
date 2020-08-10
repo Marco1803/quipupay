@@ -5,6 +5,9 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AccesosGuard } from 'app/services/guards/accesos.guard';
+import { PagerService } from './nomina/pagination.service';
+
+
 const routes = [
     {
         path        : 'dashboards/analytics',
@@ -50,53 +53,50 @@ const routes = [
     {
         path        : 'nomina/error-nomina/:id/:tipo',
         loadChildren: () => import('./nomina/error-nomina/error-nomina.module').then(m => m.ErrorNominaModule)
+    },
+    {
+        path        : 'nomina/banco-envio',
+        loadChildren: () => import('./nomina/banco-envio/banco-envio.module').then(m => m.BancoEnvioModule)
+    },
+    {
+        path        : 'nomina/banco-respuesta',
+        loadChildren: () => import('./nomina/banco-respuesta/banco-respuesta.module').then(m => m.BancoRespuestaModule)
+    },
+    {
+        path        : 'nomina/banco-respuesta-manual',
+        loadChildren: () => import('./nomina/banco-respuesta-manual/banco-respuesta-manual.module').then(m => m.BancoRespuestaManualModule)
+    },
+    {
+        path        : 'nomina/banco-respuesta-manual-detalle/:id',
+        loadChildren: () => import('./nomina/banco-respuesta-manual-detalle/banco-respuesta-manual-detalle.module').then(m => m.BancoRespuestaManualDetalleModule)
+    },
+    {
+        path        : 'nomina/banco-nomina-detalle/:id',
+        loadChildren: () => import('./nomina/banco-nomina-detalle/banco-nomina-detalle.module').then(m => m.BancoNominaDetalleModule)
+    },
+    {
+        path        : 'reportes/reporte',
+        loadChildren: () => import('./reportes/reporte/reporte.module').then(m => m.ReporteModule)
+    },
+    {
+        path        : 'admin/grupos',
+        loadChildren: () => import('./admin/grupos/grupos.module').then(m => m.GruposModule)
+    },
+    {
+        path        : 'reportes/reporte-detalle',
+        loadChildren: () => import('./reportes/reporte-detalle/reporte-detalle.module').then(m => m.ReporteDetalleModule)
     }
-    // {
-    //     path        : 'mail',
-    //     loadChildren: () => import('./mail/mail.module').then(m => m.MailModule)
-    // },
-    // {
-    //     path        : 'mail-ngrx',
-    //     loadChildren: () => import('./mail-ngrx/mail.module').then(m => m.MailNgrxModule)
-    // },
-    // {
-    //     path        : 'chat',
-    //     loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)
-    // },
-    // {
-    //     path        : 'calendar',
-    //     loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule)
-    // },
-    // {
-    //     path        : 'e-commerce',
-    //     loadChildren: () => import('./e-commerce/e-commerce.module').then(m => m.EcommerceModule)
-    // },
-    // {
-    //     path        : 'academy',
-    //     loadChildren: () => import('./academy/academy.module').then(m => m.AcademyModule)
-    // },
-    // {
-    //     path        : 'todo',
-    //     loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule)
-    // },
-    // {
-    //     path        : 'file-manager',
-    //     loadChildren: () => import('./file-manager/file-manager.module').then(m => m.FileManagerModule)
-    // },
-    // {
-    //     path        : 'contacts',
-    //     loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule)
-    // },
-    // {
-    //     path        : 'scrumboard',
-    //     loadChildren: () => import('./scrumboard/scrumboard.module').then(m => m.ScrumboardModule)
-    // }
+ 
 ];
 
 @NgModule({
     imports     : [
         RouterModule.forChild(routes),
         FuseSharedModule
+    ],
+    declarations: [],
+    providers:[
+        PagerService
     ]
 })
 export class AppsModule

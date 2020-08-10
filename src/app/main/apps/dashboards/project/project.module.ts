@@ -16,6 +16,10 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { ProjectDashboardComponent } from 'app/main/apps/dashboards/project/project.component';
 import { ProjectDashboardService } from 'app/main/apps/dashboards/project/project.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'app/layout/materialComponent/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
     {
@@ -45,9 +49,14 @@ const routes: Routes = [
 
         NgxChartsModule,
 
+
         FuseSharedModule,
         FuseSidebarModule,
-        FuseWidgetModule
+        FuseWidgetModule,
+
+        FormsModule,
+        MaterialModule,
+        ReactiveFormsModule
     ],
     providers   : [
         ProjectDashboardService

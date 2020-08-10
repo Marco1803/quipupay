@@ -1,20 +1,56 @@
+<div id="academy-courses" class="page-layout simple fullwidth">
+   
+    <!-- HEADER -->
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
 
-<div>
-    <p>carganomina works!</p>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
 
-    <div>
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                [@animate]="{value:'*',params:{x:'50px'}}">&nbsp;Cargar Nomina
+            </span>
 
-        <input type="file" (change)="onFileChange($event)" multiple="false" />
+            
+        </div>
+    </div>
+    <!-- / HEADER -->
 
-        <table>
-            <tbody>
-                <tr *ngFor="let row of datos">
-                        <td *ngFor="let cell of row">
-                                {{cell}}
-                        </td>
-                </tr>
-            </tbody>
-        </table>
 
+    <div class="content">
+        <!-- CONTENT -->
+        <div class="content p-24">
+            <div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+                <!-- REACTIVE FORM EXAMPLE -->
+                <div class="mat-card  p-24 mr-24" fxLayout="column" fxLayoutAlign="start" fxFlex="50">
+                    <div>
+                        <mat-label class="p-24 mr-24">Elija un archivo</mat-label>
+                        <br />
+                        <input class="p-24 mr-24" type="file" (change)="onFileChange($event)" multiple="false" 
+                        accept="text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+                        <table>
+                            <tbody>
+                                <tr *ngFor="let row of datos">
+                                    <td *ngFor="let cell of row">
+                                        {{cell}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-md-offset-3 col-md-3" style="text-align: right" *ngIf="showBtn=='true'">
+                            <button #btnCargar type="submit" mat-button color="primary" class="btn btn-success" (click)="cargar_nomina()">Cargar</button>
+                        </div>
+                    </div>
+                    <div class="container" *ngIf="show=='true'">
+                        <div class="p-24 mr-24">
+                            <mat-label>Cargando ...</mat-label>
+                        </div>
+                        <div class="container p-24 mr-24" fxLayout="row" fxLayout.xs="column" fxLayoutWarp
+                            fxLayoutGap="0.5%" fxLayoutAlign="start">
+                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / CONTENT -->
     </div>
 </div>

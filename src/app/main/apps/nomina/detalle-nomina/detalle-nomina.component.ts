@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { NominaService } from '../nomina.service';
 import { NominaOriginalModel } from 'app/main/models/nominaOriginalModel.model';
+import swal from 'sweetalert2';
 
 //tabla 1
 export interface cabeceraDatos {
@@ -12,7 +13,7 @@ export interface cabeceraDatos {
   detalle: string;
 }
 
-//tabla 2
+//tabla 1
 const ELEMENT_DATA1: cabeceraDatos[] = [
   {
     subidoPor: '1',
@@ -35,11 +36,10 @@ export interface PeriodicElement {
   rutTitular: string;
   nombre: string;
   monto: string;
-  motivo: string;
-  cartolas: string;
   canal: string;
   correoElectronico: string;
-  estadoTransferencia: string;
+  estado_banco: string;
+  observacion_banco: string;
 }
   //tabla 2
   const ELEMENT_DATA: PeriodicElement[] = [
@@ -55,11 +55,10 @@ export interface PeriodicElement {
     nombre: 'HydrogenHydrogenHydrogenH',
     monto: 'H',
   
-    motivo: 'H',
-    cartolas: 'HydrogenHydrogen',
     canal: 'H',
     correoElectronico: 'H',
-    estadoTransferencia: 'HydrogenHydrogenH' 
+    estado_banco: 'HydrogenHydrogenH',
+    observacion_banco: 'H'
   }
   ];
 
@@ -83,7 +82,7 @@ export class DetalleNominaComponent implements OnInit {
   cabeceraFuente = ELEMENT_DATA1;
 
   //tabla 2
-  displayedColumns: string[] = ['nomina', 'nroTransaccion', 'ordenCompra', 'notaCredito', 'cuentaDestino', 'tipoCuenta', 'Banco', 'rutTitular', 'nombre', 'monto', 'motivo', 'cartolas', 'canal', 'correoElectronico', 'estadoTransferencia'];
+  displayedColumns: string[] = [ 'nroTransaccion', 'ordenCompra', 'notaCredito', 'cuentaDestino', 'tipoCuenta', 'Banco', 'rutTitular', 'nombre', 'monto', 'canal', 'correoElectronico', 'estado_banco', 'observacion_banco'];
   dataSource = ELEMENT_DATA;
 
  
@@ -106,10 +105,18 @@ export class DetalleNominaComponent implements OnInit {
   }
 
   obtenerRegistros(nominaId,tipo){
+    swal.fire({
+      title: 'Espere por favor  ...',
+      onBeforeOpen: () => {
+        swal.showLoading()
+      }
+    });
+
     this._nominasService.nominas_listar_original(nominaId,tipo)
     .subscribe(
       (data) => {
         this.listaNominasReg = data;
+        swal.close();
         console.log(this.listaNominasReg)
       });
   }

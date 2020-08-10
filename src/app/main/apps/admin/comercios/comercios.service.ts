@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { Comercio } from '../../../models/comercio.model';
+import { ComercioMovimientosModel } from 'app/main/models/comercioMovimientosModel.model';
+
 
 
 @Injectable({
@@ -15,16 +16,16 @@ export class ComerciosService {
     //this.mantenimientoService.cargarUsuarios(BusquedaUsuario,identificador);
   }
 
-  agregarComercio(NuevoComercio: any){
+  agregarComercio(NuevoComercio: ComercioMovimientosModel){
     return this._adminService.comercios_agregar(NuevoComercio);
     //this.mantenimientoService.cargarUsuarios(BusquedaUsuario,identificador);
   }
 
-  editarComercios(editarComercio: Comercio){
+  editarComercios(editarComercio: ComercioMovimientosModel){
     return this._adminService.comercio_editar(editarComercio);
   }
 
-  actualizarComercio(actualizarComercio: Comercio){
+  actualizarComercio(actualizarComercio: ComercioMovimientosModel){
     return this._adminService.comercio_actualizar(actualizarComercio);
   }
   

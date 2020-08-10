@@ -5,7 +5,10 @@ app-login {
     #login {
         width: 100%;
         overflow: hidden;
-        background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat;
+        background: url('/assets/images/backgrounds/Background_Login.png') no-repeat;
+        //background-color: rgb(55, 67, 222);
+        //background-image: linear-gradient(to right,rgb(78, 44, 209) 0%, rgb(2, 184, 237) 100%);
+        //background-image: linear-gradient(to right,rgb(58, 91, 232) 0%, rgb(2, 184, 237) 100%);
         background-size: cover;
 
         #login-intro {
@@ -21,9 +24,11 @@ app-login {
             }
 
             .title {
-                font-size: 42px;
-                font-weight: 300;
+                font-size: 70px;
+                font-weight: 200;
                 line-height: 1;
+                padding-top: 150px;
+                font-weight: bold;
             }
 
             .description {
@@ -39,6 +44,7 @@ app-login {
             max-width: 400px;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
+            padding-top: -40px;
 
             @include mat-elevation(16);
 
@@ -102,7 +108,8 @@ app-login {
                         .forgot-password {
                             font-size: 13px;
                             font-weight: 600;
-                            margin-bottom: 16px
+                            margin-bottom: 16px;
+                            align-content: center;
                         }
                     }
 

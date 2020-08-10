@@ -1,36 +1,24 @@
 <div id="order" class="page-layout carded fullwidth inner-scroll">
 
-    <!-- TOP BACKGROUND -->
-    <div class="top-bg accent"></div>
-    <!-- / TOP BACKGROUND -->
+   
+    <!-- HEADER -->
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                [@animate]="{value:'*',params:{x:'50px'}}">&nbsp;Detalle Nomina Error
+            </span>
+
+
+        </div>
+    </div>
+    <!-- / HEADER -->
 
     <!-- CENTER -->
     <div class="center">
 
-        <!-- HEADER -->
-        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
-
-            <!-- APP TITLE -->
-            <div fxLayout="row" fxLayoutAlign="start center">
-
-                <button mat-icon-button class="mr-16">
-                    <mat-icon>arrow_back</mat-icon>
-                </button>
-
-                <div fxLayout="column" fxLayoutAlign="start start">
-                    <div class="h2">
-                        Nomina
-                    </div>
-                    <div class="subtitle secondary-text">
-                        <span>Nominas</span>
-                    </div>
-                </div>
-            </div>
-            <!-- / APP TITLE -->
-
-        </div>
-        <!-- / HEADER -->
-
+        
         <!-- CONTENT CARD -->
         <div class="content-card">
 
@@ -39,7 +27,7 @@
 
                 <mat-tab-group fxLayout="column" fxFlex>
 
-                    <mat-tab label="Order Details">
+                    <mat-tab label="Transacciones">
 
                         <div class="order-details tab-content p-24" fusePerfectScrollbar>
 
@@ -94,7 +82,7 @@
 
                                 <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
                                     <mat-icon class="m-0 mr-16 secondary-text">access_time</mat-icon>
-                                    <div class="h2 secondary-text">Order Status</div>
+                                    <div class="h2 secondary-text">Listado de Transacciones con Error</div>
                                 </div>
 
                                 <div class="example-container">
@@ -104,18 +92,15 @@
                                           The actual rendered columns are set as a property on the row definition" -->
 
                                         <!-- Position Column -->
-                                        <ng-container matColumnDef="nomina">
+                                        <!-- <ng-container matColumnDef="nomina">
                                             <mat-header-cell *matHeaderCellDef> Nomina </mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-
-                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%">Nomina</th>
-                                            <td mat-cell *matCellDef="let element"> {{element.nomina}} </td> -->
-                                        </ng-container>
+                                            <mat-cell *matCellDef="let element">  </mat-cell>
+                                        </ng-container> -->
 
                                         <!-- Name Column -->
                                         <ng-container matColumnDef="nroTransaccion">
                                             <mat-header-cell *matHeaderCellDef> Nro Transaccion </mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.transactionid}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%">Nro Transaccion</th>
                                             <td mat-cell *matCellDef="let element"> {{element.nroTransaccion}} </td> -->
@@ -124,7 +109,7 @@
                                         <!-- Weight Column -->
                                         <ng-container matColumnDef="ordenCompra">
                                             <mat-header-cell *matHeaderCellDef>Orden de Compra</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.account_numer}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.transactionid }} </mat-cell>
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%">Orden de Compra</th>
                                             <td mat-cell *matCellDef="let element"> {{element.ordenCompra}} </td> -->
@@ -133,7 +118,7 @@
                                         <!-- Symbol Column -->
                                         <ng-container matColumnDef="notaCredito">
                                             <mat-header-cell *matHeaderCellDef>Nota de Credito</mat-header-cell>
-                                            <mat-cell *matCellDef="let element" > {{element.celular}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.account}} </mat-cell>
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%">Nota de Credito</th>
                                             <td mat-cell *matCellDef="let element"> {{element.notaCredito}} </td> -->
@@ -142,7 +127,7 @@
                                         <!-- Symbol Column -->
                                         <ng-container matColumnDef="cuentaDestino">
                                             <mat-header-cell *matHeaderCellDef>Cuenta de Destino</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.celular}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.account_numer}} </mat-cell>
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%">Cuenta de Destino</th>
                                             <td mat-cell *matCellDef="let element"> {{element.cuentaDestino}} </td> -->
@@ -151,7 +136,7 @@
                                         <!-- Symbol Column -->
                                         <ng-container matColumnDef="tipoCuenta">
                                             <mat-header-cell *matHeaderCellDef>Tipo de Cuenta</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.celular}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.account_type }}</mat-cell>
 
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%">Tipo de Cuenta</th>
@@ -161,7 +146,7 @@
                                         <!-- Symbol Column -->
                                         <ng-container matColumnDef="Banco">
                                             <mat-header-cell *matHeaderCellDef>Banco</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.celular}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.merchant }} </mat-cell>
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%">Banco</th>
                                             <td mat-cell *matCellDef="let element"> {{element.Banco}} </td> -->
@@ -170,7 +155,7 @@
                                         <!-- Symbol Column -->
                                         <ng-container matColumnDef="rutTitular">
                                             <mat-header-cell *matHeaderCellDef>Rut Titular</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.celular}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.dni}} </mat-cell>
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%">Rut Titular</th>
                                             <td mat-cell *matCellDef="let element"> {{element.rutTitular}} </td> -->
@@ -188,34 +173,23 @@
                                         <!-- Symbol Column -->
                                         <ng-container matColumnDef="monto">
                                             <mat-header-cell *matHeaderCellDef>Monto</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.amount_usd}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%"> Monto </th>
                                             <td mat-cell *matCellDef="let element"> {{element.monto}} </td> -->
                                         </ng-container>
 
-                                        <!-- Symbol Column -->
-                                        <ng-container matColumnDef="motivo">
-                                            <mat-header-cell *matHeaderCellDef>Motivo</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.celular}} </mat-cell>
-
-                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%"> Motivo </th>
-                                            <td mat-cell *matCellDef="let element"> {{element.motivo}} </td> -->
-                                        </ng-container>
 
                                         <!-- Symbol Column -->
-                                        <ng-container matColumnDef="cartolas">
+                                        <!-- <ng-container matColumnDef="cartolas">
                                             <mat-header-cell *matHeaderCellDef>Cartolas</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.celular}} </mat-cell>
-
-                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%"> Cartolas </th>
-                                            <td mat-cell *matCellDef="let element"> {{element.cartolas}} </td> -->
-                                        </ng-container>
+                                            <mat-cell *matCellDef="let element"> {{element.reference}} </mat-cell>
+                                        </ng-container> -->
 
                                         <!-- Symbol Column -->
                                         <ng-container matColumnDef="canal">
                                             <mat-header-cell *matHeaderCellDef>Canal</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.celular}} </mat-cell>
+                                            <mat-cell *matCellDef="let element"> Tranferencia </mat-cell>
 
                                             <!-- <th mat-header-cell *matHeaderCellDef width="6%"> Canal </th>
                                             <td mat-cell *matCellDef="let element"> {{element.canal}} </td> -->
@@ -232,15 +206,19 @@
                                         </ng-container>
 
                                         <!-- Symbol Column -->
-                                        <ng-container matColumnDef="estadoTransferencia">
+                                        <!-- <ng-container matColumnDef="estadoTransferencia">
                                             <mat-header-cell *matHeaderCellDef>Estado de Tranferencia</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.celular}}
+                                            <mat-cell *matCellDef="let element"> Pendiente
                                             </mat-cell>
-                                            <!-- 
-                                            <th mat-header-cell *matHeaderCellDef width="6%"> Estado de Tranferencia
-                                            </th>
-                                            <td mat-cell *matCellDef="let element"> {{element.estadoTransferencia}}
-                                            </td> -->
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <ng-container matColumnDef="motivo">
+                                            <mat-header-cell *matHeaderCellDef>Motivo del error de carga</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.msgError}} </mat-cell>
+
+                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%"> Motivo </th>
+                                                                                    <td mat-cell *matCellDef="let element"> {{element.motivo}} </td> -->
                                         </ng-container>
 
                                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

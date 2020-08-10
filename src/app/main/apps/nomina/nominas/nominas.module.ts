@@ -21,6 +21,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { DetalleNominaComponent } from '../detalle-nomina/detalle-nomina.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FuseWidgetModule, FuseSidebarModule } from '@fuse/components';
+import { MaterialModule } from 'app/layout/materialComponent/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routes: Routes = [
   {
@@ -56,11 +60,13 @@ const routes: Routes = [
     MatRippleModule,
     MatSortModule,
     MatSnackBarModule,
-    MatTableModule
-  ],
-  providers : [],
-  entryComponents: [
-    
+    MatTableModule,
+
+    MaterialModule,
+    NgxChartsModule,
+    FuseSidebarModule,
+    FuseWidgetModule,
+    FlexLayoutModule,
   ]
 })
 export class NominasModule { }

@@ -12,6 +12,7 @@ export const locale = {
             'NOMINA'      : 'Nomina',
             'PAGO'        : 'Pago',
             'REPORTE'     : 'Reporte',
+            'BANCO'       : 'Banco',
             //
             'MAIL'        : {
                 'TITLE': 'Mail',

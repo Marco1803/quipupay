@@ -15,6 +15,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FuseSharedModule } from '../../../../../@fuse/shared.module';
 import { ModalEventComComponent } from './modal-event-com/modal-event-com.component';
+import { MaterialModule } from 'app/layout/materialComponent/material.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routes: Routes = [
   {
@@ -44,7 +48,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatInputModule,
     MatToolbarModule,
-    FuseSharedModule
+    FuseSharedModule,
+
+    MaterialModule,
+    NgxChartsModule,
+    FuseSidebarModule,
+    FuseWidgetModule,
+    FlexLayoutModule
   ],
   providers : [],
   entryComponents: [

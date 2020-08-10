@@ -1,24 +1,24 @@
 export class NominaErrorModel {
-    id?:string;
-    transactionid:string;
-    date:string;
-    username:string;
-    account:string;
-    currency:string;
-    amount_usd:string;
-    merchant:string;
-    customer_name:string;
-    account_type:string;
-    account_numer:string;
-    dni:string;
-    department:string;
-    cci_numb:string;
-    reference:string;
-    kycyn:string;
-    correo:string;
-    celular:string;
-    numLine:string;
-    msgError:string;
+    id?: string;
+    transactionid: string;
+    date: string;
+    username: string;
+    account: string;
+    currency: string;
+    amount_usd: string;
+    merchant: string;
+    customer_name: string;
+    account_type: string;
+    account_numer: string;
+    dni: string;
+    department: string;
+    cci_numb: string;
+    reference: string;
+    kycyn: string;
+    correo: string;
+    celular: string;
+    numLine: string;
+    msgError: string;
 
     constructor(
         public _id?: string,
@@ -41,28 +41,28 @@ export class NominaErrorModel {
         public _celular?: string,
         public _numLine?: string,
         public _msgError?: string
-        
-    ) { 
-        this.id             = _id;
-        this.transactionid  = _transactionid;
-        this.date           = _date;
-        this.username       = _username;
-        this.account        = _account;
-        this.currency       = _currency;
-        this.amount_usd     = _amount_usd;
-        this.merchant       = _merchant;
-        this.customer_name  = _customer_name;
-        this.account_type   = _account_type;
-        this.account_numer  = _account_numer;
-        this.dni            = _dni;
-        this.department     = _department;
-        this.cci_numb       = _cci_numb;
-        this.reference      = _reference;
-        this.kycyn          = _kycyn;
-        this.correo         = _correo;
-        this.celular        = _celular;
-        this.numLine        = _numLine;
-        this.msgError       = _msgError;
+
+    ) {
+        this.id = _id;
+        this.transactionid = _transactionid;
+        this.date = _date;
+        this.username = _username;
+        this.account = _account;
+        this.currency = _currency;
+        this.amount_usd = _amount_usd;
+        this.merchant = _merchant;
+        this.customer_name = _customer_name;
+        this.account_type = _account_type;
+        this.account_numer = _account_numer;
+        this.dni = _dni;
+        this.department = _department;
+        this.cci_numb = _cci_numb;
+        this.reference = _reference;
+        this.kycyn = _kycyn;
+        this.correo = _correo;
+        this.celular = _celular;
+        this.numLine = _numLine;
+        this.msgError = _msgError;
 
     }
 }

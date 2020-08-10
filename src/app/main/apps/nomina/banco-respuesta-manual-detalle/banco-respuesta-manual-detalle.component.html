@@ -1,0 +1,248 @@
+<div id="order" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- HEADER -->
+    <div class="fondo p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+
+            <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                >&nbsp;Detalle Respuesta Manual del Banco
+            </span>
+
+
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+    
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <mat-tab-group fxLayout="column" fxFlex>
+
+                    <mat-tab label="Transacciones">
+
+                        <div class="order-details tab-content p-24" fusePerfectScrollbar>
+
+                            <!-- tabla 2 -->
+
+                            <div class="section pb-48">
+
+                                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                                    <mat-icon class="m-0 mr-16 secondary-text">access_time</mat-icon>
+                                    <div class="h2 secondary-text">Detalles de Transacciones</div>
+                                </div>
+
+                                <button (click)="getchecksAprobar()" mat-button color="primary" class="save-button"
+                                    aria-label="SAVE">
+                                    Aprobar
+                                </button>
+
+                                <button (click)="getchecksRechazar()" mat-button color="primary" class="save-button"
+                                    aria-label="SAVE">
+                                    Rechazar
+                                </button>
+
+                                <div class="example-container">
+                                    <mat-table #table [dataSource]="listaNominasReg" class="table">
+
+                                        <!--- Note that these columns can be defined in any order.
+                                          The actual rendered columns are set as a property on the row definition" -->
+
+                                        <!-- Position Column -->
+                                        <!-- <ng-container matColumnDef="nomina">
+                                            <mat-header-cell *matHeaderCellDef> Nomina </mat-header-cell>
+                                            <mat-cell *matCellDef="let element">  </mat-cell>
+                                        </ng-container> -->
+
+                                        <ng-container matColumnDef="nroTransaccion1">
+                                            <mat-header-cell *matHeaderCellDef> <input type="checkbox"
+                                                    (change)="selectAll($event.target.checked)" /> </mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> 
+                                                
+                                                <input *ngIf="element.estado=='PENDIENTE'"
+                                                    type="checkbox" [checked]="element.check"
+                                                    (change)="onChange(element.id, $event.target.checked)" />
+
+                                                <input *ngIf="element.estado!='PENDIENTE'" type="checkbox" disabled />
+
+                                            </mat-cell>
+
+                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%">Nro Transaccion</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.nroTransaccion}} </td> -->
+                                        </ng-container>
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="observacion">
+                                            <mat-header-cell *matHeaderCellDef>Observacion</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> <input matInput type="text"
+                                                    (blur)="Input1(element.id,$event.target.value)">
+                                            </mat-cell>
+                                        </ng-container> -->
+
+                                        <!-- Name Column -->
+                                        <ng-container matColumnDef="estado">
+                                            <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+                                            <mat-cell *matCellDef="let element"><p > {{element.estado}} </p> 
+                                            </mat-cell>
+
+                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%">Nro Transaccion</th>
+                                                                                    <td mat-cell *matCellDef="let element"> {{element.nroTransaccion}} </td> -->
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="observacion">
+                                            <mat-header-cell *matHeaderCellDef>Observacion</mat-header-cell>
+                                            <mat-cell *matCellDef="let element">
+                                                <div *ngIf="element.estado=='PENDIENTE'">
+                                                    <input align="center" matInput placeholder="Ingrese Obs."
+                                                        type="text" (blur)="Input1(element.id,$event.target.value)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                </div>
+                                                <div align="center" *ngIf="element.estado!='PENDIENTE'">
+                                                    <p>{{element.observacion}}</p>
+                                                </div>
+
+
+                                            </mat-cell>
+                                        </ng-container>
+
+                                        <!-- Name Column -->
+                                        <ng-container matColumnDef="numeroDocumento">
+                                            <mat-header-cell *matHeaderCellDef> Nombre Beneficiario</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.nombreBeneficiario}}
+                                            </mat-cell>
+
+                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%">Nro Transaccion</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.nroTransaccion}} </td> -->
+                                        </ng-container>
+
+                                        <!-- Weight Column -->
+                                        <ng-container matColumnDef="numeroCuentaAbono">
+                                            <mat-header-cell *matHeaderCellDef>Moneda</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.moneda}} </mat-cell>
+
+                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%">Orden de Compra</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.ordenCompra}} </td> -->
+                                        </ng-container>
+
+                                        <!-- Symbol Column -->
+                                        <ng-container matColumnDef="importeAbonar">
+                                            <mat-header-cell *matHeaderCellDef>importeAbonar</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.importeAbonar}} </mat-cell>
+
+                                            <!-- <th mat-header-cell *matHeaderCellDef width="6%">Nota de Credito</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.notaCredito}} </td> -->
+                                        </ng-container>
+
+                                        <!-- Symbol Column -->
+                                        <ng-container matColumnDef="monedaAbonar">
+                                            <mat-header-cell *matHeaderCellDef>Nro Operacion</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.numeroDocumento}} </mat-cell>
+
+
+                                        </ng-container>
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="nombreBeneficiario">
+                                            <mat-header-cell *matHeaderCellDef>nombreBeneficiario</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.nombreBeneficiario }}</mat-cell>
+
+
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="Banco">
+                                            <mat-header-cell *matHeaderCellDef>Banco</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.merchant }} </mat-cell>
+
+                                           
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="rutTitular">
+                                            <mat-header-cell *matHeaderCellDef>Rut Titular</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.dni}} </mat-cell>
+
+                                         
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="nombre">
+                                            <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.customer_name}} </mat-cell>
+
+                                        
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="monto">
+                                            <mat-header-cell *matHeaderCellDef>Monto</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+
+                                         
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="motivo">
+                                            <mat-header-cell *matHeaderCellDef>Motivo</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> </mat-cell>
+
+                                        
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="cartolas">
+                                            <mat-header-cell *matHeaderCellDef>Cartolas</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.reference}} </mat-cell>   
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="canal">
+                                            <mat-header-cell *matHeaderCellDef>Canal</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> Tranferencia </mat-cell>
+
+                                        </ng-container> -->
+
+                                        <!-- Symbol Column -->
+                                        <!-- <ng-container matColumnDef="correoElectronico">
+                                            <mat-header-cell *matHeaderCellDef>mail</mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.correo}}
+                                            </mat-cell>
+
+                                        </ng-container> -->
+
+
+
+                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                                        <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true;"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+                                    </mat-table>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </mat-tab>
+
+                </mat-tab-group>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>
