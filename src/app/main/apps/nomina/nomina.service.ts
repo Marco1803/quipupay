@@ -119,8 +119,8 @@ export class NominaService {
   }
 
   //::::::::::::::::::::::::::::::: NOMINAS ::::::::::::::::::::::::::::::://
-  nominas_listar(): Observable<NominaModel[]> {
-    return this.httpClient.get<NominaModel[]>(this.baseUrl.getUrlApiNomina() + 'nominacarga', { headers: this.headers });
+  nominas_listar(jsonsend): Observable<NominaModel[]> {
+    return this.httpClient.get<NominaModel[]>(this.baseUrl.getUrlApiNomina() + 'nomina_carga?comercioId='+jsonsend['cboCom']+'&nominaId='+jsonsend['nominaId']+'&finicio='+jsonsend['finicio']+'&ffinal='+jsonsend['ffinal'], { headers: this.headers });
   }
 
   // nominas_listar(): Observable<NominaModel[]> {

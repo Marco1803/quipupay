@@ -1,5 +1,5 @@
 import { FuseNavigation } from '@fuse/types';
-console.log('hola');
+console.log('');
 
 export const navigation = [];
 

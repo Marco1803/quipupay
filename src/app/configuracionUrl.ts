@@ -28,8 +28,8 @@ export class ConfiguracionUrl{
   }     
 
   getUrlBase(){//URL FRONT (ANGULAR)
-    return "http://payoutsv1.s3-website-us-west-2.amazonaws.com/";
-    //return "http://localhost:4200/";
+    //return "http://payoutsv1.s3-website-us-west-2.amazonaws.com/";
+    return "http://localhost:4200/";
   }
   getUrlAccion(){//URL API BACK VISA (ACCION/SIN TOKEN)
     return "https://1lus0iktme.execute-api.us-west-2.amazonaws.com/";

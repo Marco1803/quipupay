@@ -9,12 +9,50 @@ import { Observable, of } from "rxjs";
 import { DescargaBancoBbvaModel } from 'app/main/models/DescargaBancoBbvaModel.model';
 import Swal from 'sweetalert2';
 
+//fechas
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import * as _moment from 'moment';
+import { default as _rollupMoment, Moment } from 'moment';
+//checkbox
+import { ThemePalette } from '@angular/material/core';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { CmbEstadoReporteModel } from 'app/main/models/cmbEstadoReporteModel.model';
+
+import { UsuariosService } from '../../admin/usuarios/usuarios.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { GetParametrosCognito } from 'app/services/getParametrosCognito.service';
+import { ComercioListarModel } from 'app/main/models/comercioListarModel.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+// fin fechas
+
 @Component({
   selector: 'app-banco-envio',
   templateUrl: './banco-envio.component.html',
   styleUrls: ['./banco-envio.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations: fuseAnimations,
+  animations: fuseAnimations, 
+  //fechas
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
+  ]
 })
 export class BancoEnvioComponent implements OnInit {
 
@@ -122,6 +160,8 @@ export class BancoEnvioComponent implements OnInit {
 
   exportBCPTxt(nominaId) {
 
+    let fechaNow = moment(new Date()).format("YYYYMMDD")
+
     this._nominasService.nominas_envio_Banco(nominaId)
       .subscribe(
         (data: DescargaBancoBbvaModel) => {
@@ -132,7 +172,7 @@ export class BancoEnvioComponent implements OnInit {
           let tipoRegistro = data['tipoRegistro'];//
           let tipoRegistroBCPdet = '3';//
           let cantAbonoPlanilla = data['cantTotal'];//
-          let fechaProceso = data['fechaProceso'];//
+          let fechaProceso = fechaNow;//
           let tipoCuentaCargo = data['tipoCuentaCargo'];
           let monedaCuentaCargo = data['monedaCuentaCargo'];
           let numeroCuentaCargo = data['cuentaCargo'];

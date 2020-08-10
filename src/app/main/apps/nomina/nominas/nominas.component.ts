@@ -18,6 +18,8 @@ import { UsuariosService } from '../../admin/usuarios/usuarios.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { GetParametrosCognito } from 'app/services/getParametrosCognito.service';
 import { ComercioListarModel } from 'app/main/models/comercioListarModel.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 const moment = _rollupMoment || _moment;
@@ -39,8 +41,6 @@ export const MY_FORMATS = {
   selector: 'app-nominas',
   templateUrl: './nominas.component.html',
   styleUrls: ['./nominas.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  animations: fuseAnimations,
   //fechas
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
@@ -50,16 +50,30 @@ export const MY_FORMATS = {
 
 export class NominasComponent {
 
-  //Variables
   listaNominas: NominaModel[] = [];
+  displayedColumns = ['id', 'archivo', 'Subido_por', 'estado',
+  'total_soles', 'total_num', 'fecha_carga', 'ultima_actualziacion',
+  'compania', 'acciones'];
+  dataSource :  MatTableDataSource<NominaModel>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+
+  //Variables
+  //listaNominas: NominaModel[] = [];
 
   //Busqueda
-  cboComercio   : ComercioListarModel[] = [];
+  cboComercio: ComercioListarModel[] = [];
   busquedaForm: FormGroup;
 
   //Token
   helper: JwtHelperService;
   idComercio: string = "";
+  comercioId = '';
+
+   //tabla
+   totalPag : number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,46 +81,97 @@ export class NominasComponent {
     public _usuarioService: UsuariosService,
     public authService: GetParametrosCognito
   ) {
- //Datos Token
- this.helper        = new JwtHelperService(); 
- let token          = this.authService.getIdToken();
- const decodedToken = this.helper.decodeToken(token);
- let idComercio     = `${ decodedToken["custom:IdComercio"]}`;
- this.idComercio      = idComercio;
+    //Datos Token
+    this.helper = new JwtHelperService();
+    let token = this.authService.getIdToken();
+    const decodedToken = this.helper.decodeToken(token);
+    let idComercio = `${decodedToken["custom:IdComercio"]}`;
+    this.idComercio = idComercio;
 
   }
 
   ngOnInit(): void {
+    // let comercioId = localStorage.getItem('comercioId');
+    // console.log(comercioId);
+    // this.comercioId =  comercioId;
+
+    this.dataSource = new MatTableDataSource(this.listaNominas);
+    this.dataSource.paginator = this.paginator;
+
     this.obtenerComercio();
     this.initBuscador();
     this.obtenerNominas();
+
+
   }
 
-   //Iniciualizando Forms
-   initBuscador() {
+  ngAfterViewInit() {
+    let variable = this.paginator.nextPage;
+    console.log(variable);
+    
+
+}
+
+  //Iniciualizando Forms
+  initBuscador() {
     this.busquedaForm = this.formBuilder.group({
-      fechaIni: new FormControl(moment(new Date(), 'DD MM').format('YYYY-MM-DD')),
-      fechaFin: new FormControl(moment(new Date(), 'DD MM').format('YYYY-MM-DD')),
-      cboCom: new FormControl(this.idComercio , null)
+      finicio: new FormControl(moment(new Date(), 'DD MM').format('YYYY-MM-DD')),
+      ffinal: new FormControl(moment(new Date(), 'DD MM').format('YYYY-MM-DD')),
+      nominaId : new FormControl(''),
+      cboCom: new FormControl(this.idComercio, null)
     });
   }
 
   //Obtenemos Datos
   obtenerNominas() {
-    swal.fire({
-      title: 'Espere por favor  ...',
-      onBeforeOpen: () => {
-        swal.showLoading()
-      }
-    });
+    // swal.fire({
+    //   title: 'Espere por favor  ...',
+    //   onBeforeOpen: () => {
+    //     swal.showLoading()
+    //   }
+    // });
 
-    this._nominasService.nominas_listar()
-      .subscribe(
-        (data) => {
+    //timeout
 
-          this.listaNominas = data;
-          swal.close();
-        });
+    // let dataCargada = '';
+    // let datacargada2 = [];
+
+
+    //     if (dataCargada == '' || dataCargada == null) {
+    //       //alert('no hay nada' );
+    //       setTimeout(() => {
+    //         let comercioId = localStorage.getItem('comercioId');
+    //         console.log(comercioId);
+    //         this.comercioId =  comercioId;
+
+    //             if(this.comercioId == '' ){
+    //               console.log('no hay data');
+    //               dataCargada = '';
+    //               this. obtenerNominas();
+    //             }else{
+    //               this._nominasService.nominas_listar(this.comercioId)
+    //               .subscribe(
+    //                 (data) => {
+    //                   console.log('hay data');
+    //                   dataCargada = '1';
+    //                   this.listaNominas = data;
+    //                   console.log(data);
+    //                   swal.close();
+    //                 });
+    //             }
+    //       }, 1000);
+    //     }
+    //timeout
+
+
+
+    // this._nominasService.nominas_listar(this.comercioId)
+    //   .subscribe(
+    //     (data) => {
+
+    //       this.listaNominas = data;
+    //       swal.close();
+    //     });
   }
 
   //busqueda
@@ -122,14 +187,29 @@ export class NominasComponent {
   }
 
   ObtenerBusquedaNomina() {
-      let jsonsend={
-        fechaIni: moment(this.busquedaForm.get('fechaIni').value).format("DD/MM/YYYY"),
-        fechaFin: moment(this.busquedaForm.get('fechaFin').value).format("DD/MM/YYYY"),
-        cboCom : this.busquedaForm.get('cboCom').value
-      }
-         console.log(jsonsend);
+    let comercioId = localStorage.getItem('comercioId');
+    console.log(comercioId);
+    this.comercioId = comercioId;
+
+    let jsonsend = {
+      finicio: moment(this.busquedaForm.get('finicio').value).format("YYYY-MM-DD"),
+      ffinal: moment(this.busquedaForm.get('ffinal').value).format("YYYY-MM-DD"),
+      nominaId: this.busquedaForm.get('nominaId').value,
+      cboCom: this.comercioId
     }
-  
+
+    this._nominasService.nominas_listar(jsonsend)
+      .subscribe(
+        (data) => {
+console.log(data);
+          this.listaNominas = data;
+          this.totalPag = this.listaNominas.length
+          this.dataSource = new MatTableDataSource(this.listaNominas ); 
+          this.dataSource.paginator = this.paginator;
+          swal.close();
+        });
+  }
+
 
 
 }

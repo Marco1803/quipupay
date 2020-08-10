@@ -56,8 +56,8 @@ export class AppComponent implements OnInit, OnDestroy
     {
         // Get default navigation
         //this.navigation = navigation;
-        console.log("data localstorage");
-        console.log(this.navigation);
+        console.log("");
+
 
         
         
@@ -65,17 +65,13 @@ export class AppComponent implements OnInit, OnDestroy
         // .subscribe(
         //     (data) => {
         //         this.listMenu = data;
-        //         console.log("suscribe");
-        //         console.log(this.listMenu)
+        //        
         //         var menu = [];
         //         menu.push(this.listMenu);
-        //         console.log("menu :");
-        //         console.log(menu);
+        //        
         //         this._fuseNavigationService.register('main',data);
-        //       //console.log(this.navigation)
+        //      
         //     });
-        // console.log("outside suscribe");
-        // console.log(this.listMenu);
         // this._fuseNavigationService.register('main',this.listMenu);
         
 
@@ -146,9 +142,8 @@ export class AppComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        console.log('paso 1');
+        console.log('');
          this.obtenerMenu();
-         console.log('paso 2');
         // Subscribe to config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -207,7 +202,7 @@ export class AppComponent implements OnInit, OnDestroy
 
     async obtenerMenu(){
         await  this._navigate.navigation_listar().then((response:any) =>{
-            console.log(response);
+            console.log('');
             this.listMenu = response;
             this._fuseNavigationService.register('main',this.listMenu);
             this._fuseNavigationService.setCurrentNavigation('main');

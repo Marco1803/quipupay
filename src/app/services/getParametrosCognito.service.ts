@@ -35,7 +35,7 @@ export class GetParametrosCognito {
         }
 
     }
-    console.log(idToken);
+    console.log('');
     return idToken;
 }
 }

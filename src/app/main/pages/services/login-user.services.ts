@@ -99,10 +99,10 @@ export class UserLoginService {
         };
         var userPool = new CognitoUserPool(data);
         var cognitoUser = userPool.getCurrentUser();
-        console.log('renovar token 1');
+        console.log('');
         if (cognitoUser != null) {
             cognitoUser.getSession(function(err, session) {
-                console.log('renovar token 2');
+                console.log('');
                 if (err) {
                     console.log(err)
                     return;
@@ -117,7 +117,7 @@ export class UserLoginService {
                 tokenUsuario = session.getIdToken().getJwtToken();
             });       
         }
-        console.log(tokenUsuario);
+        console.log('');
         return tokenUsuario;
      }
 
